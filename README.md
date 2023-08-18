@@ -2,7 +2,7 @@
  CERES  - Centro de Ensino Superior do Seridó \
  BSI - Bacharelado em Sistemas de Informação \
  DCT1106 - Programação - Flavius Gorgônio \
- Desenvolvido por @SoutoCB, desde de agosto de 2023 \
+ Desenvolvido por @SoutoCB, desde de agosto de 2023 
 
 
 # C.SxShop - Sistema de Gestão para uma SexShop 
