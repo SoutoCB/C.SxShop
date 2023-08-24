@@ -171,19 +171,20 @@ void tela_menu_relatorios(void) {
 
 
 void tela_sobre(void) {
-    printf("Menu Sobre\n");
-    printf("|===============================================================================|\n");
-    printf("|                                                                               |\n");
-    printf("|            = = = = = Sistema de Gestão do SexShop = = = = =                   |\n");
-    printf("|                                                                               |\n");
-    printf("|Esse projeto tem como objetivo a conclusão de DCT1106 - Programação, ministrada|\n");
-    printf("|por Flavius Gorgônio, @FlaviusGorgonio. Se trata de um sistema de gestão para  |\n");
-    printf("|um SexShop, que visa conter todos os requisitos necessários para ser avaliado. |\n");
-    printf("|Desenvolvido por @SoutoCB, discente em Bacharelado em Sistemas de informação - |\n");
-    printf("|UFRN CERES. Base utilizada para desenvolver o projeto está localizada em:      |\n"); 
-    printf("|https://github.com/FlaviusGorgonio/LinguaSolta.git                             |\n");
-    printf("|===============================================================================|\n\n");
-
+    printf("Sobre o Menu\n");
+    printf("|==================================================================================|\n");
+    printf("|                                                                                  |\n");
+    printf("|           = = = = = Sistema de Gestão para Estabelecimento Sensual = = = = =     |\n");
+    printf("|                                                                                  |\n");
+    printf("| Este projeto tem como propósito a conclusão do curso DCT1106 - Programação,      |\n");
+    printf("| ministrado pelo Professor Flavius Gorgônio (@FlaviusGorgonio). O projeto         |\n");
+    printf("| consiste em um sistema de gestão para um estabelecimento voltado ao público      |\n");
+    printf("| adulto, visando a incorporação integral dos requisitos essenciais para avaliação.|\n");
+    printf("| Desenvolvido por @SoutoCB, estudante do Bacharelado em Sistemas de Informação    |\n");
+    printf("| na UFRN CERES. A base utilizada para o desenvolvimento do projeto pode ser       |\n");
+    printf("| encontrada em:                                                                   |\n");
+    printf("| https://github.com/FlaviusGorgonio/LinguaSolta.git                               |\n");
+    printf("|==================================================================================|\n\n");
 
 
 }
