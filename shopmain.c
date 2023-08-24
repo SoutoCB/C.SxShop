@@ -59,7 +59,7 @@ int main()
         printf("Opção invalida.\n\n");
     }
     tela_equipe();
-    printf("Pressione uma tecla para continuar...\n");
+    printf("Pressione uma tecla para continuar....\n");
     getchar(); // Aguarda a entrada de uma tecla
 
     return 0;
