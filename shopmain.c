@@ -7,7 +7,7 @@ DCT1106 - Programação - Flavius Gorgônio
 ----------------------------------------
 Referencias;
 -Slides e Github de Flavius Gorgônio, @FlaviusGorgonio
--Chat GPT, https://chat.openai.com/
+-ChatGPT, um modelo de linguagem da OpenAI, https://chat.openai.com/
 -Outras referencias, serão referenciadas no próprio codigo
 */
 
