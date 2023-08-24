@@ -53,7 +53,8 @@ int main()
     }else if (op1 =='6') {
         tela_sobre();
     }else if (op1 =='0') {
-        printf("Sair.\n\n");
+        printf("Obrigaod por utilizar no sistema.\n");
+        printf("Saindo.\n\n");
     }else{
         printf("Opção invalida.\n\n");
     }
