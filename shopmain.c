@@ -171,7 +171,7 @@ void tela_menu_relatorios(void) {
 
 
 void tela_sobre(void) {
-    printf("Sobre o Menu\n");
+    printf("Menu sobre\n");
     printf("|==================================================================================|\n");
     printf("|                                                                                  |\n");
     printf("|           = = = = = Sistema de Gestão para Estabelecimento Sensual = = = = =     |\n");
@@ -190,15 +190,18 @@ void tela_sobre(void) {
 }
 
 void tela_equipe(void) {
-    printf("Menu equipe\n");
+    printf("Equipe Responsável\n");
     printf("|===============================================================================|\n");
     printf("|                                                                               |\n");
-    printf("|            = = = = = Sistema de Gestão do SexShop = = = = =                   |\n");
+    printf("|          = = = = = Sistema de Gestão para Estabelecimento Sensual = = = = =   |\n");
     printf("|                                                                               |\n");
-    printf("|Esse projeto foi desenvolvido por;                                             |\n");
-    printf("|Discente: Bruno Costa Souto                                                    |\n");
-    printf("|GitHub: @SoutoCB                                                               |\n");
-    printf("|Endereço: https://github.com/SoutoCB/C.SxShop.git                              |\n");
+    printf("| Este projeto foi desenvolvido pela seguinte equipe:                           |\n");
+    printf("|                                                                               |\n");
+    printf("| ** Bruno Costa Souto **                                                       |\n");
+    printf("|                                                                               |\n");
+    printf("| GitHub: [@SoutoCB](https://github.com/SoutoCB)                                |\n");
+    printf("| Repositório: [C.SxShop](https://github.com/SoutoCB/C.SxShop.git)              |\n");
+    printf("|                                                                               |\n");
     printf("|===============================================================================|\n\n");
 
 }
