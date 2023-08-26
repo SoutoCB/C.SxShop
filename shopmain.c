@@ -52,13 +52,13 @@ int main()
         tela_menu_relatorios();
     }else if (op1 =='6') {
         tela_sobre();
+        tela_equipe();
     }else if (op1 =='0') {
         printf("Obrigaod por utilizar no sistema.\n");
         printf("Saindo.\n\n");
     }else{
         printf("Opção invalida.\n\n");
     }
-    tela_equipe();
     printf("Pressione uma tecla para continuar....\n");
     getchar(); // Aguarda a entrada de uma tecla
 
