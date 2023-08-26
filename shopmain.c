@@ -52,13 +52,13 @@ int main()
         tela_menu_relatorios();
     }else if (op1 =='6') {
         tela_sobre();
+        tela_equipe();
     }else if (op1 =='0') {
         printf("Obrigaod por utilizar no sistema.\n");
         printf("Saindo.\n\n");
     }else{
         printf("Opção invalida.\n\n");
     }
-    tela_equipe();
     printf("Pressione uma tecla para continuar....\n");
     getchar(); // Aguarda a entrada de uma tecla
 
@@ -70,6 +70,7 @@ int main()
 //Funções do sistema
 char tela_menu_principal() {
     char op;
+    system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
     printf("Menu Principal\n");
     printf("|===============================================================================|\n");
     printf("|                                                                               |\n");
@@ -91,6 +92,7 @@ char tela_menu_principal() {
 }
 
 void tela_menu_cliente(void) {
+    system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
     printf("Menu Cliente\n");
     printf("|===============================================================================|\n");
     printf("|                                                                               |\n");
@@ -107,6 +109,7 @@ void tela_menu_cliente(void) {
 }
 
 void tela_menu_funcionarios(void) {
+    system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
     printf("Menu Funcionários\n");
     printf("|===============================================================================|\n");
     printf("|                                                                               |\n");
@@ -123,6 +126,7 @@ void tela_menu_funcionarios(void) {
 }
 
 void tela_menu_gestao_produtos(void) {
+    system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
     printf("Menu Gestão de Produtos\n");
     printf("|===============================================================================|\n");
     printf("|                                                                               |\n");
@@ -139,6 +143,7 @@ void tela_menu_gestao_produtos(void) {
 }
 
 void tela_menu_vendas_pedidos(void) {
+    system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
     printf("Menu Vendas e Pedidos\n");
     printf("|===============================================================================|\n");
     printf("|                                                                               |\n");
@@ -155,6 +160,7 @@ void tela_menu_vendas_pedidos(void) {
 }
 
 void tela_menu_relatorios(void) {
+    system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
     printf("Menu Relatórios\n");
     printf("|===============================================================================|\n");
     printf("|                                                                               |\n");
@@ -172,6 +178,7 @@ void tela_menu_relatorios(void) {
 
 
 void tela_sobre(void) {
+    system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
     printf("Menu sobre\n");
     printf("|==================================================================================|\n");
     printf("|                                                                                  |\n");
