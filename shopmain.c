@@ -22,7 +22,7 @@ Referencias;
 
 //Assinaturas das funções
 char tela_menu_principal();
-void tela_menu_cliente(void);
+char tela_menu_cliente();
 void tela_menu_funcionarios(void);
 void tela_menu_gestao_produtos(void);
 void tela_menu_vendas_pedidos(void);
@@ -40,8 +40,23 @@ int main()
     ///Função para permitir caracteres especiais. Fonte: Canal mPOV ; Video: https://www.youtube.com/watch?v=hB6KFP6luL4&list=WL&index=3
     setlocale(LC_ALL,"Portuguese_Brazil");
     char op1; op1 = tela_menu_principal();
-    if (op1 == '1'){
-        tela_menu_cliente();     
+    
+    if (op1 == '1') {
+        char op2; op2 = tela_menu_cliente();
+        if (op2 =='1'){
+            printf("Cadastro Cliente.\n");
+        }else if (op2 =='2') {
+            printf("Listar Clientes.\n");
+        }else if (op2 =='3') {
+            printf("Editar Clientes.\n");
+        }else if (op2 =='4') {
+            printf("Excluir Clientes.\n");
+        }else if (op2 =='0') {
+            printf("Saindo.\n");
+        }else {
+            printf("Opção invalida.\n");
+        }
+            
     }else if (op1 =='2') {
         tela_menu_funcionarios();
     }else if (op1 =='3') {
@@ -60,6 +75,7 @@ int main()
         printf("Opção invalida.\n\n");
     }
     printf("Pressione uma tecla para continuar....\n");
+    getchar(); // Aguarda a entrada de uma tecla
     getchar(); // Aguarda a entrada de uma tecla
 
     return 0;
@@ -91,8 +107,9 @@ char tela_menu_principal() {
 
 }
 
-void tela_menu_cliente(void) {
+char tela_menu_cliente() {
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
+    char op;
     printf("Menu Cliente\n");
     printf("|===============================================================================|\n");
     printf("|                                                                               |\n");
@@ -104,8 +121,10 @@ void tela_menu_cliente(void) {
     printf("|            4. Excluir Cliente                                                 |\n");
     printf("|            0. Voltar ao Menu Principal                                        |\n");
     printf("|                                                                               |\n");
-    printf("|            Escolha a opção desejada:                                          |\n"); 
+    printf("|            Escolha a opção desejada: "); 
+    scanf(" %c",&op);
     printf("|===============================================================================|\n\n");
+    return op;
 }
 
 void tela_menu_funcionarios(void) {
