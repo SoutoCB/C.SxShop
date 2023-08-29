@@ -23,7 +23,7 @@ Referencias;
 //Assinaturas das funções
 char tela_menu_principal();
 char tela_menu_cliente();
-void tela_menu_funcionarios(void);
+char tela_menu_funcionarios();
 void tela_menu_gestao_produtos(void);
 void tela_menu_vendas_pedidos(void);
 void tela_menu_relatorios(void);
@@ -58,7 +58,21 @@ int main()
         }
             
     }else if (op1 =='2') {
-        tela_menu_funcionarios();
+        char op2; op2 = tela_menu_funcionarios();
+        if (op2 =='1'){
+            printf("Cadastro Funcionário.\n");
+        }else if (op2 =='2') {
+            printf("Listar Funcionário.\n");
+        }else if (op2 =='3') {
+            printf("Editar Funcionário.\n");
+        }else if (op2 =='4') {
+            printf("Excluir Funcionário.\n");
+        }else if (op2 =='0') {
+            printf("Saindo.\n");
+        }else {
+            printf("Opção invalida.\n");
+        }
+
     }else if (op1 =='3') {
         tela_menu_gestao_produtos();
     }else if (op1 =='4') {
@@ -69,7 +83,7 @@ int main()
         tela_sobre();
         tela_equipe();
     }else if (op1 =='0') {
-        printf("Obrigaod por utilizar no sistema.\n");
+        printf("Obrigado por utilizar no sistema.\n");
         printf("Saindo.\n\n");
     }else{
         printf("Opção invalida.\n\n");
@@ -127,21 +141,24 @@ char tela_menu_cliente() {
     return op;
 }
 
-void tela_menu_funcionarios(void) {
+char tela_menu_funcionarios() {
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
+    char op;
     printf("Menu Funcionários\n");
     printf("|===============================================================================|\n");
     printf("|                                                                               |\n");
     printf("|            = = = = = Menu Funcionários = = = = =                              |\n");
     printf("|                                                                               |\n");
     printf("|            1. Cadastrar Funcionário                                           |\n");
-    printf("|            2. Listar Funcionários                                             |\n");
+    printf("|            2. Listar Funcionário                                              |\n");
     printf("|            3. Editar Funcionário                                              |\n");
     printf("|            4. Excluir Funcionário                                             |\n");
     printf("|            0. Voltar ao Menu Principal                                        |\n");
     printf("|                                                                               |\n");
-    printf("|            Escolha a opção desejada:                                          |\n"); 
+    printf("|            Escolha a opção desejada: "); 
+    scanf(" %c",&op);
     printf("|===============================================================================|\n\n");
+    return op;
 }
 
 void tela_menu_gestao_produtos(void) {
@@ -185,8 +202,8 @@ void tela_menu_relatorios(void) {
     printf("|                                                                               |\n");
     printf("|            = = = = = Menu Relatórios = = = = =                                |\n");
     printf("|                                                                               |\n");
-    printf("|            1. Relatório de Clientes                                           |\n");
-    printf("|            2. Relatório de Funcionários                                       |\n");
+    printf("|            1. Relatórios de Clientes                                          |\n");
+    printf("|            2. Relatórios de Funcionários                                      |\n");
     printf("|            3. Relatório de Produtos                                           |\n");
     printf("|            4. Relatório de Vendas                                             |\n");
     printf("|            0. Voltar ao Menu Principal                                        |\n");
@@ -206,7 +223,7 @@ void tela_sobre(void) {
     printf("| Este projeto tem como propósito a conclusão do curso DCT1106 - Programação,      |\n");
     printf("| ministrado pelo Professor Flavius Gorgônio (@FlaviusGorgonio). O projeto         |\n");
     printf("| consiste em um sistema de gestão para um estabelecimento voltado ao público      |\n");
-    printf("| adulto, visando a incorporação integral dos requisitos essenciais para avaliação.|\n");
+    printf("| adulto, visando a incorporação integral dos requisitos essenciais para avaliação |\n");
     printf("| Desenvolvido por @SoutoCB, estudante do Bacharelado em Sistemas de Informação    |\n");
     printf("| na UFRN CERES. A base utilizada para o desenvolvimento do projeto pode ser       |\n");
     printf("| encontrada em:                                                                   |\n");
