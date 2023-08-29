@@ -24,7 +24,7 @@ Referencias;
 char tela_menu_principal();
 char tela_menu_cliente();
 char tela_menu_funcionarios();
-void tela_menu_gestao_produtos(void);
+char tela_menu_gestao_produtos();
 void tela_menu_vendas_pedidos(void);
 void tela_menu_relatorios(void);
 void tela_sobre(void);
@@ -55,9 +55,9 @@ int main()
             printf("Saindo.\n");
         }else {
             printf("Opção invalida.\n");
-        }
-            
-    }else if (op1 =='2') {
+        }        
+    }
+    else if (op1 =='2') {
         char op2; op2 = tela_menu_funcionarios();
         if (op2 =='1'){
             printf("Cadastro Funcionário.\n");
@@ -72,20 +72,39 @@ int main()
         }else {
             printf("Opção invalida.\n");
         }
+    }
+    else if (op1 =='3') {
+        char op2; op2 = tela_menu_gestao_produtos();
+        if (op2 =='1'){
+            printf("Cadastro Produto.\n");
+        }else if (op2 =='2') {
+            printf("Listar Produto.\n");
+        }else if (op2 =='3') {
+            printf("Editar Produto.\n");
+        }else if (op2 =='4') {
+            printf("Excluir Produto.\n");
+        }else if (op2 =='0') {
+            printf("Saindo.\n");
+        }else {
+            printf("Opção invalida.\n");
+        }
 
-    }else if (op1 =='3') {
-        tela_menu_gestao_produtos();
-    }else if (op1 =='4') {
+    }
+    else if (op1 =='4') {
         tela_menu_vendas_pedidos();
-    }else if (op1 =='5') {
+    }
+    else if (op1 =='5') {
         tela_menu_relatorios();
-    }else if (op1 =='6') {
+    }
+    else if (op1 =='6') {
         tela_sobre();
         tela_equipe();
-    }else if (op1 =='0') {
+    }
+    else if (op1 =='0') {
         printf("Obrigado por utilizar no sistema.\n");
         printf("Saindo.\n\n");
-    }else{
+    }
+    else{
         printf("Opção invalida.\n\n");
     }
     printf("Pressione uma tecla para continuar....\n");
@@ -161,8 +180,9 @@ char tela_menu_funcionarios() {
     return op;
 }
 
-void tela_menu_gestao_produtos(void) {
+char tela_menu_gestao_produtos() {
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
+    char op;
     printf("Menu Gestão de Produtos\n");
     printf("|===============================================================================|\n");
     printf("|                                                                               |\n");
@@ -174,8 +194,10 @@ void tela_menu_gestao_produtos(void) {
     printf("|            4. Excluir Produto                                                 |\n");
     printf("|            0. Voltar ao Menu Principal                                        |\n");
     printf("|                                                                               |\n");
-    printf("|            Escolha a opção desejada:                                          |\n"); 
+     printf("|            Escolha a opção desejada: "); 
+    scanf(" %c",&op);
     printf("|===============================================================================|\n\n");
+    return op;
 }
 
 void tela_menu_vendas_pedidos(void) {
