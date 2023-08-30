@@ -147,6 +147,12 @@ char tela_menu_principal() {
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
     printf("Menu Principal\n");
     printf("|===============================================================================|\n");
+    printf("|                 \033[1;36m SSS  EEEEE XX   XX\033[0m    \033[1;35m SSS   HH  HH   OOO   PPPP\033[0m             |\n");
+    printf("|                 \033[1;36mS     E       X X \033[0m     \033[1;35mS      HH  HH  O   O  P   P\033[0m            |\n"); //Ajuda do ChatGPT
+    printf("|                 \033[1;36m SSS  EEE      X \033[0m      \033[1;35m SSS   HHHHHH  O   O  PPPP\033[0m             |\n");
+    printf("|                 \033[1;36m    S E       X X \033[0m     \033[1;35m    S  HH  HH  O   O  P\033[0m                |\n");
+    printf("|                 \033[1;36mSSSS  EEEEE XX   XX \033[0m   \033[1;35mSSSS   HH  HH   OOO   P\033[0m                |\n");
+    printf("|===============================================================================|\n");
     printf("|                                                                               |\n");
     printf("|            = = = = = Sistema de Gestão do SexShop = = = = =                   |\n");
     printf("|                                                                               |\n");
