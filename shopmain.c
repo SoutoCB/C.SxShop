@@ -26,7 +26,7 @@ char tela_menu_cliente();
 char tela_menu_funcionarios();
 char tela_menu_gestao_produtos();
 char tela_menu_vendas_pedidos();
-void tela_menu_relatorios(void);
+char tela_menu_relatorios();
 void tela_sobre(void);
 void tela_equipe(void);
 
@@ -106,7 +106,20 @@ int main()
         }
     }
     else if (op1 =='5') {
-        tela_menu_relatorios();
+        char op2; op2 = tela_menu_relatorios();
+        if (op2 =='1'){
+            printf("Relatórios de Clientes\n");
+        }else if (op2 =='2') {
+            printf("Relatórios de Funcionários\n");
+        }else if (op2 =='3') {
+            printf("Relatório de Produtos\n");
+        }else if (op2 =='4') {
+            printf("Relatório de Vendas\n");
+        }else if (op2 =='0') {
+            printf("Saindo.\n");
+        }else {
+            printf("Opção invalida.\n");
+        }
     }
     else if (op1 =='6') {
         tela_sobre();
@@ -232,8 +245,9 @@ char tela_menu_vendas_pedidos() {
     return op;
 }
 
-void tela_menu_relatorios(void) {
+char tela_menu_relatorios() {
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
+    char op;
     printf("Menu Relatórios\n");
     printf("|===============================================================================|\n");
     printf("|                                                                               |\n");
@@ -245,8 +259,10 @@ void tela_menu_relatorios(void) {
     printf("|            4. Relatório de Vendas                                             |\n");
     printf("|            0. Voltar ao Menu Principal                                        |\n");
     printf("|                                                                               |\n");
-    printf("|            Escolha a opção desejada:                                          |\n"); 
+    printf("|            Escolha a opção desejada: "); 
+    scanf(" %c",&op);
     printf("|===============================================================================|\n\n");
+    return op;
 }
 
 
