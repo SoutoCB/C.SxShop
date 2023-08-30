@@ -25,7 +25,7 @@ char tela_menu_principal();
 char tela_menu_cliente();
 char tela_menu_funcionarios();
 char tela_menu_gestao_produtos();
-void tela_menu_vendas_pedidos(void);
+char tela_menu_vendas_pedidos();
 void tela_menu_relatorios(void);
 void tela_sobre(void);
 void tela_equipe(void);
@@ -88,10 +88,22 @@ int main()
         }else {
             printf("Opção invalida.\n");
         }
-
     }
     else if (op1 =='4') {
-        tela_menu_vendas_pedidos();
+        char op2; op2 = tela_menu_vendas_pedidos();
+        if (op2 =='1'){
+            printf("Realizar Venda\n");
+        }else if (op2 =='2') {
+            printf("Listar Pedidos\n");
+        }else if (op2 =='3') {
+            printf("Editar Pedido\n");
+        }else if (op2 =='4') {
+            printf("Cancelar Pedido\n");
+        }else if (op2 =='0') {
+            printf("Saindo.\n");
+        }else {
+            printf("Opção invalida.\n");
+        }
     }
     else if (op1 =='5') {
         tela_menu_relatorios();
@@ -194,14 +206,15 @@ char tela_menu_gestao_produtos() {
     printf("|            4. Excluir Produto                                                 |\n");
     printf("|            0. Voltar ao Menu Principal                                        |\n");
     printf("|                                                                               |\n");
-     printf("|            Escolha a opção desejada: "); 
+    printf("|            Escolha a opção desejada: "); 
     scanf(" %c",&op);
     printf("|===============================================================================|\n\n");
     return op;
 }
 
-void tela_menu_vendas_pedidos(void) {
+char tela_menu_vendas_pedidos() {
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
+    char op; 
     printf("Menu Vendas e Pedidos\n");
     printf("|===============================================================================|\n");
     printf("|                                                                               |\n");
@@ -213,8 +226,10 @@ void tela_menu_vendas_pedidos(void) {
     printf("|            4. Cancelar Pedido                                                 |\n");
     printf("|            0. Voltar ao Menu Principal                                        |\n");
     printf("|                                                                               |\n");
-    printf("|            Escolha a opção desejada:                                          |\n"); 
+    printf("|            Escolha a opção desejada: "); 
+    scanf(" %c",&op);
     printf("|===============================================================================|\n\n");
+    return op;
 }
 
 void tela_menu_relatorios(void) {
