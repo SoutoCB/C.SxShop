@@ -38,147 +38,170 @@ int main() {
     ///Funcao para permitir caracteres especiais. Fonte: Canal mPOV ; Video: https://www.youtube.com/watch?v=hB6KFP6luL4&list=WL&index=3
     setlocale(LC_ALL,"Portuguese_Brazil");
     char op1;
-    op1 = tela_menu_principal();
-    switch (op1) {
-        case '1': {
-            char op2;
-            op2 = tela_menu_cliente();
-            switch (op2) {
-                case '1':
-                    printf("Cadastro Cliente.\n");
-                    break;
-                case '2':
-                    printf("Listar Clientes.\n");
-                    break;
-                case '3':
-                    printf("Editar Clientes.\n");
-                    break;
-                case '4':
-                    printf("Excluir Clientes.\n");
-                    break;
-                case '0':
-                    printf("Saindo.\n");
-                    break;
-                default:
-                    printf("Opcao invalida.\n");
-                    break;
+    while (op1 != '0') {
+        op1 = tela_menu_principal();
+        switch (op1) {
+            case '1': {
+                char op2;
+                op2 = tela_menu_cliente();
+                switch (op2) {
+                    case '1':
+                        printf("Cadastro Cliente.\n");
+                        break;
+                    case '2':
+                        printf("Listar Clientes.\n");
+                        break;
+                    case '3':
+                        printf("Editar Clientes.\n");
+                        break;
+                    case '4':
+                        printf("Excluir Clientes.\n");
+                        break;
+                    case '0':
+                        printf("Saindo.\n");
+                        break;
+                    default:
+                        printf("Opcao invalida.\n");
+                        break;
+                }
+                printf("Pressione uma tecla para continuar...\n");
+                getchar(); // Aguarda a entrada de uma tecla
+                getchar(); // Aguarda a entrada de uma tecla
             }
-        }
-        break;
-        case '2': {
-            char op2;
-            op2 = tela_menu_funcionarios();
-            switch (op2) {
-                case '1':
-                    printf("Cadastro Funcionario.\n");
-                    break;
-                case '2':
-                    printf("Listar Funcionario.\n");
-                    break;
-                case '3':
-                    printf("Editar Funcionario.\n");
-                    break;
-                case '4':
-                    printf("Excluir Funcionario.\n");
-                    break;
-                case '0':
-                    printf("Saindo.\n");
-                    break;
-                default:
-                    printf("Opcao invalida.\n");
-                    break;
-            }
-        }
-        break;
-        case '3': {
-            char op2;
-            op2 = tela_menu_gestao_produtos();
-            switch (op2) {
-                case '1':
-                    printf("Cadastro Produto.\n");
-                    break;
-                case '2':
-                    printf("Listar Produto.\n");
-                    break;
-                case '3':
-                    printf("Editar Produto.\n");
-                    break;
-                case '4':
-                    printf("Excluir Produto.\n");
-                    break;
-                case '0':
-                    printf("Saindo.\n");
-                    break;
-                default:
-                    printf("Opcao invalida.\n");
-                    break;
-            }
-        }
-        break;
-        case '4': {
-            char op2;
-            op2 = tela_menu_vendas_pedidos();
-            switch (op2) {
-                case '1':
-                    printf("Realizar Venda\n");
-                    break;
-                case '2':
-                    printf("Listar Pedidos\n");
-                    break;
-                case '3':
-                    printf("Editar Pedido\n");
-                    break;
-                case '4':
-                    printf("Cancelar Pedido\n");
-                    break;
-                case '0':
-                    printf("Saindo.\n");
-                    break;
-                default:
-                    printf("Opcao invalida.\n");
-                    break;
-            }
-        }
-        break;
-        case '5': {
-            char op2;
-            op2 = tela_menu_relatorios();
-            switch (op2) {
-                case '1':
-                    printf("Relatorios de Clientes\n");
-                    break;
-                case '2':
-                    printf("Relatorios de Funcionarios\n");
-                    break;
-                case '3':
-                    printf("Relatorio de Produtos\n");
-                    break;
-                case '4':
-                    printf("Relatorio de Vendas\n");
-                    break;
-                case '0':
-                    printf("Saindo.\n");
-                    break;
-                default:
-                    printf("Opcao invalida.\n");
-                    break;
-            }
-        }
-        break;
-        case '6': {
-            tela_sobre();
-            tela_equipe();
-        }
-        break;
-        case '0':
-            printf("Obrigado por utilizar o sistema.\n");
-            printf("Saindo.\n\n");
             break;
-        default:
-            printf("Opcao invalida.\n\n");
+            case '2': {
+                char op2;
+                op2 = tela_menu_funcionarios();
+                switch (op2) {
+                    case '1':
+                        printf("Cadastro Funcionario.\n");
+                        break;
+                    case '2':
+                        printf("Listar Funcionario.\n");
+                        break;
+                    case '3':
+                        printf("Editar Funcionario.\n");
+                        break;
+                    case '4':
+                        printf("Excluir Funcionario.\n");
+                        break;
+                    case '0':
+                        printf("Saindo.\n");
+                        break;
+                    default:
+                        printf("Opcao invalida.\n");
+                        break;
+                }
+                printf("Pressione uma tecla para continuar...\n");
+                getchar(); // Aguarda a entrada de uma tecla
+                getchar(); // Aguarda a entrada de uma tecla
+            }
             break;
+            case '3': {
+                char op2;
+                op2 = tela_menu_gestao_produtos();
+                switch (op2) {
+                    case '1':
+                        printf("Cadastro Produto.\n");
+                        break;
+                    case '2':
+                        printf("Listar Produto.\n");
+                        break;
+                    case '3':
+                        printf("Editar Produto.\n");
+                        break;
+                    case '4':
+                        printf("Excluir Produto.\n");
+                        break;
+                    case '0':
+                        printf("Saindo.\n");
+                        break;
+                    default:
+                        printf("Opcao invalida.\n");
+                        break;
+                }
+                printf("Pressione uma tecla para continuar...\n");
+                getchar(); // Aguarda a entrada de uma tecla
+                getchar(); // Aguarda a entrada de uma tecla
+            }
+            break;
+            case '4': {
+                char op2;
+                op2 = tela_menu_vendas_pedidos();
+                switch (op2) {
+                    case '1':
+                        printf("Realizar Venda\n");
+                        break;
+                    case '2':
+                        printf("Listar Pedidos\n");
+                        break;
+                    case '3':
+                        printf("Editar Pedido\n");
+                        break;
+                    case '4':
+                        printf("Cancelar Pedido\n");
+                        break;
+                    case '0':
+                        printf("Saindo.\n");
+                        break;
+                    default:
+                        printf("Opcao invalida.\n");
+                        break;
+                }
+                printf("Pressione uma tecla para continuar...\n");
+                getchar(); // Aguarda a entrada de uma tecla
+                getchar(); // Aguarda a entrada de uma tecla
+            }
+            break;
+            case '5': {
+                char op2;
+                op2 = tela_menu_relatorios();
+                switch (op2) {
+                    case '1':
+                        printf("Relatorios de Clientes\n");
+                        break;
+                    case '2':
+                        printf("Relatorios de Funcionarios\n");
+                        break;
+                    case '3':
+                        printf("Relatorio de Produtos\n");
+                        break;
+                    case '4':
+                        printf("Relatorio de Vendas\n");
+                        break;
+                    case '0':
+                        printf("Saindo.\n");
+                        break;
+                    default:
+                        printf("Opcao invalida.\n");
+                        break;
+                }
+                printf("Pressione uma tecla para continuar...\n");
+                getchar(); // Aguarda a entrada de uma tecla
+                getchar(); // Aguarda a entrada de uma tecla
+            }
+            break;
+            case '6': {
+                tela_sobre();
+                tela_equipe();
+                printf("Pressione uma tecla para continuar...\n");
+                getchar(); // Aguarda a entrada de uma tecla
+                getchar(); // Aguarda a entrada de uma tecla
+            }
+            break;
+            case '0':
+                printf("Obrigado por utilizar o sistema.\n");
+                printf("Saindo.\n\n");
+                break;
+            default:
+                printf("Opcao invalida.\n\n");
+                printf("Pressione uma tecla para continuar...\n");
+                getchar(); // Aguarda a entrada de uma tecla
+                getchar(); // Aguarda a entrada de uma tecla
+                break;
+        }
     }
-    printf("Pressione uma tecla para continuar....\n");
+    printf("Pressione uma tecla para continuar...\n");
     getchar(); // Aguarda a entrada de uma tecla
     getchar(); // Aguarda a entrada de uma tecla
 
