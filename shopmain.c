@@ -20,7 +20,7 @@ Referencias;
 
 
 
-//Assinaturas das funcoes
+//Assinaturas das funcoes principais
 char tela_menu_principal();
 char tela_menu_cliente();
 char tela_menu_funcionarios();
@@ -29,6 +29,10 @@ char tela_menu_vendas_pedidos();
 char tela_menu_relatorios();
 void tela_sobre(void);
 void tela_equipe(void);
+
+//Funcoes de exibicao
+void exibir_cliente(void);
+void exibir_funcionario(void);
 
 
 
@@ -201,7 +205,7 @@ int main() {
                 break;
         }
     }
-    printf("Pressione uma tecla para continuar...\n");
+    printf("Pressione uma tecla para continuar..\n");
     getchar(); // Aguarda a entrada de uma tecla
     getchar(); // Aguarda a entrada de uma tecla
 
@@ -210,7 +214,7 @@ int main() {
 
 
 
-//Funcoes do sistema
+//Funcoes principais do sistema
 char tela_menu_principal() {
     char op;
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
@@ -372,9 +376,50 @@ void tela_equipe(void) {
     printf("| ** Bruno Costa Souto **                                                       |\n");
     printf("|                                                                               |\n");
     printf("| GitHub: [@SoutoCB](https://github.com/SoutoCB)                                |\n");
-    printf("| Reposit?rio: [C.SxShop](https://github.com/SoutoCB/C.SxShop.git)              |\n");
+    printf("| Repositorio: [C.SxShop](https://github.com/SoutoCB/C.SxShop.git)              |\n");
     printf("|                                                                               |\n");
     printf("|===============================================================================|\n\n");
 
 }
 
+//Funcoes de exibicao 
+
+void exibir_cliente(void) {
+    printf("exibir cliente\n");
+    printf("|===============================================================================|\n");
+    printf("|                                                                               |\n");
+    printf("|            = = = = = Menu Cliente = = = = =                                   |\n");
+    printf("|                                                                               |\n");
+    printf("|      CPF      -                                                               |\n");
+    printf("|      Nome     -                                                               |\n");
+    printf("|      Idade    -                                                               |\n");
+    printf("|      Telefone -                                                               |\n");
+    printf("|      E-mail   -                                                               |\n");
+    printf("|      Endereco -                                                               |\n");
+    printf("|      Envio de promoções/novos produtos - (Não aceita / Aceita)                |\n"); 
+    printf("|===============================================================================|\n\n");
+
+}
+
+void exibir_funcionario(void) {
+    printf("exibir cliente\n");
+    printf("|===============================================================================|\n");
+    printf("|                                                                               |\n");
+    printf("|            = = = = = Menu Funcionario = = = = =                               |\n");
+    printf("|                                                                               |\n");
+    printf("|      CPF      -                                                               |\n");
+    printf("|      Nome     -                                                               |\n");
+    printf("|      Idade    -                                                               |\n");
+    printf("|      Telefone -                                                               |\n");
+    printf("|      E-mail   -                                                               |\n");
+    printf("|      Endereco -                                                               |\n");
+    printf("|                                                                               |\n");
+    printf("|      Função -                                                                 |\n");
+    printf("|      Carga Horaria -                                                          |\n");
+    printf("|      Salario -                                                                |\n");
+    printf("|      Data de inicio -                                                         |\n"); 
+    printf("|      Carteira assinada -                                                      |\n");
+    printf("|      Telefone para emergencia -                                               |\n");
+    printf("|===============================================================================|\n\n");
+
+}
