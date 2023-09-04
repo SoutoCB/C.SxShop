@@ -54,6 +54,7 @@ int main() {
                         break;
                     case '2':
                         printf("Listar Clientes.\n");
+                        exibir_cliente();
                         break;
                     case '3':
                         printf("Editar Clientes.\n");
@@ -82,6 +83,7 @@ int main() {
                         break;
                     case '2':
                         printf("Listar Funcionario.\n");
+                        exibir_funcionario();
                         break;
                     case '3':
                         printf("Editar Funcionario.\n");
