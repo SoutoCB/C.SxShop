@@ -22,17 +22,33 @@ Referencias;
 
 //Assinaturas das funcoes principais
 char tela_menu_principal();
+
 char tela_menu_cliente();
+    void cadast_cliente(void);
+    void exibir_cliente(void);
+    void edit_cliente(void);
+    void delet_cliente(void);
+
 char tela_menu_funcionarios();
+    void cadast_funcionario(void);
+    void exibir_funcionario(void);
+    void edit_funcionario(void);
+    void delet_funcionario(void);
+
 char tela_menu_gestao_produtos();
+    void cadast_produto(void);
+    void exibir_produto(void);
+    void edit_produto(void);
+    void delet_produto(void);
+
 char tela_menu_vendas_pedidos();
+
 char tela_menu_relatorios();
+
 void tela_sobre(void);
+
 void tela_equipe(void);
 
-//Funcoes de exibicao
-void exibir_cliente(void);
-void exibir_funcionario(void);
 
 
 
@@ -51,17 +67,16 @@ int main() {
                     op2 = tela_menu_cliente();
                     switch (op2) {
                         case '1':
-                            printf("Cadastro Cliente.\n");
+                            cadast_cliente();
                             break;
-                        case '2':
-                            printf("Listar Clientes.\n");
+                        case '2':                        
                             exibir_cliente();
                             break;
                         case '3':
-                            printf("Editar Clientes.\n");
+                            edit_cliente();
                             break;
                         case '4':
-                            printf("Excluir Clientes.\n");
+                            delet_cliente();
                             break;
                         case '0':
                             printf("Saindo.\n");
@@ -82,17 +97,16 @@ int main() {
                     op2 = tela_menu_funcionarios();
                     switch (op2) {
                         case '1':
-                            printf("Cadastro Funcionario.\n");
+                            cadast_funcionario();
                             break;
                         case '2':
-                            printf("Listar Funcionario.\n");
                             exibir_funcionario();
                             break;
                         case '3':
-                            printf("Editar Funcionario.\n");
+                            edit_funcionario();
                             break;
                         case '4':
-                            printf("Excluir Funcionario.\n");
+                            delet_funcionario();
                             break;
                         case '0':
                             printf("Saindo.\n");
@@ -256,13 +270,15 @@ char tela_menu_principal() {
 
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 char tela_menu_cliente() {
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
     char op;
     printf("Menu Cliente\n");
     printf("|===============================================================================|\n");
     printf("|                                                                               |\n");
-    printf("|            = = = = = Menu Cliente = = = = =                                   |\n");
+    printf("|                      = = = = = Menu Cliente = = = = =                         |\n");
     printf("|                                                                               |\n");
     printf("|            1. Cadastrar Cliente                                               |\n");
     printf("|            2. Listar Clientes                                                 |\n");
@@ -275,6 +291,82 @@ char tela_menu_cliente() {
     printf("|===============================================================================|\n\n");
     return op;
 }
+
+void cadast_cliente(void) {
+    system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
+    printf("Cadastrar cliente\n");
+    printf("|===============================================================================|\n");
+    printf("|                                                                               |\n");
+    printf("|                      = = = = = Menu Cliente = = = = =                         |\n");
+    printf("|                                                                               |\n");
+    printf("|      = = = Cadastro = = =                                                     |\n");
+    printf("|                                                                               |\n");
+    printf("|      Codigo   -                                                               |\n"); //Pensar sobre esse codigo
+    printf("|      CPF      -                                                               |\n");
+    printf("|      Nome     -                                                               |\n");
+    printf("|      Idade    -                                                               |\n");
+    printf("|      Telefone -                                                               |\n");
+    printf("|      E-mail   -                                                               |\n");
+    printf("|      Endereco -                                                               |\n");
+    printf("|      Envio de promoções/novos produtos - (Não aceita / Aceita)                |\n"); 
+    printf("|===============================================================================|\n\n");
+    //Colocar estrutura de coleta de dados
+}
+
+void exibir_cliente(void) {
+    system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
+    printf("exibir cliente\n");
+    printf("|===============================================================================|\n");
+    printf("|                                                                               |\n");
+    printf("|                      = = = = = Menu Cliente = = = = =                         |\n");
+    printf("|                                                                               |\n");
+    printf("|      = = = Cliente = = =                                                      |\n");
+    printf("|      Codigo   -                                                               |\n"); //Pensar sobre esse codigo
+    printf("|      CPF      -                                                               |\n");
+    printf("|      Nome     -                                                               |\n");
+    printf("|      Idade    -                                                               |\n");
+    printf("|      Telefone -                                                               |\n");
+    printf("|      E-mail   -                                                               |\n");
+    printf("|      Endereco -                                                               |\n");
+    printf("|      Envio de promoções/novos produtos - (Não aceita / Aceita)                |\n"); 
+    printf("|===============================================================================|\n\n");
+    // Buscar forma para exibir cliente por cliente
+
+}
+
+void edit_cliente(void) {
+    system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
+    printf("editar cliente\n");
+    printf("|===============================================================================|\n");
+    printf("|                                                                               |\n");
+    printf("|                      = = = = = Menu Cliente = = = = =                         |\n");
+    printf("|                                                                               |\n");
+    printf("|      = = = Editar = = =                                                       |\n");
+    printf("|     Insira o codigo do cliente:                                               |\n");
+    //Adcionar coleta de dado
+    printf("|     Codigo   -                                                                |\n"); //Pensar sobre esse codigo
+    printf("|===============================================================================|\n");
+
+}
+
+void delet_cliente(void) {
+    system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
+    printf("Excluir cliente\n");
+    printf("|===============================================================================|\n");
+    printf("|                                                                               |\n");
+    printf("|                      = = = = = Menu Cliente = = = = =                         |\n");
+    printf("|                                                                               |\n");
+    printf("|      = = = Deletar = = =                                                      |\n");
+    printf("|      Insira o codigo do cliente:                                              |\n");
+    //Adcionar coleta de dado
+    printf("|      Codigo   -                                                               |\n"); //Pensar sobre esse codigo
+    printf("|===============================================================================|\n");
+
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 char tela_menu_funcionarios() {
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
@@ -296,6 +388,92 @@ char tela_menu_funcionarios() {
     return op;
 }
 
+void cadast_funcionario(void) {
+    system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
+    printf("Cadastrar funcionario\n");
+    printf("|===============================================================================|\n");
+    printf("|                                                                               |\n");
+    printf("|                      = = = = = Menu Funcionario = = = = =                     |\n");
+    printf("|                                                                               |\n");
+    printf("|      = = = Cadastro = = =                                                     |\n");
+    printf("|                                                                               |\n");
+    printf("|      Codigo   -                                                               |\n"); //Pensar sobre esse codigo
+    printf("|      CPF      -                                                               |\n");
+    printf("|      Nome     -                                                               |\n");
+    printf("|      Idade    -                                                               |\n");
+    printf("|      Telefone -                                                               |\n");
+    printf("|      E-mail   -                                                               |\n");
+    printf("|      Endereco -                                                               |\n");
+    printf("|      Função  -                                                                |\n");
+    printf("|      Carga Horaria  -                                                         |\n");
+    printf("|      Salario -                                                                |\n");
+    printf("|      Data de inicio -                                                         |\n"); 
+    printf("|      Carteira assinada -                                                      |\n");
+    printf("|      Telefone para emergencia -                                               |\n");
+    printf("|===============================================================================|\n\n");
+    //Colocar estrutura de coleta de dados
+}
+
+
+
+void exibir_funcionario(void) {
+    system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
+    printf("exibir cliente\n");
+    printf("|===============================================================================|\n");
+    printf("|                                                                               |\n");
+    printf("|                      = = = = = Menu Funcionario = = = = =                     |\n");
+    printf("|                                                                               |\n");
+    printf("|      = = = Funcionario = = =                                                  |\n");
+    printf("|      CPF      -                                                               |\n");
+    printf("|      Nome     -                                                               |\n");
+    printf("|      Idade    -                                                               |\n");
+    printf("|      Telefone -                                                               |\n");
+    printf("|      E-mail   -                                                               |\n");
+    printf("|      Endereco -                                                               |\n");
+    printf("|                                                                               |\n");
+    printf("|      Função  -                                                                |\n");
+    printf("|      Carga Horaria  -                                                         |\n");
+    printf("|      Salario -                                                                |\n");
+    printf("|      Data de inicio -                                                         |\n"); 
+    printf("|      Carteira assinada -                                                      |\n");
+    printf("|      Telefone para emergencia -                                               |\n");
+    printf("|===============================================================================|\n\n");
+     // Buscar forma para exibir funcionario por funcionario
+
+}
+
+void edit_funcionario(void) {
+    system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
+    printf("editar funcionario\n");
+    printf("|===============================================================================|\n");
+    printf("|                                                                               |\n");
+    printf("|                      = = = = = Menu Funcionario = = = = =                     |\n");
+    printf("|                                                                               |\n");
+    printf("|      = = = Editar = = =                                                       |\n");
+    printf("|     Insira o codigo do funcionario:                                           |\n");
+    //Adcionar coleta de dado
+    printf("|     Codigo   -                                                                |\n"); //Pensar sobre esse codigo
+    printf("|===============================================================================|\n");
+
+}
+
+void delet_funcionario(void) {
+    system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
+    printf("deletar funcionario\n");
+    printf("|===============================================================================|\n");
+    printf("|                                                                               |\n");
+    printf("|                      = = = = = Menu Funcionario = = = = =                     |\n");
+    printf("|                                                                               |\n");
+    printf("|      = = = Deletar = = =                                                      |\n");
+    printf("|     Insira o codigo do funcionario:                                           |\n");
+    //Adcionar coleta de dado
+    printf("|     Codigo   -                                                                |\n"); //Pensar sobre esse codigo
+    printf("|===============================================================================|\n");
+
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 char tela_menu_gestao_produtos() {
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
     char op;
@@ -315,6 +493,43 @@ char tela_menu_gestao_produtos() {
     printf("|===============================================================================|\n\n");
     return op;
 }
+
+void cadast_produto(void) {
+    system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
+    printf("Cadastrar produto\n");
+    printf("|===============================================================================|\n");
+    printf("|                                                                               |\n");
+    printf("|                      = = = = = Menu Produto = = = = =                         |\n");
+    printf("|                                                                               |\n");
+    printf("|      = = = Cadastro = = =                                                     |\n");
+    printf("|                                                                               |\n");
+    printf("|      Codigo    -                                                              |\n"); //Pensar sobre esse codigo
+    printf("|      Nome      -                                                              |\n");
+    printf("|      Valor     -                                                              |\n");
+    printf("|      Descrição -                                                              |\n");
+    // Pensar sobre o estoque de produto
+    printf("|===============================================================================|\n\n");
+    //Colocar estrutura de coleta de dados
+}
+
+void exibir_produto(void) {
+    system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
+    printf("Exibir produto\n");
+    printf("|===============================================================================|\n");
+    printf("|                                                                               |\n");
+    printf("|                      = = = = = Menu Produto = = = = =                         |\n");
+    printf("|                                                                               |\n");
+    printf("|      = = = Produto = = =                                                      |\n");
+    printf("|                                                                               |\n");
+    printf("|      Codigo    -                                                              |\n"); //Pensar sobre esse codigo
+    printf("|      Nome      -                                                              |\n");
+    printf("|      Valor     -                                                              |\n");
+    printf("|      Descrição -                                                              |\n");
+    // Forma para exibir produto por produto
+    printf("|===============================================================================|\n\n");
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 char tela_menu_vendas_pedidos() {
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
@@ -394,44 +609,5 @@ void tela_equipe(void) {
 
 }
 
-//Funcoes de exibicao 
 
-void exibir_cliente(void) {
-    printf("exibir cliente\n");
-    printf("|===============================================================================|\n");
-    printf("|                                                                               |\n");
-    printf("|            = = = = = Menu Cliente = = = = =                                   |\n");
-    printf("|                                                                               |\n");
-    printf("|      CPF      -                                                               |\n");
-    printf("|      Nome     -                                                               |\n");
-    printf("|      Idade    -                                                               |\n");
-    printf("|      Telefone -                                                               |\n");
-    printf("|      E-mail   -                                                               |\n");
-    printf("|      Endereco -                                                               |\n");
-    printf("|      Envio de promoções/novos produtos - (Não aceita / Aceita)                |\n"); 
-    printf("|===============================================================================|\n\n");
 
-}
-
-void exibir_funcionario(void) {
-    printf("exibir cliente\n");
-    printf("|===============================================================================|\n");
-    printf("|                                                                               |\n");
-    printf("|            = = = = = Menu Funcionario = = = = =                               |\n");
-    printf("|                                                                               |\n");
-    printf("|      CPF      -                                                               |\n");
-    printf("|      Nome     -                                                               |\n");
-    printf("|      Idade    -                                                               |\n");
-    printf("|      Telefone -                                                               |\n");
-    printf("|      E-mail   -                                                               |\n");
-    printf("|      Endereco -                                                               |\n");
-    printf("|                                                                               |\n");
-    printf("|      Função -                                                                 |\n");
-    printf("|      Carga Horaria -                                                          |\n");
-    printf("|      Salario -                                                                |\n");
-    printf("|      Data de inicio -                                                         |\n"); 
-    printf("|      Carteira assinada -                                                      |\n");
-    printf("|      Telefone para emergencia -                                               |\n");
-    printf("|===============================================================================|\n\n");
-
-}
