@@ -127,16 +127,16 @@ int main() {
                     op2 = tela_menu_gestao_produtos();
                     switch (op2) {
                         case '1':
-                            printf("Cadastro Produto.\n");
+                            cadast_produto();
                             break;
                         case '2':
-                            printf("Listar Produto.\n");
+                            exibir_produto();
                             break;
                         case '3':
-                            printf("Editar Produto.\n");
+                            edit_produto();
                             break;
                         case '4':
-                            printf("Excluir Produto.\n");
+                            delet_produto();
                             break;
                         case '0':
                             printf("Saindo.\n");
@@ -529,6 +529,36 @@ void exibir_produto(void) {
     printf("|===============================================================================|\n\n");
 }
 
+void edit_produto(void) {
+    system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
+    printf("editar produto\n");
+    printf("|===============================================================================|\n");
+    printf("|                                                                               |\n");
+    printf("|                      = = = = = Menu Produto = = = = =                         |\n");
+    printf("|                                                                               |\n");
+    printf("|      = = = Editar = = =                                                       |\n");
+    printf("|     Insira o codigo do produto:                                               |\n");
+    //Adcionar coleta de dado
+    printf("|     Codigo   -                                                                |\n"); //Pensar sobre esse codigo
+    printf("|===============================================================================|\n");
+
+}
+
+void delet_produto(void) {
+    system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
+    printf("deletar produto\n");
+    printf("|===============================================================================|\n");
+    printf("|                                                                               |\n");
+    printf("|                      = = = = = Menu Produto = = = = =                         |\n");
+    printf("|                                                                               |\n");
+    printf("|      = = = Deletar = = =                                                      |\n");
+    printf("|     Insira o codigo do produto:                                               |\n");
+    //Adcionar coleta de dado
+    printf("|     Codigo   -                                                                |\n"); //Pensar sobre esse codigo
+    printf("|===============================================================================|\n");
+
+}
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 char tela_menu_vendas_pedidos() {
@@ -550,6 +580,8 @@ char tela_menu_vendas_pedidos() {
     printf("|===============================================================================|\n\n");
     return op;
 }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 
 char tela_menu_relatorios() {
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
