@@ -65,8 +65,8 @@ void tela_equipe(void);
 int main() {
     ///Funcao para permitir caracteres especiais. Fonte: Canal mPOV ; Video: https://www.youtube.com/watch?v=hB6KFP6luL4&list=WL&index=3
     setlocale(LC_ALL,"Portuguese_Brazil");
-    char op1 ='1';
-    while (op1 != '0') {
+    char op1; 
+    do {
         op1 = tela_menu_principal();
         switch (op1) {
             case '1': {
@@ -238,7 +238,7 @@ int main() {
                 getchar(); // Aguarda a entrada de uma tecla
                 break;
         }
-    }
+    }while (op1 != '0');
     printf("Pressione uma tecla para continuar..\n");
     getchar(); // Aguarda a entrada de uma tecla
     getchar(); // Aguarda a entrada de uma tecla
