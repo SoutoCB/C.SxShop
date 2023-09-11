@@ -35,7 +35,7 @@ void tela_menu_funcionarios();
     void edit_funcionario(void);
     void delet_funcionario(void);
 
-char tela_menu_gestao_produtos();
+void tela_menu_gestao_produtos();
     void cadast_produto(void);
     void exibir_produto(void);
     void edit_produto(void);
@@ -78,33 +78,7 @@ int main() {
             }
             break;
             case '3': {
-                char op2 ='1';
-                while (op2 != '0'){
-                    op2 = tela_menu_gestao_produtos();
-                    switch (op2) {
-                        case '1':
-                            cadast_produto();
-                            break;
-                        case '2':
-                            exibir_produto();
-                            break;
-                        case '3':
-                            edit_produto();
-                            break;
-                        case '4':
-                            delet_produto();
-                            break;
-                        case '0':
-                            printf("Saindo.\n");
-                            break;
-                        default:
-                            printf("Opcao invalida.\n");
-                            break;
-                    }
-                    printf("Pressione uma tecla para continuar...\n");
-                    getchar(); // Aguarda a entrada de uma tecla
-                    getchar(); // Aguarda a entrada de uma tecla
-                }
+               tela_menu_gestao_produtos();
             }
             break;
             case '4': {
@@ -480,24 +454,48 @@ void delet_funcionario(void) {
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-char tela_menu_gestao_produtos() {
-    system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
+void tela_menu_gestao_produtos() {
     char op;
-    printf("Menu Gestao de Produtos\n");
-    printf("|===============================================================================|\n");
-    printf("|                                                                               |\n");
-    printf("|            = = = = = Menu Gestao de Produtos = = = = =                        |\n");
-    printf("|                                                                               |\n");
-    printf("|            1. Cadastrar Produto                                               |\n");
-    printf("|            2. Listar Produtos                                                 |\n");
-    printf("|            3. Editar Produto                                                  |\n");
-    printf("|            4. Excluir Produto                                                 |\n");
-    printf("|            0. Voltar ao Menu Principal                                        |\n");
-    printf("|                                                                               |\n");
-    printf("|            Escolha a opcao desejada: "); 
-    scanf(" %c",&op);
-    printf("|===============================================================================|\n\n");
-    return op;
+    do{
+        system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
+        printf("Menu Gestao de Produtos\n");
+        printf("|===============================================================================|\n");
+        printf("|                                                                               |\n");
+        printf("|            = = = = = Menu Gestao de Produtos = = = = =                        |\n");
+        printf("|                                                                               |\n");
+        printf("|            1. Cadastrar Produto                                               |\n");
+        printf("|            2. Listar Produtos                                                 |\n");
+        printf("|            3. Editar Produto                                                  |\n");
+        printf("|            4. Excluir Produto                                                 |\n");
+        printf("|            0. Voltar ao Menu Principal                                        |\n");
+        printf("|                                                                               |\n");
+        printf("|            Escolha a opcao desejada: "); 
+        scanf(" %c",&op);
+        printf("|===============================================================================|\n\n");
+        switch (op) {
+            case '1':
+                cadast_produto();
+                break;
+            case '2':
+                exibir_produto();
+                break;
+            case '3':
+                edit_produto();
+                break;
+            case '4':
+                delet_produto();
+                break;
+            case '0':
+                printf("Saindo.\n");
+                break;
+            default:
+                printf("Opcao invalida.\n");
+                break;
+        }
+        printf("Pressione uma tecla para continuar...\n");
+        getchar(); // Aguarda a entrada de uma tecla
+        getchar(); // Aguarda a entrada de uma tecla
+    }while (op!='0');
 }
 
 void cadast_produto(void) {
