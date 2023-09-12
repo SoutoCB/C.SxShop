@@ -41,13 +41,13 @@ void tela_menu_gestao_produtos();
     void edit_produto(void);
     void delet_produto(void);
 
-char tela_menu_vendas_pedidos();
+void tela_menu_vendas_pedidos();
     void make_venda(void);
     void exibir_pedido(void);
     void edit_pedido(void);
     void cancel_pedido(void);
 
-char tela_menu_relatorios();
+void tela_menu_relatorios();
     void relat_clientes(void);
     void relat_funcionarios(void);
     void relat_produtos(void);
@@ -71,88 +71,37 @@ int main() {
         switch (op1) {
             case '1': {
                 tela_menu_cliente();     
-            }
-            break;
+            }break;
+            
             case '2': {
                 tela_menu_funcionarios();        
-            }
-            break;
+            }break;
+            
             case '3': {
                tela_menu_gestao_produtos();
-            }
-            break;
+            }break;
+            
             case '4': {
-                char op2='1';
-                while (op2 !='0') {
-                    op2 = tela_menu_vendas_pedidos();
-                    switch (op2) {
-                        case '1':
-                            make_venda();
-                            break;
-                        case '2':
-                            exibir_pedido();
-                            break;
-                        case '3':
-                            edit_pedido();
-                            break;
-                        case '4':
-                            cancel_pedido();
-                            break;
-                        case '0':
-                            printf("Saindo.\n");
-                            break;
-                        default:
-                            printf("Opcao invalida.\n");
-                            break;
-                    }
-                    printf("Pressione uma tecla para continuar...\n");
-                    getchar(); // Aguarda a entrada de uma tecla
-                    getchar(); // Aguarda a entrada de uma tecla
-                }
-            }
-            break;
+                tela_menu_vendas_pedidos();          
+            }break;
+            
             case '5': {
-                char op2 = '1';
-                while (op2 != '0') {
-                    op2 = tela_menu_relatorios();
-                    switch (op2) {
-                        case '1':
-                            relat_clientes();
-                            break;
-                        case '2':
-                            relat_funcionarios();
-                            break;
-                        case '3':
-                            relat_produtos();
-                            break;
-                        case '4':
-                            relat_vendas();
-                            break;
-                        case '0':
-                            printf("Saindo.\n");
-                            break;
-                        default:
-                            printf("Opcao invalida.\n");
-                            break;
-                    }
-                    printf("Pressione uma tecla para continuar...\n");
-                    getchar(); // Aguarda a entrada de uma tecla
-                    getchar(); // Aguarda a entrada de uma tecla
-                }
-            }
-            break;
+                tela_menu_relatorios();
+            }break;
+            
             case '6': {
                 tela_sobre();
                 tela_equipe();
                 printf("Pressione uma tecla para continuar...\n");
                 getchar(); // Aguarda a entrada de uma tecla
                 getchar(); // Aguarda a entrada de uma tecla
-            }
-            break;
+            }break;
+            
             case '0':
                 printf("Obrigado por utilizar o sistema.\n");
                 printf("Saindo.\n\n");
                 break;
+            
             default:
                 printf("Opcao invalida.\n\n");
                 printf("Pressione uma tecla para continuar...\n");
@@ -565,24 +514,48 @@ void delet_produto(void) {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-char tela_menu_vendas_pedidos() {
-    system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
-    char op; 
-    printf("Menu Vendas e Pedidos\n");
-    printf("|===============================================================================|\n");
-    printf("|                                                                               |\n");
-    printf("|            = = = = = Menu Vendas e Pedidos = = = = =                          |\n");
-    printf("|                                                                               |\n");
-    printf("|            1. Realizar Venda                                                  |\n");
-    printf("|            2. Listar Pedidos                                                  |\n");
-    printf("|            3. Editar Pedido                                                   |\n");
-    printf("|            4. Cancelar Pedido                                                 |\n");
-    printf("|            0. Voltar ao Menu Principal                                        |\n");
-    printf("|                                                                               |\n");
-    printf("|            Escolha a opcao desejada: "); 
-    scanf(" %c",&op);
-    printf("|===============================================================================|\n\n");
-    return op;
+void tela_menu_vendas_pedidos() {
+    char op;
+    do{
+        system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
+        printf("Menu Vendas e Pedidos\n");
+        printf("|===============================================================================|\n");
+        printf("|                                                                               |\n");
+        printf("|            = = = = = Menu Vendas e Pedidos = = = = =                          |\n");
+        printf("|                                                                               |\n");
+        printf("|            1. Realizar Venda                                                  |\n");
+        printf("|            2. Listar Pedidos                                                  |\n");
+        printf("|            3. Editar Pedido                                                   |\n");
+        printf("|            4. Cancelar Pedido                                                 |\n");
+        printf("|            0. Voltar ao Menu Principal                                        |\n");
+        printf("|                                                                               |\n");
+        printf("|            Escolha a opcao desejada: "); 
+        scanf(" %c",&op);
+        printf("|===============================================================================|\n\n");
+        switch (op) {
+            case '1':
+                make_venda();
+                break;
+            case '2':
+                exibir_pedido();
+                break;
+            case '3':
+                edit_pedido();
+                break;
+            case '4':
+                cancel_pedido();
+                break;
+            case '0':
+                printf("Saindo.\n");
+                break;
+            default:
+                printf("Opcao invalida.\n");
+                break;
+        }
+        printf("Pressione uma tecla para continuar...\n");
+        getchar(); // Aguarda a entrada de uma tecla
+        getchar(); // Aguarda a entrada de uma tecla
+    }while(op!='0');
 }
 
 void make_venda(void) {
@@ -655,24 +628,48 @@ void cancel_pedido(void){
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-char tela_menu_relatorios() {
-    system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
+void tela_menu_relatorios() {
     char op;
-    printf("Menu Relatorios\n");
-    printf("|===============================================================================|\n");
-    printf("|                                                                               |\n");
-    printf("|            = = = = = Menu Relatorios = = = = =                                |\n");
-    printf("|                                                                               |\n");
-    printf("|            1. Relatorios de Clientes                                          |\n");
-    printf("|            2. Relatorios de Funcionarios                                      |\n");
-    printf("|            3. Relatorio de Produtos                                           |\n");
-    printf("|            4. Relatorio de Vendas                                             |\n");
-    printf("|            0. Voltar ao Menu Principal                                        |\n");
-    printf("|                                                                               |\n");
-    printf("|            Escolha a opcao desejada: "); 
-    scanf(" %c",&op);
-    printf("|===============================================================================|\n\n");
-    return op;
+    do{
+        system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
+        printf("Menu Relatorios\n");
+        printf("|===============================================================================|\n");
+        printf("|                                                                               |\n");
+        printf("|            = = = = = Menu Relatorios = = = = =                                |\n");
+        printf("|                                                                               |\n");
+        printf("|            1. Relatorios de Clientes                                          |\n");
+        printf("|            2. Relatorios de Funcionarios                                      |\n");
+        printf("|            3. Relatorio de Produtos                                           |\n");
+        printf("|            4. Relatorio de Vendas                                             |\n");
+        printf("|            0. Voltar ao Menu Principal                                        |\n");
+        printf("|                                                                               |\n");
+        printf("|            Escolha a opcao desejada: "); 
+        scanf(" %c",&op);
+        printf("|===============================================================================|\n\n");
+        switch (op) {
+            case '1':
+                relat_clientes();
+                break;
+            case '2':
+                relat_funcionarios();
+                break;
+            case '3':
+                relat_produtos();
+                break;
+            case '4':
+                relat_vendas();
+                break;
+            case '0':
+                printf("Saindo.\n");
+                break;
+            default:
+                printf("Opcao invalida.\n");
+                break;
+        }
+        printf("Pressione uma tecla para continuar...\n");
+        getchar(); // Aguarda a entrada de uma tecla
+        getchar(); // Aguarda a entrada de uma tecla
+    }while(op!='0');
 }
 
 void relat_clientes(void) {
