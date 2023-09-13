@@ -1,0 +1,1 @@
+//Criar a biblioteca para as funções de cliente
