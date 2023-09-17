@@ -12,6 +12,7 @@ void tela_menu_cliente() {
     do {
         system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
         printf("Menu Cliente\n");
+        printf("\033[1;36mSEX\033[0m \033[1;35mSHOP\033[0m\n");
         printf("|===============================================================================|\n");
         printf("|                                                                               |\n");
         printf("|                      = = = = = Menu Cliente = = = = =                         |\n");
