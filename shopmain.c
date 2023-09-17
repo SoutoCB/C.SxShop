@@ -19,34 +19,13 @@ Referencias;
 #include "cliente.h"
 #include "funcionario.h"
 #include "gestao.h"
-
-
-
-
+#include "vendas.h"
+#include "relatorios.h"
 
 //Assinaturas das funcoes principais
 char tela_menu_principal();
-
-
-
-void tela_menu_vendas_pedidos();
-    void make_venda(void);
-    void exibir_pedido(void);
-    void edit_pedido(void);
-    void cancel_pedido(void);
-
-void tela_menu_relatorios();
-    void relat_clientes(void);
-    void relat_funcionarios(void);
-    void relat_produtos(void);
-    void relat_vendas(void);
-
 void tela_sobre(void);
-
 void tela_equipe(void);
-
-
-
 
 //Parte principal do programa
 
@@ -105,8 +84,6 @@ int main() {
     return 0;
 }
 
-
-
 //Funcoes principais do sistema
 char tela_menu_principal() {
     char op;
@@ -134,254 +111,9 @@ char tela_menu_principal() {
     scanf(" %c",&op);
     printf("|===============================================================================|\n\n");
     return op;
-
 }
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
-void tela_menu_vendas_pedidos() {
-    char op;
-    do{
-        system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
-        printf("Menu Vendas e Pedidos\n");
-        printf("|===============================================================================|\n");
-        printf("|                                                                               |\n");
-        printf("|            = = = = = Menu Vendas e Pedidos = = = = =                          |\n");
-        printf("|                                                                               |\n");
-        printf("|            1. Realizar Venda                                                  |\n");
-        printf("|            2. Listar Pedidos                                                  |\n");
-        printf("|            3. Editar Pedido                                                   |\n");
-        printf("|            4. Cancelar Pedido                                                 |\n");
-        printf("|            0. Voltar ao Menu Principal                                        |\n");
-        printf("|                                                                               |\n");
-        printf("|            Escolha a opcao desejada: "); 
-        scanf(" %c",&op);
-        printf("|===============================================================================|\n\n");
-        switch (op) {
-            case '1':
-                make_venda();
-                break;
-            case '2':
-                exibir_pedido();
-                break;
-            case '3':
-                edit_pedido();
-                break;
-            case '4':
-                cancel_pedido();
-                break;
-            case '0':
-                printf("Saindo.\n");
-                break;
-            default:
-                printf("Opcao invalida.\n");
-                break;
-        }
-        printf("Pressione uma tecla para continuar...\n");
-        getchar(); // Aguarda a entrada de uma tecla
-        getchar(); // Aguarda a entrada de uma tecla
-    }while(op!='0');
-}
-
-void make_venda(void) {
-    system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
-    printf("Realizar Venda\n");
-    printf("|===============================================================================|\n");
-    printf("|                                                                               |\n");
-    printf("|                      = = = = = Menu Vendas e Pedidos = = = = =                |\n");
-    printf("|                                                                               |\n");
-    printf("|      = = = Realizar Venda = = =                                               |\n");
-    printf("|                                                                               |\n");
-    printf("|      Numero do pedido -                                                       |\n"); //Pensar sobre esse codigo
-    printf("|      Codigo do cliente -                                                      |\n");
-    printf("|      Valor total     -                                                        |\n");
-    printf("|      Descricao       -                                                        |\n");
-    // Possivel adicao de novos dados para coletar
-    printf("|===============================================================================|\n\n");
-}
- 
-                      //VER QUESTAO DA FUNCAO PEDIDO DEPOIS
-
-void exibir_pedido(void) {
-    system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
-    printf("Listar Pedidos\n");
-    printf("|===============================================================================|\n");
-    printf("|                                                                               |\n");
-    printf("|                      = = = = = Menu Vendas e Pedidos = = = = =                |\n");
-    printf("|                                                                               |\n");
-    printf("|      = = = Lista de Pedidos = = =                                             |\n");
-    printf("|                                                                               |\n");
-    printf("|      Numero do pedido -                                                       |\n"); //Pensar sobre esse codigo
-    printf("|      Codigo do cliente -                                                      |\n");
-    printf("|      Valor total     -                                                        |\n");
-    printf("|      Descricao       -                                                        |\n");
-    // Possivel adicao de novos dados para coletar
-    // funcao para mostrar os pedido um por um
-    printf("|===============================================================================|\n\n");
-}
-
-void edit_pedido(void){
-    system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
-    printf("Editar Pedido\n");
-    printf("|===============================================================================|\n");
-    printf("|                                                                               |\n");
-    printf("|                      = = = = = Menu Vendas e Pedidos = = = = =                |\n");
-    printf("|                                                                               |\n");
-    printf("|      = = = Editar Pedidos = = =                                               |\n");
-    printf("|                                                                               |\n");
-    printf("|      Numero do pedido -                                                       |\n"); //Pensar sobre esse codigo
-          //funcao de coleta de dado
-          //possiveis alteracoes
-    printf("|===============================================================================|\n\n");
-}
-
-void cancel_pedido(void){
-    system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
-    printf("Cancelar Pedido\n");
-    printf("|===============================================================================|\n");
-    printf("|                                                                               |\n");
-    printf("|                      = = = = = Menu Vendas e Pedidos = = = = =                |\n");
-    printf("|                                                                               |\n");
-    printf("|      = = = Cancelar Pedido = = =                                              |\n");
-    printf("|                                                                               |\n");
-    printf("|      Numero do pedido -                                                       |\n"); //Pensar sobre esse codigo
-          //funcao de coleta de dado
-          //possiveis alteracoes
-    printf("|===============================================================================|\n\n");
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-void tela_menu_relatorios() {
-    char op;
-    do{
-        system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
-        printf("Menu Relatorios\n");
-        printf("|===============================================================================|\n");
-        printf("|                                                                               |\n");
-        printf("|            = = = = = Menu Relatorios = = = = =                                |\n");
-        printf("|                                                                               |\n");
-        printf("|            1. Relatorios de Clientes                                          |\n");
-        printf("|            2. Relatorios de Funcionarios                                      |\n");
-        printf("|            3. Relatorio de Produtos                                           |\n");
-        printf("|            4. Relatorio de Vendas                                             |\n");
-        printf("|            0. Voltar ao Menu Principal                                        |\n");
-        printf("|                                                                               |\n");
-        printf("|            Escolha a opcao desejada: "); 
-        scanf(" %c",&op);
-        printf("|===============================================================================|\n\n");
-        switch (op) {
-            case '1':
-                relat_clientes();
-                break;
-            case '2':
-                relat_funcionarios();
-                break;
-            case '3':
-                relat_produtos();
-                break;
-            case '4':
-                relat_vendas();
-                break;
-            case '0':
-                printf("Saindo.\n");
-                break;
-            default:
-                printf("Opcao invalida.\n");
-                break;
-        }
-        printf("Pressione uma tecla para continuar...\n");
-        getchar(); // Aguarda a entrada de uma tecla
-        getchar(); // Aguarda a entrada de uma tecla
-    }while(op!='0');
-}
-
-void relat_clientes(void) {
-    system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
-    printf("Relatorios clientes\n");
-    printf("|===============================================================================|\n");
-    printf("|                                                                               |\n");
-    printf("|                      = = = = = Menu Relatorios = = = = =                      |\n");
-    printf("|                                                                               |\n");
-    printf("|      = = = Relatorios de Clientes = = =                                       |\n");
-    printf("|                                                                               |\n");
-    printf("|      Codigo   -                                                               |\n"); //Pensar sobre esse codigo
-    printf("|      CPF      -                                                               |\n");
-    printf("|      Nome     -                                                               |\n");
-    printf("|      Telefone -                                                               |\n");
-    // funcao de mostrar um por um (for dentro de for)
-    // dados temporarios de exibicao
-    printf("|===============================================================================|\n\n");
-    
-}
-
-void relat_funcionarios(void) {
-    system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
-    printf("Relatorios funcionarios\n");
-    printf("|===============================================================================|\n");
-    printf("|                                                                               |\n");
-    printf("|                      = = = = = Menu Relatorios = = = = =                      |\n");
-    printf("|                                                                               |\n");
-    printf("|      = = = Relatorios de Funcionarios = = =                                   |\n");
-    printf("|                                                                               |\n");
-    printf("|      Codigo   -                                                               |\n"); //Pensar sobre esse codigo
-    printf("|      CPF      -                                                               |\n");
-    printf("|      Nome     -                                                               |\n");
-    printf("|      Telefone -                                                               |\n");
-    printf("|      Cargo    -                                                               |\n");
-    printf("|      Salario  -                                                               |\n");
-    // funcao de mostrar um por um (for dentro de for)
-    // dados temporarios de exibicao
-    printf("|===============================================================================|\n\n");
-    
-}
-
-void relat_produtos(void) {
-    system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
-    printf("Relatorios Produtos\n");
-    printf("|===============================================================================|\n");
-    printf("|                                                                               |\n");
-    printf("|                      = = = = = Menu Relatorios = = = = =                      |\n");
-    printf("|                                                                               |\n");
-    printf("|      = = = Relatorios de Produtos = = =                                       |\n");
-    printf("|                                                                               |\n");
-    printf("|      Codigo -                                                                 |\n"); //Pensar sobre esse codigo
-    printf("|      Nome   -                                                                 |\n");
-    printf("|      Preco  -                                                                 |\n");
-    // funcao de mostrar um por um (for dentro de for)
-    // dados temporarios de exibicao
-    printf("|===============================================================================|\n\n");
-    
-}
-
-void relat_vendas(void) {
-    system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
-    printf("Relatorios Vendas\n");
-    printf("|===============================================================================|\n");
-    printf("|                                                                               |\n");
-    printf("|                      = = = = = Menu Relatorios = = = = =                      |\n");
-    printf("|                                                                               |\n");
-    printf("|      = = = Relatorios de Vendas = = =                                         |\n");
-    printf("|                                                                               |\n");
-    printf("|      Codigo do pedido  -                                                      |\n"); //Pensar sobre esse codigo
-    printf("|      Codigo do cliente -                                                      |\n");
-    printf("|      Valor total       -                                                      |\n");
-    // funcao de mostrar um por um (for dentro de for)
-    // dados temporarios de exibicao
-    printf("|===============================================================================|\n\n");
-    
-}
-
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
 
 void tela_sobre(void) {
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
@@ -399,8 +131,6 @@ void tela_sobre(void) {
     printf("| encontrada em:                                                                   |\n");
     printf("| https://github.com/FlaviusGorgonio/LinguaSolta.git                               |\n");
     printf("|==================================================================================|\n\n");
-
-
 }
 
 void tela_equipe(void) {
@@ -417,8 +147,4 @@ void tela_equipe(void) {
     printf("| Repositorio: [C.SxShop](https://github.com/SoutoCB/C.SxShop.git)              |\n");
     printf("|                                                                               |\n");
     printf("|===============================================================================|\n\n");
-
 }
-
-
-
