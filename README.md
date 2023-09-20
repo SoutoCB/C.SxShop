@@ -6,8 +6,7 @@
 
 
 # C.SxShop - Sistema de Gestão para uma SexShop 
-Esse projeto tem como objetivo a conclusão da disciplina de DCT1106 - Programação, ministrada por Flavius Gorgônio\
-Trata-se de um sistema de gestão para uma SexShop\
-Será utilizado a linguagem C, como base para o projeto\
-Esse projeto está divididos em partes, então a versão final só será disponibilizada proximo ao final da disciplina.
+Este projeto tem como finalidade a conclusão da disciplina DCT1106 - Programação, lecionada pelo professor Flavius Gorgônio. Trata-se de um sistema de gestão desenvolvido para uma loja de produtos eróticos, conhecida como Sex Shop.
+
+Para a implementação deste sistema, será utilizada a linguagem de programação C como base. O projeto está dividido em várias etapas, e a versão final do sistema será disponibilizada próximo ao término da disciplina.
 
