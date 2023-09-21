@@ -8,8 +8,7 @@ void tela_menu_vendas_pedidos() {
     char op;
     do{
         system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
-        printf("Menu Vendas e Pedidos\n");
-        printf("\033[1;36mSEX\033[0m \033[1;35mSHOP\033[0m\n");
+        printf("|\033[1;36m = Menu Vendas e Pedidos = \033[0m|\n");
         printf("|===============================================================================|\n");
         printf("|                                                                               |\n");
         printf("|            = = = = = Menu Vendas e Pedidos = = = = =                          |\n");
@@ -51,7 +50,7 @@ void tela_menu_vendas_pedidos() {
 
 void make_venda(void) {
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
-    printf("Realizar Venda\n");
+    printf("|\033[1;36m = Realizar Venda = \033[0m|\n");
     printf("|===============================================================================|\n");
     printf("|                                                                               |\n");
     printf("|                      = = = = = Menu Vendas e Pedidos = = = = =                |\n");
@@ -70,7 +69,7 @@ void make_venda(void) {
 
 void exibir_pedido(void) {
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
-    printf("Listar Pedidos\n");
+    printf("|\033[1;36m = Listar Pedidos = \033[0m|\n");
     printf("|===============================================================================|\n");
     printf("|                                                                               |\n");
     printf("|                      = = = = = Menu Vendas e Pedidos = = = = =                |\n");
@@ -88,7 +87,7 @@ void exibir_pedido(void) {
 
 void edit_pedido(void){
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
-    printf("Editar Pedido\n");
+    printf("|\033[1;36m = Editar Pedido = \033[0m|\n");
     printf("|===============================================================================|\n");
     printf("|                                                                               |\n");
     printf("|                      = = = = = Menu Vendas e Pedidos = = = = =                |\n");
@@ -103,7 +102,7 @@ void edit_pedido(void){
 
 void cancel_pedido(void){
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
-    printf("Cancelar Pedido\n");
+    printf("|\033[1;36m = Cancelar Pedido = \033[0m|\n");
     printf("|===============================================================================|\n");
     printf("|                                                                               |\n");
     printf("|                      = = = = = Menu Vendas e Pedidos = = = = =                |\n");

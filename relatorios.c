@@ -7,8 +7,7 @@ void tela_menu_relatorios() {
     char op;
     do{
         system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
-        printf("Menu Relatorios\n");
-        printf("\033[1;36mSEX\033[0m \033[1;35mSHOP\033[0m\n");
+        printf("|\033[1;36m = Menu Relatorios = \033[0m|\n");
         printf("|===============================================================================|\n");
         printf("|                                                                               |\n");
         printf("|            = = = = = Menu Relatorios = = = = =                                |\n");
@@ -50,7 +49,7 @@ void tela_menu_relatorios() {
 
 void relat_clientes(void) {
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
-    printf("Relatorios clientes\n");
+    printf("|\033[1;36m = Relatorios clientes = \033[0m|\n");
     printf("|===============================================================================|\n");
     printf("|                                                                               |\n");
     printf("|                      = = = = = Menu Relatorios = = = = =                      |\n");
@@ -69,7 +68,7 @@ void relat_clientes(void) {
 
 void relat_funcionarios(void) {
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
-    printf("Relatorios funcionarios\n");
+    printf("|\033[1;36m = Relatorios funcionarios = \033[0m|\n");
     printf("|===============================================================================|\n");
     printf("|                                                                               |\n");
     printf("|                      = = = = = Menu Relatorios = = = = =                      |\n");
@@ -90,7 +89,7 @@ void relat_funcionarios(void) {
 
 void relat_produtos(void) {
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
-    printf("Relatorios Produtos\n");
+    printf("|\033[1;36m = Relatorios Produtos = \033[0m|\n");
     printf("|===============================================================================|\n");
     printf("|                                                                               |\n");
     printf("|                      = = = = = Menu Relatorios = = = = =                      |\n");
@@ -108,7 +107,7 @@ void relat_produtos(void) {
 
 void relat_vendas(void) {
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
-    printf("Relatorios Vendas\n");
+    printf("|\033[1;36m = Relatorios Vendas = \033[0m|\n");
     printf("|===============================================================================|\n");
     printf("|                                                                               |\n");
     printf("|                      = = = = = Menu Relatorios = = = = =                      |\n");

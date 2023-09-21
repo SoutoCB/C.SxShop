@@ -88,7 +88,7 @@ int main() {
 char tela_menu_principal() {
     char op;
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
-    printf("Menu Principal\n");
+    printf("|\033[1;36m = Menu Principal = \033[0m|\n");
     printf("|===============================================================================|\n");
     printf("|                 \033[1;36m SSS  EEEEE XX   XX\033[0m    \033[1;35m SSS   HH  HH   OOO   PPPP\033[0m             |\n");
     printf("|                 \033[1;36mS     E       X X \033[0m     \033[1;35mS      HH  HH  O   O  P   P\033[0m            |\n"); //Ajuda do ChatGPT
@@ -117,7 +117,7 @@ char tela_menu_principal() {
 
 void tela_sobre(void) {
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
-    printf("Menu sobre\n");
+    printf("|\033[1;36m = Sobre = \033[0m|\n");
     printf("|==================================================================================|\n");
     printf("|                                                                                  |\n");
     printf("|           = = = = = Sistema de Gestao para Estabelecimento Sensual = = = = =     |\n");
@@ -134,7 +134,7 @@ void tela_sobre(void) {
 }
 
 void tela_equipe(void) {
-    printf("Equipe Responsavel\n");
+    printf("|\033[1;36m = Equipe responsavel = \033[0m|\n");
     printf("|===============================================================================|\n");
     printf("|                                                                               |\n");
     printf("|          = = = = = Sistema de Gestao para Estabelecimento Sensual = = = = =   |\n");

@@ -7,8 +7,7 @@ void tela_menu_funcionarios() {
     char op;
     do{
         system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
-        printf("Menu Funcionarios\n");
-        printf("\033[1;36mSEX\033[0m \033[1;35mSHOP\033[0m\n");
+        printf("|\033[1;36m = Menu Funcionarios = \033[0m|\n");
         printf("|===============================================================================|\n");
         printf("|                                                                               |\n");
         printf("|            = = = = = Menu Funcionarios = = = = =                              |\n");
@@ -51,7 +50,7 @@ void tela_menu_funcionarios() {
 
 void cadast_funcionario(void) {
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
-    printf("Cadastrar funcionario\n");
+    printf("|\033[1;36m = Cadastrar funcionario = \033[0m|\n");
     printf("|===============================================================================|\n");
     printf("|                                                                               |\n");
     printf("|                      = = = = = Menu Funcionario = = = = =                     |\n");
@@ -79,7 +78,7 @@ void cadast_funcionario(void) {
 
 void exibir_funcionario(void) {
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
-    printf("exibir cliente\n");
+    printf("|\033[1;36m = Exibir funcionario = \033[0m|\n");
     printf("|===============================================================================|\n");
     printf("|                                                                               |\n");
     printf("|                      = = = = = Menu Funcionario = = = = =                     |\n");
@@ -105,7 +104,7 @@ void exibir_funcionario(void) {
 
 void edit_funcionario(void) {
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
-    printf("editar funcionario\n");
+    printf("|\033[1;36m = Editar funcionario = \033[0m|\n");
     printf("|===============================================================================|\n");
     printf("|                                                                               |\n");
     printf("|                      = = = = = Menu Funcionario = = = = =                     |\n");
@@ -120,7 +119,7 @@ void edit_funcionario(void) {
 
 void delet_funcionario(void) {
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
-    printf("deletar funcionario\n");
+    printf("|\033[1;36m = Deletar funcionario = \033[0m|\n");
     printf("|===============================================================================|\n");
     printf("|                                                                               |\n");
     printf("|                      = = = = = Menu Funcionario = = = = =                     |\n");
