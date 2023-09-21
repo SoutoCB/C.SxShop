@@ -11,8 +11,7 @@ void tela_menu_cliente() {
     char op;
     do {
         system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
-        printf("Menu Cliente\n");
-        printf("\033[1;36mSEX\033[0m \033[1;35mSHOP\033[0m\n");
+        printf("|\033[1;36m = Menu Cliente = \033[0m|\n");
         printf("|===============================================================================|\n");
         printf("|                                                                               |\n");
         printf("|                      = = = = = Menu Cliente = = = = =                         |\n");
@@ -55,7 +54,7 @@ void tela_menu_cliente() {
 
 void cadast_cliente(void) {
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
-    printf("Cadastrar cliente\n");
+    printf("|\033[1;36m = Cadastrar cliente = \033[0m|\n");
     printf("|===============================================================================|\n");
     printf("|                                                                               |\n");
     printf("|                      = = = = = Menu Cliente = = = = =                         |\n");
@@ -76,7 +75,7 @@ void cadast_cliente(void) {
 
 void exibir_cliente(void) {
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
-    printf("exibir cliente\n");
+    printf("|\033[1;36m = Exibir cliente = \033[0m|\n");
     printf("|===============================================================================|\n");
     printf("|                                                                               |\n");
     printf("|                      = = = = = Menu Cliente = = = = =                         |\n");
@@ -97,7 +96,7 @@ void exibir_cliente(void) {
 
 void edit_cliente(void) {
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
-    printf("editar cliente\n");
+    printf("|\033[1;36m = Editar cliente = \033[0m|\n");
     printf("|===============================================================================|\n");
     printf("|                                                                               |\n");
     printf("|                      = = = = = Menu Cliente = = = = =                         |\n");
@@ -112,7 +111,7 @@ void edit_cliente(void) {
 
 void delet_cliente(void) {
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
-    printf("Excluir cliente\n");
+    printf("|\033[1;36m = Excluir cliente = \033[0m|\n");
     printf("|===============================================================================|\n");
     printf("|                                                                               |\n");
     printf("|                      = = = = = Menu Cliente = = = = =                         |\n");

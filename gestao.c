@@ -6,8 +6,7 @@ void tela_menu_gestao_produtos() {
     char op;
     do{
         system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
-        printf("Menu Gestao de Produtos\n");
-        printf("\033[1;36mSEX\033[0m \033[1;35mSHOP\033[0m\n");
+        printf("|\033[1;36m = Menu Gestao de Produtos = \033[0m|\n");
         printf("|===============================================================================|\n");
         printf("|                                                                               |\n");
         printf("|            = = = = = Menu Gestao de Produtos = = = = =                        |\n");
@@ -49,7 +48,7 @@ void tela_menu_gestao_produtos() {
 
 void cadast_produto(void) {
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
-    printf("Cadastrar produto\n");
+    printf("|\033[1;36m = Cadastrar produto = \033[0m|\n");
     printf("|===============================================================================|\n");
     printf("|                                                                               |\n");
     printf("|                      = = = = = Menu Produto = = = = =                         |\n");
@@ -67,7 +66,7 @@ void cadast_produto(void) {
 
 void exibir_produto(void) {
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
-    printf("Exibir produto\n");
+    printf("|\033[1;36m = Exibir produto = \033[0m|\n");
     printf("|===============================================================================|\n");
     printf("|                                                                               |\n");
     printf("|                      = = = = = Menu Produto = = = = =                         |\n");
@@ -84,7 +83,7 @@ void exibir_produto(void) {
 
 void edit_produto(void) {
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
-    printf("editar produto\n");
+    printf("|\033[1;36m = Editar produto = \033[0m|\n");
     printf("|===============================================================================|\n");
     printf("|                                                                               |\n");
     printf("|                      = = = = = Menu Produto = = = = =                         |\n");
@@ -99,7 +98,7 @@ void edit_produto(void) {
 
 void delet_produto(void) {
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
-    printf("deletar produto\n");
+    printf("|\033[1;36m = Deletar produto = \033[0m|\n");
     printf("|===============================================================================|\n");
     printf("|                                                                               |\n");
     printf("|                      = = = = = Menu Produto = = = = =                         |\n");
