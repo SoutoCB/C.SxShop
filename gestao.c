@@ -20,6 +20,10 @@ void tela_menu_gestao_produtos() {
         printf("|            Escolha a opcao desejada: "); 
         scanf(" %c",&op);
         printf("|===============================================================================|\n\n");
+        // IDEIA, FAZER UM SISTEMA DE AVISO PARA QUANDO O ESTOQUE DE ALGUM PRODUTO ESTIVER BAIXO
+        // função for (para ver todos os itens)
+        //    printf("O produto (nome do produto) está com baixo estoque"\n)
+        //#Pode colocar a frase em vermelho
         switch (op) {
             case '1':
                 cadast_produto();
@@ -55,10 +59,11 @@ void cadast_produto(void) {
     printf("|                                                                               |\n");
     printf("|      = = = Cadastro = = =                                                     |\n");
     printf("|                                                                               |\n");
-    printf("|      Codigo    -                                                              |\n"); //Pensar sobre esse codigo
-    printf("|      Nome      -                                                              |\n");
-    printf("|      Valor     -                                                              |\n");
-    printf("|      Descricao -                                                              |\n");
+    printf("|      Codigo     =                                                             |\n"); //Pensar sobre esse codigo
+    printf("|      Nome       =                                                             |\n");
+    printf("|      Valor      =                                                             |\n");
+    printf("|      Descricao  =                                                             |\n");
+    printf("|      Quantidade =                                                             |\n");
     // Pensar sobre o estoque de produto
     printf("|===============================================================================|\n\n");
     //Colocar estrutura de coleta de dados
@@ -73,10 +78,11 @@ void exibir_produto(void) {
     printf("|                                                                               |\n");
     printf("|      = = = Produto = = =                                                      |\n");
     printf("|                                                                               |\n");
-    printf("|      Codigo    -                                                              |\n"); //Pensar sobre esse codigo
-    printf("|      Nome      -                                                              |\n");
-    printf("|      Valor     -                                                              |\n");
-    printf("|      Descricao -                                                              |\n");
+    printf("|      Codigo     =                                                             |\n"); 
+    printf("|      Nome       =                                                             |\n");
+    printf("|      Valor      =                                                             |\n");
+    printf("|      Descricao  =                                                             |\n");
+    printf("|      Quantidade =                                                             |\n");
     // Forma para exibir produto por produto
     printf("|===============================================================================|\n\n");
 }
@@ -91,7 +97,7 @@ void edit_produto(void) {
     printf("|      = = = Editar = = =                                                       |\n");
     printf("|     Insira o codigo do produto:                                               |\n");
     //Adcionar coleta de dado
-    printf("|     Codigo   -                                                                |\n"); //Pensar sobre esse codigo
+    printf("|     Codigo   =                                                                |\n"); //Pensar sobre esse codigo
     printf("|===============================================================================|\n");
 
 }
@@ -106,7 +112,7 @@ void delet_produto(void) {
     printf("|      = = = Deletar = = =                                                      |\n");
     printf("|     Insira o codigo do produto:                                               |\n");
     //Adcionar coleta de dado
-    printf("|     Codigo   -                                                                |\n"); //Pensar sobre esse codigo
+    printf("|     Codigo   =                                                                |\n"); //Pensar sobre esse codigo
     printf("|===============================================================================|\n");
 
 }
