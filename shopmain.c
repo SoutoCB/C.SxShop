@@ -49,7 +49,7 @@ int main() {
             }break;
             
             case '4': {
-                tela_menu_vendas_pedidos();          
+                tela_menu_vendas();          
             }break;
             
             case '5': {
@@ -102,7 +102,7 @@ char tela_menu_principal() {
     printf("|            1. Menu Cliente                                                    |\n");
     printf("|            2. Menu Funcionarios                                               |\n");
     printf("|            3. Menu Gestao de Produtos                                         |\n");
-    printf("|            4. Menu Vendas e pedidos                                           |\n");
+    printf("|            4. Menu Vendas                                                     |\n");
     printf("|            5. Menu Relatorios                                                 |\n");
     printf("|            6. Sobre                                                           |\n");
     printf("|            0. Sair                                                            |\n");
