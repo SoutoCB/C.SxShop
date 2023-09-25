@@ -61,13 +61,13 @@ void cadast_cliente(void) {
     printf("|                                                                               |\n");
     printf("|      = = = Cadastro = = =                                                     |\n");
     printf("|                                                                               |\n");
-    printf("|      Codigo   -                                                               |\n"); //Pensar sobre esse codigo
-    printf("|      CPF      -                                                               |\n");
-    printf("|      Nome     -                                                               |\n");
-    printf("|      Idade    -                                                               |\n");
-    printf("|      Telefone -                                                               |\n");
-    printf("|      E-mail   -                                                               |\n");
-    printf("|      Endereco -                                                               |\n");
+    printf("|      Codigo   =                                                               |\n"); //Pensar sobre esse codigo
+    printf("|      CPF      =                                                               |\n");
+    printf("|      Nome     =                                                               |\n");
+    printf("|      Idade    =                                                               |\n");
+    printf("|      Telefone =                                                               |\n");
+    printf("|      E-mail   =                                                               |\n");
+    printf("|      Endereco =                                                               |\n");
     printf("|      Envio de promocoes/novos produtos - (Nao aceita / Aceita)                |\n"); 
     printf("|===============================================================================|\n\n");
     //Colocar estrutura de coleta de dados
@@ -81,13 +81,13 @@ void exibir_cliente(void) {
     printf("|                      = = = = = Menu Cliente = = = = =                         |\n");
     printf("|                                                                               |\n");
     printf("|      = = = Cliente = = =                                                      |\n");
-    printf("|      Codigo   -                                                               |\n"); //Pensar sobre esse codigo
-    printf("|      CPF      -                                                               |\n");
-    printf("|      Nome     -                                                               |\n");
-    printf("|      Idade    -                                                               |\n");
-    printf("|      Telefone -                                                               |\n");
-    printf("|      E-mail   -                                                               |\n");
-    printf("|      Endereco -                                                               |\n");
+    printf("|      Codigo   =                                                               |\n"); //Pensar sobre esse codigo
+    printf("|      CPF      =                                                               |\n");
+    printf("|      Nome     =                                                               |\n");
+    printf("|      Idade    =                                                               |\n");
+    printf("|      Telefone =                                                               |\n");
+    printf("|      E-mail   =                                                               |\n");
+    printf("|      Endereco =                                                               |\n");
     printf("|      Envio de promocoes/novos produtos - (Nao aceita / Aceita)                |\n"); 
     printf("|===============================================================================|\n\n");
     // Buscar forma para exibir cliente por cliente
@@ -104,7 +104,7 @@ void edit_cliente(void) {
     printf("|      = = = Editar = = =                                                       |\n");
     printf("|     Insira o codigo do cliente:                                               |\n");
     //Adcionar coleta de dado
-    printf("|     Codigo   -                                                                |\n"); //Pensar sobre esse codigo
+    printf("|     Codigo   =                                                                |\n"); //Pensar sobre esse codigo
     printf("|===============================================================================|\n");
 
 }
@@ -119,7 +119,7 @@ void delet_cliente(void) {
     printf("|      = = = Deletar = = =                                                      |\n");
     printf("|      Insira o codigo do cliente:                                              |\n");
     //Adcionar coleta de dado
-    printf("|      Codigo   -                                                               |\n"); //Pensar sobre esse codigo
+    printf("|      Codigo   =                                                               |\n"); //Pensar sobre esse codigo
     printf("|===============================================================================|\n");
 
 }
