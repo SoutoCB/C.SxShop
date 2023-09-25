@@ -56,10 +56,8 @@ void relat_clientes(void) {
     printf("|                                                                               |\n");
     printf("|      = = = Relatorios de Clientes = = =                                       |\n");
     printf("|                                                                               |\n");
-    printf("|      Codigo   -                                                               |\n"); //Pensar sobre esse codigo
-    printf("|      CPF      -                                                               |\n");
-    printf("|      Nome     -                                                               |\n");
-    printf("|      Telefone -                                                               |\n");
+    printf("|      Numero de clientes =                                                     |\n"); //Pensar sobre esse codigo
+    printf("|      Media de compras por cliente =                                           |\n");
     // funcao de mostrar um por um (for dentro de for)
     // dados temporarios de exibicao
     printf("|===============================================================================|\n\n");
@@ -75,12 +73,9 @@ void relat_funcionarios(void) {
     printf("|                                                                               |\n");
     printf("|      = = = Relatorios de Funcionarios = = =                                   |\n");
     printf("|                                                                               |\n");
-    printf("|      Codigo   -                                                               |\n"); //Pensar sobre esse codigo
-    printf("|      CPF      -                                                               |\n");
-    printf("|      Nome     -                                                               |\n");
-    printf("|      Telefone -                                                               |\n");
-    printf("|      Cargo    -                                                               |\n");
-    printf("|      Salario  -                                                               |\n");
+    printf("|      Numero de funcionarios =                                                 |\n"); //Pensar sobre esse codigo
+    printf("|      Media de vendas por funcionario =                                        |\n");
+    printf("|      Valor total de salarios =                                                |\n");
     // funcao de mostrar um por um (for dentro de for)
     // dados temporarios de exibicao
     printf("|===============================================================================|\n\n");
@@ -96,9 +91,9 @@ void relat_produtos(void) {
     printf("|                                                                               |\n");
     printf("|      = = = Relatorios de Produtos = = =                                       |\n");
     printf("|                                                                               |\n");
-    printf("|      Codigo -                                                                 |\n"); //Pensar sobre esse codigo
-    printf("|      Nome   -                                                                 |\n");
-    printf("|      Preco  -                                                                 |\n");
+    printf("|      Numero de produtos =                                                     |\n"); //Pensar sobre esse codigo
+    printf("|      Produto mais vendido =                                                   |\n");
+    printf("|      Produto menos vendido =                                                  |\n");
     // funcao de mostrar um por um (for dentro de for)
     // dados temporarios de exibicao
     printf("|===============================================================================|\n\n");
@@ -114,9 +109,8 @@ void relat_vendas(void) {
     printf("|                                                                               |\n");
     printf("|      = = = Relatorios de Vendas = = =                                         |\n");
     printf("|                                                                               |\n");
-    printf("|      Codigo do pedido  -                                                      |\n"); //Pensar sobre esse codigo
-    printf("|      Codigo do cliente -                                                      |\n");
-    printf("|      Valor total       -                                                      |\n");
+    printf("|      Receita total =                                                          |\n"); //Pensar sobre esse codigo
+    printf("|      Numero de vendas =                                                       |\n");
     // funcao de mostrar um por um (for dentro de for)
     // dados temporarios de exibicao
     printf("|===============================================================================|\n\n");

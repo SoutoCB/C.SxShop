@@ -121,5 +121,7 @@ void delet_cliente(void) {
     //Adcionar coleta de dado
     printf("|      Codigo   =                                                               |\n"); //Pensar sobre esse codigo
     printf("|===============================================================================|\n");
-
+    //Posso colocar um passo de confirmação se realmente quer deletar 
+    //Um frase tipo
+    // prinf(" Você realmente desejar deletar (nome) do cpf (cpf)?")
 }
