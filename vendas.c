@@ -59,9 +59,13 @@ void make_vendas(void) {
     printf("|                                                                               |\n");
     printf("|      Numero da venda   =                                                      |\n"); //Pensar sobre esse codigo
     printf("|      Codigo do cliente =                                                      |\n");
+    printf("|      Codigo do funcionario =                                                  |\n");
     printf("|      Valor total     =                                                        |\n");
     printf("|      Descricao       =                                                        |\n");
     // Possivel adicao de novos dados para coletar
+    //Possivel adicao de uma coleta de codigo de protudo para diminuir sua quantidade no estoque
+    // Salva a quantida de compras feitas pelo cliente
+    // Salva a quantida de compras feitas pelo funcionario
     printf("|===============================================================================|\n\n");
 }
  
@@ -78,6 +82,7 @@ void exibir_vendas(void) {
     printf("|                                                                               |\n");
     printf("|      Numero da Venda   =                                                      |\n"); //Pensar sobre esse codigo
     printf("|      Codigo do cliente =                                                      |\n");
+    printf("|      Codigo do funcionario =                                                  |\n");
     printf("|      Valor total     =                                                        |\n");
     printf("|      Descricao       =                                                        |\n");
     // Possivel adicao de novos dados para coletar
