@@ -60,16 +60,10 @@ void cadast_funcionario(void) {
     printf("|      Codigo   =                                                               |\n"); //Pensar sobre esse codigo
     printf("|      CPF      =                                                               |\n");
     printf("|      Nome     =                                                               |\n");
-    printf("|      Idade    =                                                               |\n");
+    printf("|      Data nascimento =                                                        |\n");
     printf("|      Telefone =                                                               |\n");
-    printf("|      E-mail   =                                                               |\n");
-    printf("|      Endereco =                                                               |\n");
     printf("|      Funcao   =                                                               |\n");
-    printf("|      Carga Horaria  =                                                         |\n");
     printf("|      Salario  =                                                               |\n");
-    printf("|      Data de inicio =                                                         |\n"); 
-    printf("|      Carteira assinada =                                                      |\n");
-    printf("|      Telefone para emergencia =                                               |\n");
     printf("|===============================================================================|\n\n");
     //Colocar estrutura de coleta de dados
 }
@@ -86,17 +80,10 @@ void exibir_funcionario(void) {
     printf("|      = = = Funcionario = = =                                                  |\n");
     printf("|      CPF      =                                                               |\n");
     printf("|      Nome     =                                                               |\n");
-    printf("|      Idade    =                                                               |\n");
+    printf("|      Data nascimento =                                                        |\n");
     printf("|      Telefone =                                                               |\n");
-    printf("|      E-mail   =                                                               |\n");
-    printf("|      Endereco =                                                               |\n");
-    printf("|                                                                               |\n");
     printf("|      Funcao   =                                                               |\n");
-    printf("|      Carga Horaria  =                                                         |\n");
     printf("|      Salario  =                                                               |\n");
-    printf("|      Data de inicio =                                                         |\n"); 
-    printf("|      Carteira assinada =                                                      |\n");
-    printf("|      Telefone para emergencia =                                               |\n");
     printf("|===============================================================================|\n\n");
      // Buscar forma para exibir funcionario por funcionario
 
