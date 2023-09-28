@@ -21,6 +21,7 @@ Referencias;
 #include "gestao.h"
 #include "vendas.h"
 #include "relatorios.h"
+#include "utilits.h"
 
 //Assinaturas das funcoes principais
 char tela_menu_principal();
