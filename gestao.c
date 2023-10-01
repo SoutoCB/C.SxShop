@@ -2,6 +2,13 @@
 #include <stdlib.h>
 #include "gestao.h"
 
+int codigo;
+char nome[50];
+float valor;
+char descricao[100];
+int quantidade;
+
+
 void tela_menu_gestao_produtos() {
     char op;
     do{
@@ -60,10 +67,15 @@ void cadast_produto(void) {
     printf("|      = = = Cadastro = = =                                                     |\n");
     printf("|                                                                               |\n");
     printf("|      Codigo     =                                                             |\n"); //Pensar sobre esse codigo
+    scanf("%d", &codigo);
     printf("|      Nome       =                                                             |\n");
+    scanf("%s", nome);
     printf("|      Valor      =                                                             |\n");
+    scanf("%f", &valor);
     printf("|      Descricao  =                                                             |\n");
+    scanf("%s", descricao);
     printf("|      Quantidade =                                                             |\n");
+    scanf("%d", &quantidade);
     // Pensar sobre o estoque de produto
     printf("|===============================================================================|\n\n");
     //Colocar estrutura de coleta de dados
@@ -78,11 +90,11 @@ void exibir_produto(void) {
     printf("|                                                                               |\n");
     printf("|      = = = Produto = = =                                                      |\n");
     printf("|                                                                               |\n");
-    printf("|      Codigo     =                                                             |\n"); 
-    printf("|      Nome       =                                                             |\n");
-    printf("|      Valor      =                                                             |\n");
-    printf("|      Descricao  =                                                             |\n");
-    printf("|      Quantidade =                                                             |\n");
+    printf("|      Codigo     =  %d                                                         |\n", codigo); 
+    printf("|      Nome       =  %s                                                         |\n", nome);
+    printf("|      Valor      =  %.2f                                                       |\n", valor);
+    printf("|      Descricao  =  %s                                                         |\n", descricao);
+    printf("|      Quantidade =  %d                                                         |\n", quantidade);
     // Forma para exibir produto por produto
     printf("|===============================================================================|\n\n");
 }
