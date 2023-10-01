@@ -4,7 +4,11 @@
 #include "cliente.h"
 
 
-
+int codigo;
+char cpf[12]; 
+char nome[50];
+char data_nascimento[11]; // "dd/mm/aaaa"
+char telefone[15];
 
 
 void tela_menu_cliente() {
@@ -62,11 +66,15 @@ void cadast_cliente(void) {
     printf("|      = = = Cadastro = = =                                                     |\n");
     printf("|                                                                               |\n");
     printf("|      Codigo   =                                                               |\n"); //Pensar sobre esse codigo
+    scanf("%d", &codigo);
     printf("|      CPF      =                                                               |\n");
+    scanf("%s", cpf);
     printf("|      Nome     =                                                               |\n");
+    scanf("%s", nome);
     printf("|      Data nascimento =                                                        |\n");
+    scanf("%s", data_nascimento);
     printf("|      Telefone =                                                               |\n");
-    printf("|      Envio de promocoes/novos produtos - (Nao aceita / Aceita)                |\n"); 
+    scanf("%s", telefone); 
     printf("|===============================================================================|\n\n");
     //Colocar estrutura de coleta de dados
 }
@@ -79,12 +87,11 @@ void exibir_cliente(void) {
     printf("|                      = = = = = Menu Cliente = = = = =                         |\n");
     printf("|                                                                               |\n");
     printf("|      = = = Cliente = = =                                                      |\n");
-    printf("|      Codigo   =                                                               |\n"); //Pensar sobre esse codigo
-    printf("|      CPF      =                                                               |\n");
-    printf("|      Nome     =                                                               |\n");
-    printf("|      Data nascimento =                                                        |\n");
-    printf("|      Telefone =                                                               |\n");
-    printf("|      Envio de promocoes/novos produtos - (Nao aceita / Aceita)                |\n"); 
+    printf("|      Codigo   = %d                                                            |\n", codigo); //Pensar sobre esse codigo
+    printf("|      CPF      = %s                                                            |\n", cpf);
+    printf("|      Nome     = %s                                                            |\n", nome);
+    printf("|      Data nascimento = %s                                                     |\n", data_nascimento);
+    printf("|      Telefone = %s                                                            |\n", telefone); 
     printf("|===============================================================================|\n\n");
     // Buscar forma para exibir cliente por cliente
 
