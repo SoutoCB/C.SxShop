@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "cliente.h"
+#include "utilits.h"
 
 
 int codigo;
@@ -67,10 +68,12 @@ void cadast_cliente(void) {
     printf("|                                                                               |\n");
     printf("|      Codigo   =                                                               |\n"); //Pensar sobre esse codigo
     scanf("%d", &codigo);
+    getchar();
     printf("|      CPF      =                                                               |\n");
     scanf("%s", cpf);
+    getchar();
     printf("|      Nome     =                                                               |\n");
-    scanf("%s", nome);
+    while(!valida_nome(nome)){valida_nome(nome);}
     printf("|      Data nascimento =                                                        |\n");
     scanf("%s", data_nascimento);
     printf("|      Telefone =                                                               |\n");
