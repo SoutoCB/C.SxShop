@@ -5,7 +5,7 @@
 #include "utilits.h"
 
 
-int codigo;
+char codigo[10];
 char cpf[12]; 
 char nome[50];
 char data_nascimento[11]; // "dd/mm/aaaa"
@@ -67,13 +67,11 @@ void cadast_cliente(void) {
     printf("|      = = = Cadastro = = =                                                     |\n");
     printf("|                                                                               |\n");
     printf("|      Codigo   =                                                               |\n"); //Pensar sobre esse codigo
-    scanf("%d", &codigo);
-    getchar();
+    scanf("%s", codigo);
     printf("|      CPF      =                                                               |\n");
     scanf("%s", cpf);
-    getchar();
     printf("|      Nome     =                                                               |\n");
-    while(!valida_nome(nome)){valida_nome(nome);}
+    scanf("%s", nome);
     printf("|      Data nascimento =                                                        |\n");
     scanf("%s", data_nascimento);
     printf("|      Telefone =                                                               |\n");
@@ -90,7 +88,7 @@ void exibir_cliente(void) {
     printf("|                      = = = = = Menu Cliente = = = = =                         |\n");
     printf("|                                                                               |\n");
     printf("|      = = = Cliente = = =                                                      |\n");
-    printf("|      Codigo   = %d                                                            |\n", codigo); //Pensar sobre esse codigo
+    printf("|      Codigo   = %s                                                            |\n", codigo); //Pensar sobre esse codigo
     printf("|      CPF      = %s                                                            |\n", cpf);
     printf("|      Nome     = %s                                                            |\n", nome);
     printf("|      Data nascimento = %s                                                     |\n", data_nascimento);
