@@ -5,12 +5,17 @@
 #include <ctype.h>
 #include <string.h>
 // Apoio do ChatGPT, um modelo de linguagem da OpenAI, https://chat.openai.com/
+void le_nome(char *nome){
+    do{
+        fgets(nome, 50, stdin);
+        if (nome[strlen(nome) - 1] == '\n') {
+        nome[strlen(nome) - 1] = '\0';
+        }
+   }while(!valida_nome(nome));
+}
+
 int valida_nome(char *nome){
     char letras_acentuadas[] = "áéíóúàèìòùãõâêîôûç";
-    fgets(nome, 50, stdin);
-    if (nome[strlen(nome) - 1] == '\n') {
-        nome[strlen(nome) - 1] = '\0';
-    }
     if (strlen(nome)<2){
         printf("Nome invalido.\n");
         printf("Digite novamente: \n");
@@ -38,12 +43,16 @@ int valida_nome(char *nome){
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////
+void le_codigo(char *codigo){
+    do{
+        fgets(codigo, 10, stdin);
+        if (codigo[strlen(codigo) - 1] == '\n') {
+        codigo[strlen(codigo) - 1] = '\0';
+        }
+   }while(!valida_codigo(codigo));
+}
 
 int valida_codigo(char *codigo){
-    fgets(codigo, 10, stdin);
-    if (codigo[strlen(codigo) - 1] == '\n') {
-        codigo[strlen(codigo) - 1] = '\0';
-    }
     for (int i = 0; codigo[i] != '\0'; i++) {
         if (!isdigit(codigo[i])) {
             printf("Codigo invalido\n");

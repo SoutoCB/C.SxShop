@@ -26,7 +26,7 @@ void tela_menu_funcionarios() {
         printf("|            0. Voltar ao Menu Principal                                        |\n");
         printf("|                                                                               |\n");
         printf("|            Escolha a opcao desejada: "); 
-        scanf(" %c",&op);
+        scanf(" %c",&op); getchar();
         printf("|===============================================================================|\n\n");
         
         switch (op) {
@@ -50,7 +50,6 @@ void tela_menu_funcionarios() {
                 break;
         }
         printf("Pressione uma tecla para continuar...\n");
-        getchar(); // Aguarda a entrada de uma tecla
         getchar(); // Aguarda a entrada de uma tecla
     } while (op !='0');
 }
@@ -77,7 +76,7 @@ void cadast_funcionario(void) {
     printf("|      Funcao   =                                                               |\n");
     scanf("%s", funcao);
     printf("|      Salario  =                                                               |\n");
-    scanf("%f", &salario);
+    scanf("%f", &salario);getchar();
     printf("|===============================================================================|\n\n");
     //Colocar estrutura de coleta de dados
 }

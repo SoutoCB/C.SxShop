@@ -25,7 +25,7 @@ void tela_menu_gestao_produtos() {
         printf("|            0. Voltar ao Menu Principal                                        |\n");
         printf("|                                                                               |\n");
         printf("|            Escolha a opcao desejada: "); 
-        scanf(" %c",&op);
+        scanf(" %c",&op); getchar();
         printf("|===============================================================================|\n\n");
         // IDEIA, FAZER UM SISTEMA DE AVISO PARA QUANDO O ESTOQUE DE ALGUM PRODUTO ESTIVER BAIXO
         // função for (para ver todos os itens)
@@ -53,7 +53,6 @@ void tela_menu_gestao_produtos() {
         }
         printf("Pressione uma tecla para continuar...\n");
         getchar(); // Aguarda a entrada de uma tecla
-        getchar(); // Aguarda a entrada de uma tecla
     }while (op!='0');
 }
 
@@ -75,7 +74,7 @@ void cadast_produto(void) {
     printf("|      Descricao  =                                                             |\n");
     scanf("%s", descricao);
     printf("|      Quantidade =                                                             |\n");
-    scanf("%d", &quantidade);
+    scanf("%d", &quantidade);getchar();
     // Pensar sobre o estoque de produto
     printf("|===============================================================================|\n\n");
     //Colocar estrutura de coleta de dados

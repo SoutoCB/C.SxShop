@@ -24,7 +24,7 @@ void tela_menu_vendas() {
         printf("|            0. Voltar ao Menu Principal                                        |\n");
         printf("|                                                                               |\n");
         printf("|            Escolha a opcao desejada: "); 
-        scanf(" %c",&op);
+        scanf(" %c",&op); getchar();
         printf("|===============================================================================|\n\n");
         switch (op) {
             case '1':
@@ -48,7 +48,6 @@ void tela_menu_vendas() {
         }
         printf("Pressione uma tecla para continuar...\n");
         getchar(); // Aguarda a entrada de uma tecla
-        getchar(); // Aguarda a entrada de uma tecla
     }while(op!='0');
 }
 
@@ -70,7 +69,7 @@ void make_vendas(void) {
     printf("|      Valor total     =                                                        |\n");
     scanf("%f", &valor_total);
     printf("|      Descricao       =                                                        |\n");
-    scanf("%s", descricao);
+    scanf("%s", descricao); getchar();
     // Possivel adicao de novos dados para coletar
     //Possivel adicao de uma coleta de codigo de protudo para diminuir sua quantidade no estoque
     // Salva a quantida de compras feitas pelo cliente
