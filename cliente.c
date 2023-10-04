@@ -28,7 +28,7 @@ void tela_menu_cliente() {
         printf("|            0. Voltar ao Menu Principal                                        |\n");
         printf("|                                                                               |\n");
         printf("|            Escolha a opcao desejada: "); 
-        scanf(" %c",&op);
+        scanf(" %c",&op);getchar();
         printf("|===============================================================================|\n\n");
         switch (op) {
             case '1':
@@ -52,7 +52,6 @@ void tela_menu_cliente() {
         }
         printf("Pressione uma tecla para continuar...\n");
         getchar(); // Aguarda a entrada de uma tecla
-        getchar(); // Aguarda a entrada de uma tecla
 
     }while(op!='0');
 }
@@ -67,15 +66,15 @@ void cadast_cliente(void) {
     printf("|      = = = Cadastro = = =                                                     |\n");
     printf("|                                                                               |\n");
     printf("|      Codigo   =                                                               |\n"); //Pensar sobre esse codigo
-    scanf("%s", codigo);
+    le_codigo(codigo);
     printf("|      CPF      =                                                               |\n");
-    scanf("%s", cpf);
+    scanf("%s", cpf);getchar();
     printf("|      Nome     =                                                               |\n");
-    scanf("%s", nome);
+    le_nome(nome);
     printf("|      Data nascimento =                                                        |\n");
-    scanf("%s", data_nascimento);
+    scanf("%s", data_nascimento);getchar();
     printf("|      Telefone =                                                               |\n");
-    scanf("%s", telefone); 
+    scanf("%s", telefone);getchar();
     printf("|===============================================================================|\n\n");
     //Colocar estrutura de coleta de dados
 }

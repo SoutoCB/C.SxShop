@@ -19,7 +19,7 @@ void tela_menu_relatorios() {
         printf("|            0. Voltar ao Menu Principal                                        |\n");
         printf("|                                                                               |\n");
         printf("|            Escolha a opcao desejada: "); 
-        scanf(" %c",&op);
+        scanf(" %c",&op); getchar();
         printf("|===============================================================================|\n\n");
         switch (op) {
             case '1':
@@ -42,7 +42,6 @@ void tela_menu_relatorios() {
                 break;
         }
         printf("Pressione uma tecla para continuar...\n");
-        getchar(); // Aguarda a entrada de uma tecla
         getchar(); // Aguarda a entrada de uma tecla
     }while(op!='0');
 }
