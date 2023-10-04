@@ -68,7 +68,7 @@ void cadast_cliente(void) {
     printf("|      Codigo   =                                                               |\n"); //Pensar sobre esse codigo
     le_codigo(codigo);
     printf("|      CPF      =                                                               |\n");
-    scanf("%s", cpf);getchar();
+    le_cpf(cpf);
     printf("|      Nome     =                                                               |\n");
     le_nome(nome);
     printf("|      Data nascimento =                                                        |\n");
