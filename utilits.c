@@ -14,6 +14,7 @@ void le_nome(char *nome){
    }while(!valida_nome(nome));
 }
 
+
 int valida_nome(char *nome){
     char letras_acentuadas[] = "áéíóúàèìòùãõâêîôûç";
     if (strlen(nome)<2){
@@ -52,6 +53,7 @@ void le_codigo(char *codigo){
    }while(!valida_codigo(codigo));
 }
 
+
 int valida_codigo(char *codigo){
     for (int i = 0; codigo[i] != '\0'; i++) {
         if (!isdigit(codigo[i])) {
@@ -60,16 +62,29 @@ int valida_codigo(char *codigo){
             return 0;
         }
     }
+
+    if (isspace(codigo[0]) || isspace(codigo[strlen(codigo) - 1])) {
+        printf("Codigo invalido, iniciou ou terminou com espaco.\n");
+        printf("Digite novamente: \n");
+        return 0;
+    }
+
     return 1;
 }
 
 //////////////////////////////////////////////////////////////////////////////
+void le_cpf(char *cpf){
+    do{
+        fgets(cpf, 12, stdin);
+        if (cpf[strlen(cpf) - 1] == '\n') {
+        cpf[strlen(cpf) - 1] = '\0';
+        }
+   }while(!valida_cpf(cpf));
+}
+
 
 int valida_cpf(char *cpf){
-    fgets(cpf, 12, stdin);
-    if (cpf[strlen(cpf) - 1] == '\n') {
-        cpf[strlen(cpf) - 1] = '\0';
-    }
+    
     for (int i = 0; cpf[i] != '\0'; i++) {
         if (!isdigit(cpf[i])) {
             printf("CPF invalido.2\n");
@@ -77,6 +92,13 @@ int valida_cpf(char *cpf){
             return 0;
         }
     }
+
+    if (isspace(cpf[0]) || isspace(cpf[strlen(cpf) - 1])) {
+        printf("CPF invalido, iniciou ou terminou com espaco.\n");
+        printf("Digite novamente: \n");
+        return 0;
+    }
+
     return 1;
     
 }
