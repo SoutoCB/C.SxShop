@@ -9,7 +9,7 @@ char codigo[10];
 char cpf[12]; 
 char nome[50];
 char data_nascimento[11]; // "dd/mm/aaaa"
-char telefone[15];
+char telefone[12];
 
 
 void tela_menu_cliente() {
@@ -72,9 +72,9 @@ void cadast_cliente(void) {
     printf("|      Nome     =                                                               |\n");
     le_nome(nome);
     printf("|      Data nascimento =                                                        |\n");
-    scanf("%s", data_nascimento);getchar();
+    le_data_nascimento(data_nascimento);
     printf("|      Telefone =                                                               |\n");
-    scanf("%s", telefone);getchar();
+    le_telefone(telefone);
     printf("|===============================================================================|\n\n");
     //Colocar estrutura de coleta de dados
 }
