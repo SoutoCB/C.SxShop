@@ -4,7 +4,7 @@
 #include "utilits.h"
 #include <ctype.h>
 #include <string.h>
-// Apoio do ChatGPT, um modelo de linguagem da OpenAI, https://chat.openai.com/
+// Apoio do ChatGPT para fazer essas funções, um modelo de linguagem da OpenAI, https://chat.openai.com/
 void limparBuffer() {
     int c;
     while ((c = getchar()) != '\n' && c != EOF);
@@ -16,6 +16,8 @@ void le_nome(char *nome){
         fgets(nome, 50, stdin);
         if (nome[strlen(nome) - 1] == '\n') {
         nome[strlen(nome) - 1] = '\0';
+        }else {
+            limparBuffer();
         }
    }while(!valida_nome(nome));
 }
@@ -55,6 +57,8 @@ void le_codigo(char *codigo){
         fgets(codigo, 10, stdin);
         if (codigo[strlen(codigo) - 1] == '\n') {
         codigo[strlen(codigo) - 1] = '\0';
+        } else {
+            limparBuffer();
         }
    }while(!valida_codigo(codigo));
 }
@@ -89,12 +93,14 @@ void le_cpf(char *cpf){
         fgets(cpf, 12, stdin);
         if (cpf[strlen(cpf) - 1] == '\n') {
         cpf[strlen(cpf) - 1] = '\0';
+        }else {
+            limparBuffer();
         }
    }while(!valida_cpf(cpf));
 }
 
 
-int valida_cpf(char *cpf){                //GRANDE PARTE RETIRADA DE https://gist.github.com/eduardoedson/8f991b6d234a9ebdcbe3
+int valida_cpf(char *cpf){     //GRANDE PARTE RETIRADA DE https://gist.github.com/eduardoedson/8f991b6d234a9ebdcbe3
     
     for (int i = 0; cpf[i] != '\0'; i++) {
         if (!isdigit(cpf[i])) {
