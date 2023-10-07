@@ -172,3 +172,82 @@ int valida_cpf(char *cpf){     //GRANDE PARTE RETIRADA DE https://gist.github.co
     return 1;
     
 }
+
+//////////////////////////////////////////////////////////////////////////////
+void le_telefone(char *telefone){
+    do{
+        fgets(telefone, 12, stdin);
+        if (telefone[strlen(telefone) - 1] == '\n') {
+        telefone[strlen(telefone) - 1] = '\0';
+        }else {
+            limparBuffer();
+        }
+   }while(!valida_telefone(telefone));
+}
+
+int valida_telefone(char *telefone){
+    for (int i = 0; telefone[i] != '\0'; i++) {
+        if (!isdigit(telefone[i])) {
+            printf("Telefone invalido.1\n");
+            printf("Digite novamente: \n");
+            return 0;
+        }
+    }
+    if (isspace(telefone[0]) || isspace(telefone[strlen(telefone) - 1])) {
+        printf("Telefone invalido, iniciou ou terminou com espaco.\n");
+        printf("Digite novamente: \n");
+        return 0;
+    }
+    if (telefone[0] == '\0') {
+        printf("Telefone invalido.2\n");
+        printf("Digite novamente: \n");
+        return 0;
+    }
+    if(strlen(telefone) != 11){
+        printf("Telefone invalido.3\n");
+        printf("Digite novamente: \n");
+        return 0;
+    }
+    return 1;
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+void le_data_nascimento(char *data_nascimento){
+    do{
+        fgets(data_nascimento, 12, stdin);
+        if (data_nascimento[strlen(data_nascimento) - 1] == '\n') {
+        data_nascimento[strlen(data_nascimento) - 1] = '\0';
+        }else {
+            limparBuffer();
+        }
+   }while(!valida_data_nascimento(data_nascimento));
+}
+
+int valida_data_nascimento(char *data_nascimento){
+    int soma = 0;
+    for (int i = 0; data_nascimento[i] != '\0'; i++) {
+        if (isdigit(data_nascimento[i])){
+            soma++;
+        }
+        if (!isdigit(data_nascimento[i]) && data_nascimento[i] != '/' && data_nascimento[i] != '.') {
+            printf("Data de nascimento invalida.1\n");
+            printf("Digite novamente: \n");
+            return 0;
+        }
+    }
+    if (soma != 8) {
+        printf("Data de nascimento invalida.2\n");
+        printf("Digite novamente: \n");
+        return 0;
+    }
+    if (isspace(data_nascimento[0]) || isspace(data_nascimento[strlen(data_nascimento) - 1])) {
+        printf("Data de nascimento invalida, iniciou ou terminou com espaco.\n");
+        printf("Digite novamente: \n");
+        return 0;
+    }
+    if (data_nascimento[0] == '\0') {
+        printf("Telefone invalido.2\n");
+        printf("Digite novamente: \n");
+        return 0;
+    }
+    return 1;
+}
