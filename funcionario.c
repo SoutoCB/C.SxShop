@@ -73,9 +73,9 @@ void cadast_funcionario(void) {
     printf("|      Data nascimento =                                                        |\n");
     scanf("%s", data_nascimento);
     printf("|      Telefone =                                                               |\n");
-    scanf("%s", telefone);
+    scanf("%s", telefone); getchar();
     printf("|      Funcao   =                                                               |\n");
-    scanf("%s", funcao);getchar();
+    le_texto(funcao, 50);
     printf("|      Salario  =                                                               |\n");
     le_valor(&salario);
     printf("|===============================================================================|\n\n");
