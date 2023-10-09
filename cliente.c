@@ -5,11 +5,11 @@
 #include "utilits.h"
 
 
-char codigo[10];
-char cpf[12]; 
-char nome[50];
-char data_nascimento[11]; // "dd/mm/aaaa"
-char telefone[12];
+char codigoc[10];
+char cpfc[12]; 
+char nomec[50];
+char data_nascimentoc[11]; // "dd/mm/aaaa"
+char telefonec[12];
 
 
 void tela_menu_cliente() {
@@ -66,15 +66,15 @@ void cadast_cliente(void) {
     printf("|      = = = Cadastro = = =                                                     |\n");
     printf("|                                                                               |\n");
     printf("|      Codigo   =                                                               |\n"); //Pensar sobre esse codigo
-    le_codigo(codigo);
+    le_codigo(codigoc);
     printf("|      CPF      =                                                               |\n");
-    le_cpf(cpf);
+    le_cpf(cpfc);
     printf("|      Nome     =                                                               |\n");
-    le_nome(nome);
+    le_nome(nomec);
     printf("|      Data nascimento =                                                        |\n");
-    le_data_nascimento(data_nascimento);
+    le_data_nascimento(data_nascimentoc);
     printf("|      Telefone =                                                               |\n");
-    le_telefone(telefone);
+    le_telefone(telefonec);
     printf("|===============================================================================|\n\n");
     //Colocar estrutura de coleta de dados
 }
@@ -87,11 +87,11 @@ void exibir_cliente(void) {
     printf("|                      = = = = = Menu Cliente = = = = =                         |\n");
     printf("|                                                                               |\n");
     printf("|      = = = Cliente = = =                                                      |\n");
-    printf("|      Codigo   = %s                                                            |\n", codigo); //Pensar sobre esse codigo
-    printf("|      CPF      = %s                                                            |\n", cpf);
-    printf("|      Nome     = %s                                                            |\n", nome);
-    printf("|      Data nascimento = %s                                                     |\n", data_nascimento);
-    printf("|      Telefone = %s                                                            |\n", telefone); 
+    printf("|      Codigo   = %s                                                            \n", codigoc); //Pensar sobre esse codigo
+    printf("|      CPF      = %s                                                            \n", cpfc);
+    printf("|      Nome     = %s                                                            \n", nomec);
+    printf("|      Data nascimento = %s                                                     \n", data_nascimentoc);
+    printf("|      Telefone = %s                                                            \n", telefonec); 
     printf("|===============================================================================|\n\n");
     // Buscar forma para exibir cliente por cliente
 
