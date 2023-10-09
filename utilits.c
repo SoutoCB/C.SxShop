@@ -19,6 +19,9 @@ void le_nome(char *nome){
         }else {
             limparBuffer();
         }
+        if(!valida_nome(nome)){
+            printf("Invalido, digite novamente: \n");
+        }
    }while(!valida_nome(nome));
 }
 
@@ -26,26 +29,18 @@ void le_nome(char *nome){
 int valida_nome(char *nome){
     char letras_acentuadas[] = "áéíóúàèìòùãõâêîôûç";
     if (strlen(nome)<2){
-        printf("Nome invalido.\n");
-        printf("Digite novamente: \n");
         return 0;
     }
     if (nome[0] == '\0') {
-        printf("Nome invalido.\n");
-        printf("Digite novamente: \n");
         return 0;
     }
     for (int i = 0; nome[i] != '\0'; i++) {
         if (!isalpha(nome[i]) && nome[i] != ' ' && nome[i] != '\n' && nome[i] != '\r' && nome[i] != '\t'
             && strchr(letras_acentuadas, nome[i]) == NULL) {
-            printf("Nome invalido.\n");
-            printf("Digite novamente: \n");
             return 0;
         }
     }
     if (isspace(nome[0]) || isspace(nome[strlen(nome) - 1])) {
-        printf("Nome invalido, iniciou ou terminou com espaco.\n");
-        printf("Digite novamente: \n");
         return 0;
     }
     return 1;
@@ -60,6 +55,9 @@ void le_codigo(char *codigo){
         } else {
             limparBuffer();
         }
+        if(!valida_codigo(codigo)){
+            printf("Invalido, digite novamente: \n");
+        }
    }while(!valida_codigo(codigo));
 }
 
@@ -67,21 +65,15 @@ void le_codigo(char *codigo){
 int valida_codigo(char *codigo){
     for (int i = 0; codigo[i] != '\0'; i++) {
         if (!isdigit(codigo[i])) {
-            printf("Codigo invalido\n");
-            printf("Digite novamente: \n");
             return 0;
         }
     }
 
     if (isspace(codigo[0]) || isspace(codigo[strlen(codigo) - 1])) {
-        printf("Codigo invalido, iniciou ou terminou com espaco.\n");
-        printf("Digite novamente: \n");
         return 0;
     }
 
     if (codigo[0] == '\0') {
-        printf("Codigo invalido.\n");
-        printf("Digite novamente: \n");
         return 0;
     }
     return 1;
@@ -96,6 +88,9 @@ void le_cpf(char *cpf){
         }else {
             limparBuffer();
         }
+        if(!valida_cpf(cpf)){
+            printf("Invalido, digite novamente: \n");
+        }
    }while(!valida_cpf(cpf));
 }
 
@@ -104,36 +99,26 @@ int valida_cpf(char *cpf){     //GRANDE PARTE RETIRADA DE https://gist.github.co
     
     for (int i = 0; cpf[i] != '\0'; i++) {
         if (!isdigit(cpf[i])) {
-            printf("CPF invalido.1\n");
-            printf("Digite novamente: \n");
             return 0;
         }
     }
 
     if (isspace(cpf[0]) || isspace(cpf[strlen(cpf) - 1])) {
-        printf("CPF invalido, iniciou ou terminou com espaco.\n");
-        printf("Digite novamente: \n");
         return 0;
     }
 
     if (cpf[0] == '\0') {
-        printf("CPF invalido.2\n");
-        printf("Digite novamente: \n");
         return 0;
     }
 
     int i, j, digito1 = 0, digito2 = 0;
     if(strlen(cpf) != 11){
-        printf("CPF invalido.3\n");
-        printf("Digite novamente: \n");
         return 0;
     }
     else if((strcmp(cpf,"00000000000") == 0) || (strcmp(cpf,"11111111111") == 0) || (strcmp(cpf,"22222222222") == 0) ||
             (strcmp(cpf,"33333333333") == 0) || (strcmp(cpf,"44444444444") == 0) || (strcmp(cpf,"55555555555") == 0) ||
             (strcmp(cpf,"66666666666") == 0) || (strcmp(cpf,"77777777777") == 0) || (strcmp(cpf,"88888888888") == 0) ||
             (strcmp(cpf,"99999999999") == 0)) {
-        printf("CPF invalido.4");
-        printf("Digite novamente: \n");
         return 0; ///se o CPF tiver todos os números iguais ele é inválido.
     }
     else
@@ -147,8 +132,6 @@ int valida_cpf(char *cpf){     //GRANDE PARTE RETIRADA DE https://gist.github.co
         else
             digito1 = 11 - digito1;
         if((cpf[9]-48) != digito1){
-            printf("CPF invalido.1\n");
-            printf("Digite novamente: \n");
             return 0; ///se o digito 1 não for o mesmo que o da validação CPF é inválido
         }
         else
@@ -162,8 +145,6 @@ int valida_cpf(char *cpf){     //GRANDE PARTE RETIRADA DE https://gist.github.co
         else
             digito2 = 11 - digito2;
         if((cpf[10]-48) != digito2){
-            printf("CPF invalido.1\n");
-            printf("Digite novamente: \n");
             return 0; ///se o digito 2 não for o mesmo que o da validação CPF é inválido
         }
         }
@@ -182,30 +163,25 @@ void le_telefone(char *telefone){
         }else {
             limparBuffer();
         }
+        if(!valida_telefone(telefone)){
+            printf("Invalido, digite novamente: \n");
+        }
    }while(!valida_telefone(telefone));
 }
 
 int valida_telefone(char *telefone){
     for (int i = 0; telefone[i] != '\0'; i++) {
         if (!isdigit(telefone[i])) {
-            printf("Telefone invalido.1\n");
-            printf("Digite novamente: \n");
             return 0;
         }
     }
     if (isspace(telefone[0]) || isspace(telefone[strlen(telefone) - 1])) {
-        printf("Telefone invalido, iniciou ou terminou com espaco.\n");
-        printf("Digite novamente: \n");
         return 0;
     }
     if (telefone[0] == '\0') {
-        printf("Telefone invalido.2\n");
-        printf("Digite novamente: \n");
         return 0;
     }
     if(strlen(telefone) != 11){
-        printf("Telefone invalido.3\n");
-        printf("Digite novamente: \n");
         return 0;
     }
     return 1;
@@ -219,6 +195,9 @@ void le_data_nascimento(char *data_nascimento){
         }else {
             limparBuffer();
         }
+        if(!valida_data_nascimento(data_nascimento)){
+            printf("Invalido, digite novamente: \n");
+        }
    }while(!valida_data_nascimento(data_nascimento));
 }
 
@@ -229,24 +208,16 @@ int valida_data_nascimento(char *data_nascimento){
             soma++;
         }
         if (!isdigit(data_nascimento[i]) && data_nascimento[i] != '/' && data_nascimento[i] != '.') {
-            printf("Data de nascimento invalida.1\n");
-            printf("Digite novamente: \n");
             return 0;
         }
     }
     if (soma != 8) {
-        printf("Data de nascimento invalida.2\n");
-        printf("Digite novamente: \n");
         return 0;
     }
     if (isspace(data_nascimento[0]) || isspace(data_nascimento[strlen(data_nascimento) - 1])) {
-        printf("Data de nascimento invalida, iniciou ou terminou com espaco.\n");
-        printf("Digite novamente: \n");
         return 0;
     }
     if (data_nascimento[0] == '\0') {
-        printf("Telefone invalido.2\n");
-        printf("Digite novamente: \n");
         return 0;
     }
     return 1;
@@ -256,7 +227,7 @@ int valida_data_nascimento(char *data_nascimento){
 void le_valor(float *valor){          //GPT me ajudou bastante nessa
     do {
         if (scanf("%f", valor) != 1) {
-            printf("Valor errado, digite novamente:\n");
+            printf("Invalido, digite novamente: \n");
             limparBuffer(); // Limpar o buffer de entrada
         } else {
             break; // Valor valido, sair do loop
@@ -274,18 +245,17 @@ void le_texto(char *texto, int tam){ //Variavel para ler e validar, e o tamanho 
         }else {
             limparBuffer();
         }
+        if(!valida_texto(texto)){
+            printf("Invalido, digite novamente: \n");
+        }
    }while(!valida_texto(texto));
 }
 
 int valida_texto(char *texto){
    if (isspace(texto[0]) || isspace(texto[strlen(texto) - 1])) {
-        printf("Texto invalido, iniciou ou terminou com espaco.\n");
-        printf("Digite novamente: \n");
         return 0;
     }
     if (texto[0] == '\0') {
-        printf("Texto invalido.2\n");
-        printf("Digite novamente: \n");
         return 0;
     } 
 return 1;
