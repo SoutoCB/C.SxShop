@@ -6,7 +6,7 @@
 int codigo;
 char nome[50];
 float valor;
-char descricao[100];
+char descricao[1000];
 int quantidade;
 
 

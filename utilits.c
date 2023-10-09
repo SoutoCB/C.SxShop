@@ -264,3 +264,30 @@ void le_valor(float *valor){          //GPT me ajudou bastante nessa
     } while (1); // Loop infinito até que um valor valido seja lido
 getchar();
 }
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+void le_texto(char *texto, int tam){ //Variavel para ler e validar, e o tamanho da variavel
+    do{
+        fgets(texto, tam, stdin);
+        if (texto[strlen(texto) - 1] == '\n') {
+        texto[strlen(texto) - 1] = '\0';
+        }else {
+            limparBuffer();
+        }
+   }while(!valida_texto(texto));
+}
+
+int valida_texto(char *texto){
+   if (isspace(texto[0]) || isspace(texto[strlen(texto) - 1])) {
+        printf("Texto invalido, iniciou ou terminou com espaco.\n");
+        printf("Digite novamente: \n");
+        return 0;
+    }
+    if (texto[0] == '\0') {
+        printf("Texto invalido.2\n");
+        printf("Digite novamente: \n");
+        return 0;
+    } 
+return 1;
+}
+////////////////////////////////////////////////////////////////////////////////
