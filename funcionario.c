@@ -3,11 +3,11 @@
 #include "funcionario.h"
 #include "utilits.h"
 
-int codigo;
-char cpf[12];
-char nome[50];
-char data_nascimento[11];
-char telefone[15];
+char codigof[10];
+char cpff[12];
+char nomef[50];
+char data_nascimentof[11];
+char telefonef[12];
 char funcao[50];
 float salario;
 
@@ -65,15 +65,15 @@ void cadast_funcionario(void) {
     printf("|      = = = Cadastro = = =                                                     |\n");
     printf("|                                                                               |\n");
     printf("|      Codigo   =                                                               |\n"); //Pensar sobre esse codigo
-    scanf("%d", &codigo);
+    le_codigo(codigof);
     printf("|      CPF      =                                                               |\n");
-    scanf("%s", cpf);
+    le_cpf(cpff);
     printf("|      Nome     =                                                               |\n");
-    scanf(" %s", nome);
+    le_nome(nomef);
     printf("|      Data nascimento =                                                        |\n");
-    scanf("%s", data_nascimento);
+    le_data_nascimento(data_nascimentof);
     printf("|      Telefone =                                                               |\n");
-    scanf("%s", telefone); getchar();
+    le_telefone(telefonef);
     printf("|      Funcao   =                                                               |\n");
     le_texto(funcao, 50);
     printf("|      Salario  =                                                               |\n");
@@ -92,12 +92,13 @@ void exibir_funcionario(void) {
     printf("|                      = = = = = Menu Funcionario = = = = =                     |\n");
     printf("|                                                                               |\n");
     printf("|      = = = Funcionario = = =                                                  |\n");
-    printf("|      CPF      = %d                                                            |\n", codigo);
-    printf("|      Nome     = %s                                                            |\n", nome);
-    printf("|      Data nascimento = %s                                                     |\n", data_nascimento);
-    printf("|      Telefone = %s                                                            |\n", telefone);
-    printf("|      Funcao   = %s                                                            |\n", funcao);
-    printf("|      Salario  = %.2f                                                          |\n", salario);
+    printf("|      CPF      = %s                                                            \n", cpff);
+    printf("|      Codigo   = %s                                                            \n", codigof);
+    printf("|      Nome     = %s                                                            \n", nomef);
+    printf("|      Data nascimento = %s                                                     \n", data_nascimentof);
+    printf("|      Telefone = %s                                                            \n", telefonef);
+    printf("|      Funcao   = %s                                                            \n", funcao);
+    printf("|      Salario  = %.2f                                                          \n", salario);
     printf("|===============================================================================|\n\n");
      // Buscar forma para exibir funcionario por funcionario
 

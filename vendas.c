@@ -2,11 +2,11 @@
 #include <stdlib.h>
 #include "vendas.h"
 #include "utilits.h"
-int numero_venda;
-int codigo_cliente;
-int codigo_funcionario;
+char numero_venda[10];
+char codigo_cliente[10];
+char codigo_funcionario[10];
 float valor_total;
-char descricao[100];
+char descricao[1000];
 
 void tela_menu_vendas() {
     char op;
@@ -61,15 +61,15 @@ void make_vendas(void) {
     printf("|      = = = Realizar Venda = = =                                               |\n");
     printf("|                                                                               |\n");
     printf("|      Numero da venda   =                                                      |\n"); //Pensar sobre esse codigo
-    scanf("%d", &numero_venda);
+    le_codigo(numero_venda);
     printf("|      Codigo do cliente =                                                      |\n");
-    scanf("%d", &codigo_cliente);
+    le_codigo(codigo_cliente);
     printf("|      Codigo do funcionario =                                                  |\n");
-    scanf("%d", &codigo_cliente);
+    le_codigo(codigo_funcionario);
     printf("|      Valor total     =                                                        |\n");
-    scanf("%f", &valor_total);
+    le_valor(&valor_total);
     printf("|      Descricao       =                                                        |\n");
-    scanf("%s", descricao); getchar();
+    le_texto(descricao, 1000);
     // Possivel adicao de novos dados para coletar
     //Possivel adicao de uma coleta de codigo de protudo para diminuir sua quantidade no estoque
     // Salva a quantida de compras feitas pelo cliente
@@ -88,11 +88,11 @@ void exibir_vendas(void) {
     printf("|                                                                               |\n");
     printf("|      = = = Lista de Vendas = = =                                              |\n");
     printf("|                                                                               |\n");
-    printf("|      Numero da Venda   = %d                                                   |\n", numero_venda); //Pensar sobre esse codigo
-    printf("|      Codigo do cliente = %d                                                   |\n", codigo_cliente);
-    printf("|      Codigo do funcionario = %d                                               |\n", codigo_funcionario);
-    printf("|      Valor total     = %.2f                                                   |\n", valor_total);
-    printf("|      Descricao       = %s                                                     |\n", descricao);
+    printf("|      Numero da Venda   = %s                                                   \n", numero_venda); //Pensar sobre esse codigo
+    printf("|      Codigo do cliente = %s                                                   \n", codigo_cliente);
+    printf("|      Codigo do funcionario = %s                                               \n", codigo_funcionario);
+    printf("|      Valor total     = %.2f                                                   \n", valor_total);
+    printf("|      Descricao       = %s                                                     \n", descricao);
     // Possivel adicao de novos dados para coletar
     // funcao para mostrar os pedido um por um
     printf("|===============================================================================|\n\n");
