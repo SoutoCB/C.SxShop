@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "gestao.h"
+#include "utilits.h"
 
 int codigo;
 char nome[50];

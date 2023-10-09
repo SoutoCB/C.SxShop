@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "relatorios.h"
-
+#include "utilits.h"
 
 void tela_menu_relatorios() {
     char op;
