@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "funcionario.h"
+#include "utilits.h"
 
 int codigo;
 char cpf[12];
@@ -74,9 +75,9 @@ void cadast_funcionario(void) {
     printf("|      Telefone =                                                               |\n");
     scanf("%s", telefone);
     printf("|      Funcao   =                                                               |\n");
-    scanf("%s", funcao);
+    scanf("%s", funcao);getchar();
     printf("|      Salario  =                                                               |\n");
-    scanf("%f", &salario);getchar();
+    le_valor(&salario);
     printf("|===============================================================================|\n\n");
     //Colocar estrutura de coleta de dados
 }

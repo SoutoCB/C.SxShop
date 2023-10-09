@@ -10,3 +10,4 @@ void le_codigo(char*);
 void le_cpf(char*);
 void le_telefone(char*);
 void le_data_nascimento(char*);
+void le_valor(float*);

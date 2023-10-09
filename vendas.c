@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "vendas.h"
-
+#include "utilits.h"
 int numero_venda;
 int codigo_cliente;
 int codigo_funcionario;

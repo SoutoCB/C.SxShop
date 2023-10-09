@@ -251,3 +251,16 @@ int valida_data_nascimento(char *data_nascimento){
     }
     return 1;
 }
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+void le_valor(float *valor){          //GPT me ajudou bastante nessa
+    do {
+        if (scanf("%f", valor) != 1) {
+            printf("Valor errado, digite novamente:\n");
+            limparBuffer(); // Limpar o buffer de entrada
+        } else {
+            break; // Valor valido, sair do loop
+        }
+    } while (1); // Loop infinito até que um valor valido seja lido
+getchar();
+}
