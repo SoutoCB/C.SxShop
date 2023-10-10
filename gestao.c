@@ -6,7 +6,7 @@
 char codigop[10];
 char nomep[50];
 float valor;
-char descricao[1000];
+char descricaop[1000];
 float quantidade;
 
 
@@ -73,7 +73,7 @@ void cadast_produto(void) {
     printf("|      Valor      =                                                             |\n");
     le_valor(&valor);
     printf("|      Descricao  =                                                             |\n");
-    le_texto(descricao, 1000);
+    le_texto(descricaop, 1000);
     printf("|      Quantidade =                                                             |\n");
     le_valor(&quantidade);
     // Pensar sobre o estoque de produto
@@ -93,7 +93,7 @@ void exibir_produto(void) {
     printf("|      Codigo     =  %s                                                         \n", codigop); 
     printf("|      Nome       =  %s                                                         \n", nomep);
     printf("|      Valor      =  %.2f                                                       \n", valor);
-    printf("|      Descricao  =  %s                                                         \n", descricao);
+    printf("|      Descricao  =  %s                                                         \n", descricaop);
     printf("|      Quantidade =  %.0f                                                       \n", quantidade);
     // Forma para exibir produto por produto
     printf("|===============================================================================|\n\n");
