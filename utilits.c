@@ -20,7 +20,7 @@ void le_nome(char *nome){
             limparBuffer();
         }
         if(!valida_nome(nome)){
-            printf("Invalido, digite novamente: \n");
+            printf("|      Invalido, digite novamente: \n");
         }
    }while(!valida_nome(nome));
 }
@@ -56,7 +56,7 @@ void le_codigo(char *codigo){
             limparBuffer();
         }
         if(!valida_codigo(codigo)){
-            printf("Invalido, digite novamente: \n");
+            printf("|      Invalido, digite novamente: \n");
         }
    }while(!valida_codigo(codigo));
 }
@@ -89,7 +89,7 @@ void le_cpf(char *cpf){
             limparBuffer();
         }
         if(!valida_cpf(cpf)){
-            printf("Invalido, digite novamente: \n");
+            printf("|      Invalido, digite novamente: \n");
         }
    }while(!valida_cpf(cpf));
 }
@@ -164,7 +164,7 @@ void le_telefone(char *telefone){
             limparBuffer();
         }
         if(!valida_telefone(telefone)){
-            printf("Invalido, digite novamente: \n");
+            printf("|      Invalido, digite novamente: \n");
         }
    }while(!valida_telefone(telefone));
 }
@@ -196,7 +196,7 @@ void le_data_nascimento(char *data_nascimento){
             limparBuffer();
         }
         if(!valida_data_nascimento(data_nascimento)){
-            printf("Invalido, digite novamente: \n");
+            printf("|      Invalido, digite novamente: \n");
         }
    }while(!valida_data_nascimento(data_nascimento));
 }
@@ -227,7 +227,7 @@ int valida_data_nascimento(char *data_nascimento){
 void le_valor(float *valor){          //GPT me ajudou bastante nessa
     do {
         if (scanf("%f", valor) != 1) {
-            printf("Invalido, digite novamente: \n");
+            printf("|      Invalido, digite novamente: \n");
             limparBuffer(); // Limpar o buffer de entrada
         } else {
             break; // Valor valido, sair do loop
@@ -246,7 +246,7 @@ void le_texto(char *texto, int tam){ //Variavel para ler e validar, e o tamanho 
             limparBuffer();
         }
         if(!valida_texto(texto)){
-            printf("Invalido, digite novamente: \n");
+            printf("|      Invalido, digite novamente: \n");
         }
    }while(!valida_texto(texto));
 }
