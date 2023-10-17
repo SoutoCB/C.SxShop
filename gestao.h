@@ -11,3 +11,5 @@ struct gestao{
     char descricaop[1000];
     float quantidade;
 };
+
+typedef struct gestao Gestao;
