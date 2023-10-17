@@ -11,3 +11,5 @@ struct vendas{
     float valor_total;
     char descricao[1000];
 };
+
+typedef struct vendas Vendas;

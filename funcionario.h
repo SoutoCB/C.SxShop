@@ -14,3 +14,5 @@ struct funcionario{
     char funcao[50];
     float salario;
 };
+
+typedef struct funcionario Funcionario;
