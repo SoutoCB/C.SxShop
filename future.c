@@ -18,6 +18,14 @@
 
 //typedef struct cliente Cliente;    //Para facilita o uso da struct
 
+//Cliente.fulando
+//fulando.codigoc
+//fulando.cpfc
+//fulano.nomec     
+//.etc..
+
+//Pesquisar para ver se posso usar os mesmos nomes das variaveis dentro do struct, em outro struct 
+
 //Uso de malloc, para otimizacao de espaco
                             
 
