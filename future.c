@@ -22,7 +22,22 @@
 //fulando.codigoc
 //fulando.cpfc
 //fulano.nomec     
-//.etc..
+//fulano.data_nascimentoc
+//fulano.telefone
+
+//typedef struct funcionario Funcionario;
+
+//Funcionario.fulando
+//fulano.codigof
+//fulano.cpff
+//fulano.nomef     
+//fulano.data_nascimentof
+//fulano.telefonef
+//fulando.funcao
+//fulano.salario
+
+
+
 
 //Pesquisar para ver se posso usar os mesmos nomes das variaveis dentro do struct, em outro struct 
 
