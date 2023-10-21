@@ -36,6 +36,15 @@
 //fulando.funcao
 //fulano.salario
 
+//typedef struct gestao Gestao;
+
+//Gestao.produto
+//produto.codigop
+//produto.nomep   
+//produto.valor
+//produto.descricaop
+//produto.quantidade
+
 
 
 
