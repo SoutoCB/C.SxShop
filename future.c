@@ -45,6 +45,14 @@
 //produto.descricaop
 //produto.quantidade
 
+//typedef struct vendas Vendas;
+
+//Vendas.venda
+//venda.codigo_cliente
+//venda.codigo_funcionario
+//venda.valor_total
+//venda.descricao
+
 
 
 
