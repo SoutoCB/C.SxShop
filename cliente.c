@@ -5,12 +5,8 @@
 #include "utilits.h"
 
 
-char codigoc[10];
-char cpfc[12]; 
-char nomec[50];
-char data_nascimentoc[11]; // "dd/mm/aaaa"
-char telefonec[12];
-
+// testando
+Cliente cliente;
 
 void tela_menu_cliente() {
     char op;
@@ -32,10 +28,10 @@ void tela_menu_cliente() {
         printf("|===============================================================================|\n\n");
         switch (op) {
             case '1':
-                cadast_cliente();
+                cadast_cliente(&cliente);
                 break;
             case '2':                        
-                exibir_cliente();
+                exibir_cliente(&cliente);
                 break;
             case '3':
                 edit_cliente();
@@ -56,7 +52,7 @@ void tela_menu_cliente() {
     }while(op!='0');
 }
 
-void cadast_cliente(void) {
+void cadast_cliente(Cliente*cliente) {
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
     printf("|\033[1;36m = Cadastrar cliente = \033[0m|\n");
     printf("|===============================================================================|\n");
@@ -66,20 +62,20 @@ void cadast_cliente(void) {
     printf("|      = = = Cadastro = = =                                                     |\n");
     printf("|                                                                               |\n");
     printf("|      Codigo   =                                                               |\n"); //Pensar sobre esse codigo
-    le_codigo(codigoc);
+    le_codigo(cliente->codigoc);
     printf("|      CPF      =                                                               |\n");
-    le_cpf(cpfc);
+    le_cpf(cliente->cpfc);
     printf("|      Nome     =                                                               |\n");
-    le_nome(nomec);
+    le_nome(cliente->nomec);
     printf("|      Data nascimento =                                                        |\n");
-    le_data_nascimento(data_nascimentoc);
+    le_data_nascimento(cliente->data_nascimentoc);
     printf("|      Telefone =                                                               |\n");
-    le_telefone(telefonec);
+    le_telefone(cliente->telefonec);
     printf("|===============================================================================|\n\n");
     //Colocar estrutura de coleta de dados
 }
 
-void exibir_cliente(void) {
+void exibir_cliente(Cliente*cliente) {
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
     printf("|\033[1;36m = Exibir cliente = \033[0m|\n");
     printf("|===============================================================================|\n");
@@ -87,11 +83,11 @@ void exibir_cliente(void) {
     printf("|                      = = = = = Menu Cliente = = = = =                         |\n");
     printf("|                                                                               |\n");
     printf("|      = = = Cliente = = =                                                      |\n");
-    printf("|      Codigo   = %s                                                            \n", codigoc); //Pensar sobre esse codigo
-    printf("|      CPF      = %s                                                            \n", cpfc);
-    printf("|      Nome     = %s                                                            \n", nomec);
-    printf("|      Data nascimento = %s                                                     \n", data_nascimentoc);
-    printf("|      Telefone = %s                                                            \n", telefonec); 
+    printf("|      Codigo   = %s                                                            \n", cliente->codigoc); //Pensar sobre esse codigo
+    printf("|      CPF      = %s                                                            \n", cliente->cpfc);
+    printf("|      Nome     = %s                                                            \n", cliente->nomec);
+    printf("|      Data nascimento = %s                                                     \n", cliente->data_nascimentoc);
+    printf("|      Telefone = %s                                                            \n", cliente->telefonec); 
     printf("|===============================================================================|\n\n");
     // Buscar forma para exibir cliente por cliente
 
