@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include "cliente.h"
 #include "utilits.h"
+#include <string.h>
 
 
 // testando
@@ -28,10 +29,10 @@ void tela_menu_cliente() {
         printf("|===============================================================================|\n\n");
         switch (op) {
             case '1':
-                cadast_cliente(&cliente);
+                cadast_cliente();
                 break;
             case '2':                        
-                exibir_cliente(&cliente);
+                lista_cliente();
                 break;
             case '3':
                 edit_cliente();
@@ -52,8 +53,20 @@ void tela_menu_cliente() {
     }while(op!='0');
 }
 
-void cadast_cliente(Cliente*cliente) {
+void cadast_cliente(void) {
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
+    FILE* fp;
+    Cliente* cliente;
+    cliente = (Cliente*) malloc(sizeof(Cliente)); 
+    fp = fopen("clientes.dat","ab");
+    if (fp == NULL) {
+        fp = fopen("clientes.dat","wb");
+        if (fp == NULL){
+            printf("Erro na criacao do arquivo\n!");
+            free(cliente);
+            exit(1);
+        }         
+    }
     printf("|\033[1;36m = Cadastrar cliente = \033[0m|\n");
     printf("|===============================================================================|\n");
     printf("|                                                                               |\n");
@@ -72,25 +85,59 @@ void cadast_cliente(Cliente*cliente) {
     printf("|      Telefone =                                                               |\n");
     le_telefone(cliente->telefonec);
     printf("|===============================================================================|\n\n");
+    cliente->status = 'a';
+    fwrite(cliente, sizeof(Cliente), 1, fp);
+    fclose(fp);
+    free(cliente);
     //Colocar estrutura de coleta de dados
-}
+}  
 
-void exibir_cliente(Cliente*cliente) {
+
+void lista_cliente(void) {
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
-    printf("|\033[1;36m = Exibir cliente = \033[0m|\n");
+    FILE* fp;
+    Cliente* cliente;
+    cliente = (Cliente*) malloc(sizeof(Cliente));
+    printf("|\033[1;36m = Lista de clientes = \033[0m|\n");
     printf("|===============================================================================|\n");
     printf("|                                                                               |\n");
     printf("|                      = = = = = Menu Cliente = = = = =                         |\n");
     printf("|                                                                               |\n");
-    printf("|      = = = Cliente = = =                                                      |\n");
-    printf("|      Codigo   = %s                                                            \n", cliente->codigoc); //Pensar sobre esse codigo
-    printf("|      CPF      = %s                                                            \n", cliente->cpfc);
-    printf("|      Nome     = %s                                                            \n", cliente->nomec);
-    printf("|      Data nascimento = %s                                                     \n", cliente->data_nascimentoc);
-    printf("|      Telefone = %s                                                            \n", cliente->telefonec); 
-    printf("|===============================================================================|\n\n");
-    // Buscar forma para exibir cliente por cliente
+    fp = fopen("clientes.dat", "rb");
+    if (fp == NULL) {
+        printf("Erro na abertura do arquivo.\n");
+        printf("Nao e possivel continuar, provavelmente nao tem clientes cadastrados...\n");
+        exit(1);
+    }
+    while(fread(cliente, sizeof(Cliente), 1, fp)) {
+        if (cliente->status != 'x') {
+            exibir_cliente(cliente);
+        }
+    }
+    free(cliente);
+    fclose(fp);
+}
 
+void exibir_cliente(Cliente*cliente) {
+    char situacao[20];
+    if ((cliente == NULL) || (cliente->status == 'x')) {
+        printf("\n= = = Cliente Inexistente = = =\n");
+    }else{
+        printf("|      = = = Cliente = = =                                                      |\n");
+        printf("|      Codigo   = %s                                                            \n", cliente->codigoc); //Pensar sobre esse codigo
+        printf("|      CPF      = %s                                                            \n", cliente->cpfc);
+        printf("|      Nome     = %s                                                            \n", cliente->nomec);
+        printf("|      Data nascimento = %s                                                     \n", cliente->data_nascimentoc);
+        printf("|      Telefone = %s                                                            \n", cliente->telefonec); 
+        // Buscar forma para exibir cliente por cliente
+        if (cliente->status == 'a') {
+        strcpy(situacao, "Ativo");
+        } else {
+        strcpy(situacao, "Nao informada");
+        }
+        printf("|      Situacao do cliente = %s\n", situacao);
+        printf("|===============================================================================|\n\n");
+    }    
 }
 
 void edit_cliente(void) {
