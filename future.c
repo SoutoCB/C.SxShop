@@ -3,7 +3,11 @@
 //Pesquisar para ver se posso usar os mesmos nomes das variaveis dentro do struct, em outro struct 
 
 //Uso de malloc, para otimizacao de espaco
-
+//Lembrar de sempre testar no ambiente linux, Replit.
+//replit:
+//gcc -Wall *.h -c
+//gcc -Wall *.c -c 
+//gcc -Wall *.c -o testec
 
 //Lembrar de dar free e fclose
 //Adcionar a variavel status para as structs
