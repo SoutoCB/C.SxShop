@@ -1,10 +1,13 @@
 //Destinada a futuras adicoes
 
-
 //Pesquisar para ver se posso usar os mesmos nomes das variaveis dentro do struct, em outro struct 
 
 //Uso de malloc, para otimizacao de espaco
-                            
+
+
+//Lembrar de dar free e fclose
+//Adcionar a variavel status para as structs
+//Lembra do funcionamento da leitura de arquivo, para poder fazer alteracao de dados de forma correta                        
 
                                   // Semana 9 slides Flavius
                                 
