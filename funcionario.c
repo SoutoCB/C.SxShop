@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "funcionario.h"
 #include "utilits.h"
+#include <string.h>
 
 char codigof[10];
 char cpff[12];
@@ -35,7 +36,7 @@ void tela_menu_funcionarios() {
                 cadast_funcionario();
                 break;
             case '2':
-                exibir_funcionario();
+                lista_funcionario();
                 break;
             case '3':
                 edit_funcionario();
@@ -57,6 +58,18 @@ void tela_menu_funcionarios() {
 
 void cadast_funcionario(void) {
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
+    FILE* fp;
+    Funcionario* func;
+    func = (Funcionario*) malloc(sizeof(Funcionario)); 
+    fp = fopen("funcionarios.dat","ab");
+    if (fp == NULL) {
+        fp = fopen("funcionarios.dat","wb");
+        if (fp == NULL){
+            printf("Erro na criacao do arquivo\n!");
+            free(func);
+            exit(1);
+        }         
+    }
     printf("|\033[1;36m = Cadastrar funcionario = \033[0m|\n");
     printf("|===============================================================================|\n");
     printf("|                                                                               |\n");
@@ -65,43 +78,75 @@ void cadast_funcionario(void) {
     printf("|      = = = Cadastro = = =                                                     |\n");
     printf("|                                                                               |\n");
     printf("|      Codigo   =                                                               |\n"); //Pensar sobre esse codigo
-    le_codigo(codigof);
+    le_codigo(func->codigof);
     printf("|      CPF      =                                                               |\n");
-    le_cpf(cpff);
+    le_cpf(func->cpff);
     printf("|      Nome     =                                                               |\n");
-    le_nome(nomef);
+    le_nome(func->nomef);
     printf("|      Data nascimento =                                                        |\n");
-    le_data_nascimento(data_nascimentof);
+    le_data_nascimento(func->data_nascimentof);
     printf("|      Telefone =                                                               |\n");
-    le_telefone(telefonef);
+    le_telefone(func->telefonef);
     printf("|      Funcao   =                                                               |\n");
-    le_texto(funcao, 50);
+    le_texto(func->funcao, 50);
     printf("|      Salario  =                                                               |\n");
-    le_valor(&salario);
+    le_valor(&func->salario);
     printf("|===============================================================================|\n\n");
+    func->status = 'a';
+    fwrite(func, sizeof(Funcionario), 1, fp);
+    fclose(fp);
+    free(func);
     //Colocar estrutura de coleta de dados
 }
 
-
-
-void exibir_funcionario(void) {
+void lista_funcionario(void) {
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
+    FILE* fp;
+    Funcionario* func;
+    func = (Funcionario*) malloc(sizeof(Funcionario));
     printf("|\033[1;36m = Exibir funcionario = \033[0m|\n");
     printf("|===============================================================================|\n");
     printf("|                                                                               |\n");
     printf("|                      = = = = = Menu Funcionario = = = = =                     |\n");
     printf("|                                                                               |\n");
-    printf("|      = = = Funcionario = = =                                                  |\n");
-    printf("|      CPF      = %s                                                            \n", cpff);
-    printf("|      Codigo   = %s                                                            \n", codigof);
-    printf("|      Nome     = %s                                                            \n", nomef);
-    printf("|      Data nascimento = %s                                                     \n", data_nascimentof);
-    printf("|      Telefone = %s                                                            \n", telefonef);
-    printf("|      Funcao   = %s                                                            \n", funcao);
-    printf("|      Salario  = %.2f                                                          \n", salario);
-    printf("|===============================================================================|\n\n");
-     // Buscar forma para exibir funcionario por funcionario
+    fp = fopen("funcionarios.dat", "rb");
+    if (fp == NULL) {
+        printf("Erro na abertura do arquivo.\n");
+        printf("Nao e possivel continuar, provavelmente nao tem funcionarios cadastrados...\n");
+        exit(1);
+    }
+    while(fread(func, sizeof(Funcionario), 1, fp)) {
+        if (func->status != 'x') {
+            exibir_funcionario(func);
+        }
+    }
+    free(func);
+    fclose(fp);
+}
 
+
+void exibir_funcionario(Funcionario*func) {
+    char situacao[20];
+    if ((func == NULL) || (func->status == 'x')) {
+        printf("\n= = = Funcionario Inexistente = = =\n");
+    }else{
+        printf("|      = = = Funcionario = = =                                                  |\n");
+        printf("|      CPF      = %s                                                            \n", func->cpff);
+        printf("|      Codigo   = %s                                                            \n", func->codigof);
+        printf("|      Nome     = %s                                                            \n", func->nomef);
+        printf("|      Data nascimento = %s                                                     \n", func->data_nascimentof);
+        printf("|      Telefone = %s                                                            \n", func->telefonef);
+        printf("|      Funcao   = %s                                                            \n", func->funcao);
+        printf("|      Salario  = %.2f                                                          \n", func->salario);
+        if (func->status == 'a') {
+        strcpy(situacao, "Ativo");
+        } else {
+        strcpy(situacao, "Nao informada");
+        }
+        printf("|      Situacao do cliente = %s\n", situacao);
+        printf("|===============================================================================|\n\n");
+    }
+     // Buscar forma para exibir funcionario por funcionario
 }
 
 void edit_funcionario(void) {
