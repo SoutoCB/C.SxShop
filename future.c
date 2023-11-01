@@ -9,6 +9,9 @@
 //gcc -Wall *.c -c 
 //gcc -Wall *.c -o testec
 
+//Lembrar que quando for fazer o sistema de pesquisa, pensar nas diferentes possibilidades de eximbicao
+//Exemplo: e se tiver duas pessoas com o mesmo nome?
+
 //Lembrar de dar free e fclose
 //Adcionar a variavel status para as structs
 //Lembra do funcionamento da leitura de arquivo, para poder fazer alteracao de dados de forma correta                        
