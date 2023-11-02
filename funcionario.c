@@ -143,7 +143,7 @@ void exibir_funcionario(Funcionario*func) {
         } else {
         strcpy(situacao, "Nao informada");
         }
-        printf("|      Situacao do cliente = %s\n", situacao);
+        printf("|      Situacao do funcionario = %s\n", situacao);
         printf("|===============================================================================|\n\n");
     }
      // Buscar forma para exibir funcionario por funcionario
