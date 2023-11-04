@@ -6,9 +6,6 @@
 #include <string.h>
 
 
-// testando
-Cliente cliente;
-
 void tela_menu_cliente() {
     char op;
     do {
