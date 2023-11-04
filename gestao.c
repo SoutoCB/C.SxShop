@@ -128,11 +128,11 @@ void exibir_produto(Gestao*gest) {
         printf("|      Descricao  =  %s                                                         \n", gest->descricaop);
         printf("|      Quantidade =  %.0f                                                       \n", gest->quantidade);
         if (gest->status == 'a') {
-        strcpy(situacao, "Ativo");
+        strcpy(situacao, "Em estoque");
         } else {
-        strcpy(situacao, "Nao informada");
+        strcpy(situacao, "Esgotado");
         }
-        printf("|      Situacao do cliente = %s\n", situacao);
+        printf("|      Situacao do produto = %s\n", situacao);
         printf("|===============================================================================|\n\n");
     }    
     

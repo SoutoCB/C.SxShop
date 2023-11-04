@@ -13,7 +13,8 @@ typedef struct vendas Vendas;
 
 void tela_menu_vendas();
     void make_vendas(void);
-    void exibir_vendas(void);
+    void lista_vendas(void);
+    void exibir_vendas(Vendas*);
     void edit_vendas(void);
     void cancel_vendas(void);
 
