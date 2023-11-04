@@ -2,12 +2,7 @@
 #include <stdlib.h>
 #include "gestao.h"
 #include "utilits.h"
-
-char codigop[10];
-char nomep[50];
-float valor;
-char descricaop[1000];
-float quantidade;
+#include <string.h>
 
 
 void tela_menu_gestao_produtos() {
@@ -37,7 +32,7 @@ void tela_menu_gestao_produtos() {
                 cadast_produto();
                 break;
             case '2':
-                exibir_produto();
+                lista_produto();
                 break;
             case '3':
                 edit_produto();
@@ -59,6 +54,18 @@ void tela_menu_gestao_produtos() {
 
 void cadast_produto(void) {
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
+    FILE* fp;
+    Gestao* gest;
+    gest = (Gestao*) malloc(sizeof(Gestao)); 
+    fp = fopen("produtos.dat","ab");
+    if (fp == NULL) {
+        fp = fopen("produtos.dat","wb");
+        if (fp == NULL){
+            printf("Erro na criacao do arquivo\n!");
+            free(gest);
+            exit(1);
+        }         
+    }
     printf("|\033[1;36m = Cadastrar produto = \033[0m|\n");
     printf("|===============================================================================|\n");
     printf("|                                                                               |\n");
@@ -67,36 +74,68 @@ void cadast_produto(void) {
     printf("|      = = = Cadastro = = =                                                     |\n");
     printf("|                                                                               |\n");
     printf("|      Codigo     =                                                             |\n"); //Pensar sobre esse codigo
-    le_codigo(codigop);
+    le_codigo(gest->codigop);
     printf("|      Nome       =                                                             |\n");
-    le_nome(nomep);
+    le_nome(gest->nomep);
     printf("|      Valor      =                                                             |\n");
-    le_valor(&valor);
+    le_valor(&gest->valor);
     printf("|      Descricao  =                                                             |\n");
-    le_texto(descricaop, 1000);
+    le_texto(gest->descricaop, 1000);
     printf("|      Quantidade =                                                             |\n");
-    le_valor(&quantidade);
+    le_valor(&gest->quantidade);
     // Pensar sobre o estoque de produto
     printf("|===============================================================================|\n\n");
+    gest->status = 'a';
+    fwrite(gest, sizeof(Gestao), 1, fp);
+    fclose(fp);
+    free(gest);
     //Colocar estrutura de coleta de dados
 }
-
-void exibir_produto(void) {
+void lista_produto(void){
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
+    FILE* fp;
+    Gestao* gest;
+    gest = (Gestao*) malloc(sizeof(Gestao));
     printf("|\033[1;36m = Exibir produto = \033[0m|\n");
     printf("|===============================================================================|\n");
     printf("|                                                                               |\n");
     printf("|                      = = = = = Menu Produto = = = = =                         |\n");
     printf("|                                                                               |\n");
-    printf("|      = = = Produto = = =                                                      |\n");
-    printf("|                                                                               |\n");
-    printf("|      Codigo     =  %s                                                         \n", codigop); 
-    printf("|      Nome       =  %s                                                         \n", nomep);
-    printf("|      Valor      =  %.2f                                                       \n", valor);
-    printf("|      Descricao  =  %s                                                         \n", descricaop);
-    printf("|      Quantidade =  %.0f                                                       \n", quantidade);
-    // Forma para exibir produto por produto
-    printf("|===============================================================================|\n\n");
+    fp = fopen("produtos.dat", "rb");
+    if (fp == NULL) {
+        printf("Erro na abertura do arquivo.\n");
+        printf("Nao e possivel continuar, provavelmente nao tem clientes cadastrados...\n");
+        exit(1);
+    }
+    while(fread(gest, sizeof(Gestao), 1, fp)) {
+        if (gest->status != 'x') {
+            exibir_produto(gest);
+        }
+    }
+    free(gest);
+    fclose(fp);
+}
+void exibir_produto(Gestao*gest) {
+    char situacao[20];
+    if ((gest == NULL) || (gest->status == 'x')) {
+        printf("\n= = = Produto Inexistente = = =\n");
+    }else{
+        printf("|      = = = Produto = = =                                                      |\n");
+        printf("|                                                                               |\n");
+        printf("|      Codigo     =  %s                                                         \n", gest->codigop); 
+        printf("|      Nome       =  %s                                                         \n", gest->nomep);
+        printf("|      Valor      =  %.2f                                                       \n", gest->valor);
+        printf("|      Descricao  =  %s                                                         \n", gest->descricaop);
+        printf("|      Quantidade =  %.0f                                                       \n", gest->quantidade);
+        if (gest->status == 'a') {
+        strcpy(situacao, "Ativo");
+        } else {
+        strcpy(situacao, "Nao informada");
+        }
+        printf("|      Situacao do cliente = %s\n", situacao);
+        printf("|===============================================================================|\n\n");
+    }    
+    
 }
 
 void edit_produto(void) {
