@@ -19,6 +19,7 @@ void tela_menu_cliente() {
         printf("|            2. Listar Clientes                                                 |\n");
         printf("|            3. Editar Cliente                                                  |\n");
         printf("|            4. Excluir Cliente                                                 |\n");
+        printf("|            5. Pesquisar Cliente                                               |\n");
         printf("|            0. Voltar ao Menu Principal                                        |\n");
         printf("|                                                                               |\n");
         printf("|            Escolha a opcao desejada: "); 
@@ -36,6 +37,9 @@ void tela_menu_cliente() {
                 break;
             case '4':
                 delet_cliente();
+                break;
+            case '5':
+                pesquisa_cliente();
                 break;
             case '0':
                 printf("Saindo.\n");
@@ -89,6 +93,40 @@ void cadast_cliente(void) {
     //Colocar estrutura de coleta de dados
 }  
 
+void pesquisa_cliente(void){
+    system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
+    FILE* fp;
+    Cliente* cliente;
+    cliente = (Cliente*) malloc(sizeof(Cliente));
+    printf("|===============================================================================|\n");
+    printf("|                                                                               |\n");
+    printf("|                      = = = = = Menu Cliente = = = = =                         |\n");
+    printf("|                                                                               |\n");
+    printf("|      = = = Pesquisar = = =                                                    |\n");
+    printf("|     Insira o codigo do cliente:                                               |\n");
+    printf("|     Codigo   =                                                                |\n"); //Pensar sobre esse codigo
+    char cod[10];
+    le_codigo(cod);
+    printf("|===============================================================================|\n");
+    fp = fopen("clientes.dat", "rb");
+    if (fp == NULL) {
+        printf("Erro na abertura do arquivo.\n");
+        printf("Nao e possivel continuar, provavelmente nao tem clientes cadastrados...\n");
+        exit(1);
+    }
+    char tem;
+    while(fread(cliente, sizeof(Cliente), 1, fp)) {
+        if (strcmp(cod, cliente->codigoc) == 0) {
+            exibir_cliente(cliente);
+            tem = 's';
+        }
+    }
+    if (tem != 's') {
+            printf("Nenhum cliente encontrado, com esse codigo.\n");
+    }
+    free(cliente);
+    fclose(fp);
+}
 
 void lista_cliente(void) {
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
