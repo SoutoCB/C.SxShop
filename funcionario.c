@@ -4,13 +4,6 @@
 #include "utilits.h"
 #include <string.h>
 
-char codigof[10];
-char cpff[12];
-char nomef[50];
-char data_nascimentof[11];
-char telefonef[12];
-char funcao[50];
-float salario;
 
 void tela_menu_funcionarios() {
     char op;
