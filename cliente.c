@@ -95,9 +95,7 @@ void cadast_cliente(void) {
 
 void pesquisa_cliente(void){
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
-    FILE* fp;
     Cliente* cliente;
-    cliente = (Cliente*) malloc(sizeof(Cliente));
     printf("|===============================================================================|\n");
     printf("|                                                                               |\n");
     printf("|                      = = = = = Menu Cliente = = = = =                         |\n");
@@ -108,24 +106,34 @@ void pesquisa_cliente(void){
     char cod[10];
     le_codigo(cod);
     printf("|===============================================================================|\n");
+    cliente = busca_cliente(cod);
+    exibir_cliente(cliente);
+    free(cliente);
+}
+
+Cliente* busca_cliente(char* cod){
+    FILE* fp;
+    Cliente* cliente;
+    cliente = (Cliente*) malloc(sizeof(Cliente));
     fp = fopen("clientes.dat", "rb");
     if (fp == NULL) {
         printf("Erro na abertura do arquivo.\n");
         printf("Nao e possivel continuar, provavelmente nao tem clientes cadastrados...\n");
         exit(1);
     }
-    char tem;
+    char tem = 'x';
     while(fread(cliente, sizeof(Cliente), 1, fp)) {
         if (strcmp(cod, cliente->codigoc) == 0) {
-            exibir_cliente(cliente);
             tem = 's';
+            fclose(fp);
+            return cliente;
         }
     }
     if (tem != 's') {
             printf("Nenhum cliente encontrado, com esse codigo.\n");
     }
-    free(cliente);
     fclose(fp);
+    return NULL;
 }
 
 void lista_cliente(void) {

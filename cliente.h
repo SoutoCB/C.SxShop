@@ -20,3 +20,4 @@ void tela_menu_cliente();
     void delet_cliente(void);
     void lista_cliente(void);
     void pesquisa_cliente(void);
+    Cliente* busca_cliente(char*);
