@@ -6,7 +6,7 @@ struct cliente{
     char nomec[50];
     char data_nascimentoc[11]; // "dd/mm/aaaa"
     char telefonec[12];
-    char status;
+    char status;  // x = deletado / a = ativo
 };
 
 typedef struct cliente Cliente;
@@ -21,3 +21,4 @@ void tela_menu_cliente();
     void lista_cliente(void);
     void pesquisa_cliente(void);
     Cliente* busca_cliente(char*);
+    void regravar_cliente(Cliente*);
