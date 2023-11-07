@@ -236,6 +236,19 @@ void le_valor(float *valor){          //GPT me ajudou bastante nessa
 getchar();
 }
 
+void le_inte(int *inte) {
+    do {
+        if (scanf("%d", inte) != 1) {
+            printf("|      Invalido, digite novamente: \n");
+            limparBuffer(); // Limpar o buffer de entrada
+        } else {
+            break; // Valor valido, sair do loop
+        }
+    } while (1); // Loop infinito até que um valor valido seja lido
+getchar();
+
+}
+
 ////////////////////////////////////////////////////////////////////////////////////////////////
 void le_texto(char *texto, int tam){ //Variavel para ler e validar, e o tamanho da variavel
     do{

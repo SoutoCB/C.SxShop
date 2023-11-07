@@ -1,7 +1,7 @@
 
 
 struct cliente{
-    char codigoc[10];
+    int codigoc;
     char cpfc[12]; 
     char nomec[50];
     char data_nascimentoc[11]; // "dd/mm/aaaa"
@@ -20,5 +20,7 @@ void tela_menu_cliente();
     void delet_cliente(void);
     void lista_cliente(void);
     void pesquisa_cliente(void);
-    Cliente* busca_cliente(char*);
+    Cliente* busca_cliente(int*);
     void regravar_cliente(Cliente*);
+    void recupera_cliente(void);
+    int proximo_codigoc(void);

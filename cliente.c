@@ -20,6 +20,7 @@ void tela_menu_cliente() {
         printf("|            3. Editar Cliente                                                  |\n");
         printf("|            4. Excluir Cliente                                                 |\n");
         printf("|            5. Pesquisar Cliente                                               |\n");
+        printf("|            6. Recuperar Cliente                                               |\n");
         printf("|            0. Voltar ao Menu Principal                                        |\n");
         printf("|                                                                               |\n");
         printf("|            Escolha a opcao desejada: "); 
@@ -40,6 +41,9 @@ void tela_menu_cliente() {
                 break;
             case '5':
                 pesquisa_cliente();
+                break;
+            case '6':
+                recupera_cliente();
                 break;
             case '0':
                 printf("Saindo.\n");
@@ -75,8 +79,7 @@ void cadast_cliente(void) {
     printf("|                                                                               |\n");
     printf("|      = = = Cadastro = = =                                                     |\n");
     printf("|                                                                               |\n");
-    printf("|      Codigo   =                                                               |\n"); //Pensar sobre esse codigo
-    le_codigo(cliente->codigoc);
+    cliente->codigoc = proximo_codigoc();
     printf("|      CPF      =                                                               |\n");
     le_cpf(cliente->cpfc);
     printf("|      Nome     =                                                               |\n");
@@ -103,15 +106,15 @@ void pesquisa_cliente(void){
     printf("|      = = = Pesquisar = = =                                                    |\n");
     printf("|     Insira o codigo do cliente:                                               |\n");
     printf("|     Codigo   =                                                                |\n"); //Pensar sobre esse codigo
-    char cod[10];
-    le_codigo(cod);
+    int cod;
+    le_inte(&cod);
     printf("|===============================================================================|\n");
-    cliente = busca_cliente(cod);
+    cliente = busca_cliente(&cod);
     exibir_cliente(cliente);
     free(cliente);
 }
 
-Cliente* busca_cliente(char* cod){
+Cliente* busca_cliente(int* cod){
     FILE* fp;
     Cliente* cliente;
     cliente = (Cliente*) malloc(sizeof(Cliente));
@@ -122,8 +125,9 @@ Cliente* busca_cliente(char* cod){
         exit(1);
     }
     char tem = 'x';
+    int codv = *cod;
     while(fread(cliente, sizeof(Cliente), 1, fp)) {
-        if ((strcmp(cod, cliente->codigoc) == 0) && cliente->status != 'x') {
+        if ((codv == cliente->codigoc) && cliente->status != 'x') {
             tem = 's';
             fclose(fp);
             return cliente;
@@ -167,7 +171,7 @@ void exibir_cliente(Cliente*cliente) {
         printf("\n= = = Cliente Inexistente = = =\n");
     }else{
         printf("|      = = = Cliente = = =                                                      |\n");
-        printf("|      Codigo   = %s                                                            \n", cliente->codigoc); //Pensar sobre esse codigo
+        printf("|      Codigo   = %d                                                            \n", cliente->codigoc); //Pensar sobre esse codigo
         printf("|      CPF      = %s                                                            \n", cliente->cpfc);
         printf("|      Nome     = %s                                                            \n", cliente->nomec);
         printf("|      Data nascimento = %s                                                     \n", cliente->data_nascimentoc);
@@ -209,10 +213,10 @@ void delet_cliente(void) {
     printf("|      = = = Deletar = = =                                                      |\n");
     printf("|      Insira o codigo do cliente:                                              |\n");
     printf("|      Codigo   =                                                               |\n"); //Pensar sobre esse codigo
-    char cod[10];
-    le_codigo(cod);
+    int cod;
+    le_inte(&cod);
     printf("|===============================================================================|\n");
-    cliente = busca_cliente(cod);
+    cliente = busca_cliente(&cod);
     exibir_cliente(cliente);
     if (cliente != NULL){
         char resposta;
@@ -251,7 +255,7 @@ void regravar_cliente(Cliente* cliente) {
 	achou = 0;
 	while(fread(cliLido, sizeof(Cliente), 1, fp) && achou==0) {
 		//fread(alnLido, sizeof(Aluno), 1, fp);
-		if (strcmp(cliLido->codigoc, cliente->codigoc) == 0) {
+		if (cliLido->codigoc == cliente->codigoc) {
 			achou = 1;
 			fseek(fp, -1*sizeof(Cliente), SEEK_CUR);
         	fwrite(cliente, sizeof(Cliente), 1, fp);
@@ -260,4 +264,30 @@ void regravar_cliente(Cliente* cliente) {
 	}
 	fclose(fp);
 	free(cliLido);
+}
+
+void recupera_cliente(void){
+    printf("oi");
+}
+
+
+int proximo_codigoc(void){
+    int codigo = 1; 
+    Cliente temp;
+    FILE* fp;
+    fp = fopen("clientes.dat", "r+b");
+    if (fp == NULL) {
+		printf("Erro na abertura do arquivo.\n");
+        printf("Nao e possivel continuar, provavelmente nao tem clientes cadastrados...\n");
+        exit(1);
+	}
+    fseek(fp, 0, SEEK_SET); // Volta para o inicio do arquivo
+    
+    while (fread(&temp, sizeof(Cliente), 1, fp) == 1) {
+        if (temp.codigoc >= codigo) {
+            codigo = temp.codigoc + 1;
+        }
+    }
+    fclose(fp);   
+    return codigo;
 }

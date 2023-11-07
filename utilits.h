@@ -13,3 +13,4 @@ void le_telefone(char*);
 void le_data_nascimento(char*);
 void le_valor(float*);
 void le_texto(char*, int);
+void le_inte(int*);
