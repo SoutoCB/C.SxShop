@@ -10,3 +10,15 @@ Este projeto tem como finalidade a conclusão da disciplina DCT1106 - Programaç
 
 Para a implementação deste sistema, será utilizada a linguagem de programação C como base. O projeto está dividido em várias etapas, e a versão final do sistema será disponibilizada próximo ao término da disciplina.
 
+
+PARA COMPILAR:
+
+VS CODE e Prompt de Comando:
+gcc -Wall *.h -o testeh
+gcc -Wall *.c -o testec
+testec.exe
+
+replit:
+gcc -Wall *.h -c
+gcc -Wall *.c -c 
+gcc -Wall *.c -o testec
