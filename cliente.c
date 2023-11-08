@@ -81,7 +81,7 @@ void cadast_cliente(void) {
     printf("|                                                                               |\n");
     cliente->codigoc = proximo_codigoc();
     printf("|      CPF      =                                                               |\n");
-    le_cpf(cliente->cpfc);
+    do{le_cpf(cliente->cpfc);}while(!verifica_cpfc(cliente->cpfc));
     printf("|      Nome     =                                                               |\n");
     le_nome(cliente->nomec);
     printf("|      Data nascimento =                                                        |\n");
@@ -112,6 +112,30 @@ void pesquisa_cliente(void){
     cliente = busca_cliente(&cod);
     exibir_cliente(cliente);
     free(cliente);
+}
+
+int verifica_cpfc(char*cpf){
+    FILE* fp;
+    Cliente* cliente;
+    cliente = (Cliente*) malloc(sizeof(Cliente));
+    fp = fopen("clientes.dat", "rb");
+    if (fp == NULL) {
+        printf("Erro na abertura do arquivo.\n");
+        printf("Nao e possivel continuar, provavelmente nao tem clientes cadastrados...\n");
+        exit(1);
+    }
+    
+    while(fread(cliente, sizeof(Cliente), 1, fp)) {
+        if (strcmp(cpf, cliente->cpfc) == 0) {
+            printf("CPF ja cadastrado, digite novamente = \n");
+            fclose(fp);
+            free(cliente);
+            return 0;
+        }
+    } 
+    fclose(fp);
+    free(cliente);
+    return 1;
 }
 
 Cliente* busca_cliente(int* cod){
@@ -182,7 +206,7 @@ void exibir_cliente(Cliente*cliente) {
         } else {
         strcpy(situacao, "Nao informada");
         }
-        printf("|         Situacao do cliente = %s\n", situacao);
+        printf("|        Situacao do cliente = %s\n", situacao);
         printf("|===============================================================================|\n\n");
     }    
 }
