@@ -21,6 +21,7 @@ void tela_menu_cliente();
     void lista_cliente(void);
     void pesquisa_cliente(void);
     Cliente* busca_cliente(int*);
+    Cliente* busca_clientecpf(char*);
     void regravar_cliente(Cliente*);
     void recupera_cliente(void);
     int proximo_codigoc(void);

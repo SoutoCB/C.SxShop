@@ -104,12 +104,12 @@ void pesquisa_cliente(void){
     printf("|                      = = = = = Menu Cliente = = = = =                         |\n");
     printf("|                                                                               |\n");
     printf("|      = = = Pesquisar = = =                                                    |\n");
-    printf("|     Insira o codigo do cliente:                                               |\n");
-    printf("|     Codigo   =                                                                |\n"); //Pensar sobre esse codigo
-    int cod;
-    le_inte(&cod);
+    printf("|     Insira o CPF do cliente:                                               |\n");
+    printf("|     CPF   =                                                                |\n"); //Pensar sobre esse codigo
+    char cpf[12];
+    le_cpf(cpf);
     printf("|===============================================================================|\n");
-    cliente = busca_cliente(&cod);
+    cliente = busca_clientecpf(cpf);
     exibir_cliente(cliente);
     free(cliente);
 }
@@ -159,6 +159,31 @@ Cliente* busca_cliente(int* cod){
     }
     if (tem != 's') {
             printf("Nenhum cliente encontrado, com esse codigo.\n");
+    }
+    fclose(fp);
+    return NULL;
+}
+
+Cliente* busca_clientecpf(char* cpf){
+    FILE* fp;
+    Cliente* cliente;
+    cliente = (Cliente*) malloc(sizeof(Cliente));
+    fp = fopen("clientes.dat", "rb");
+    if (fp == NULL) {
+        printf("Erro na abertura do arquivo.\n");
+        printf("Nao e possivel continuar, provavelmente nao tem clientes cadastrados...\n");
+        exit(1);
+    }
+    char tem = 'x';
+    while(fread(cliente, sizeof(Cliente), 1, fp)) {
+        if (strcmp(cpf, cliente->cpfc) == 0) {
+            tem = 's';
+            fclose(fp);
+            return cliente;
+        }
+    }
+    if (tem != 's') {
+            printf("Nenhum cliente encontrado, com esse CPF.\n");
     }
     fclose(fp);
     return NULL;
@@ -318,10 +343,8 @@ void regravar_cliente(Cliente* cliente) {
         printf("Nao e possivel continuar, provavelmente nao tem clientes cadastrados...\n");
         exit(1);
 	}
-	// while(!feof(fp)) {
 	achou = 0;
 	while(fread(cliLido, sizeof(Cliente), 1, fp) && achou==0) {
-		//fread(alnLido, sizeof(Aluno), 1, fp);
 		if (cliLido->codigoc == cliente->codigoc) {
 			achou = 1;
 			fseek(fp, -1L*sizeof(Cliente), SEEK_CUR);
@@ -334,7 +357,7 @@ void regravar_cliente(Cliente* cliente) {
 }
 
 void recupera_cliente(void){
-    printf("oi");
+    printf("E o pix? Nada ainda? (Em desenvolvimento)\n");
 }
 
 
