@@ -127,7 +127,7 @@ Cliente* busca_cliente(int* cod){
     char tem = 'x';
     int codv = *cod;
     while(fread(cliente, sizeof(Cliente), 1, fp)) {
-        if ((codv == cliente->codigoc) && cliente->status != 'x') {
+        if ((codv == cliente->codigoc)) {
             tem = 's';
             fclose(fp);
             return cliente;
@@ -171,24 +171,25 @@ void exibir_cliente(Cliente*cliente) {
         printf("\n= = = Cliente Inexistente = = =\n");
     }else{
         printf("|      = = = Cliente = = =                                                      |\n");
-        printf("|      Codigo   = %d                                                            \n", cliente->codigoc); //Pensar sobre esse codigo
-        printf("|      CPF      = %s                                                            \n", cliente->cpfc);
-        printf("|      Nome     = %s                                                            \n", cliente->nomec);
-        printf("|      Data nascimento = %s                                                     \n", cliente->data_nascimentoc);
-        printf("|      Telefone = %s                                                            \n", cliente->telefonec); 
+        printf("|        Codigo   = %d                                                            \n", cliente->codigoc); //Pensar sobre esse codigo
+        printf("| 1.     CPF      = %s                                                            \n", cliente->cpfc);
+        printf("| 2.     Nome     = %s                                                            \n", cliente->nomec);
+        printf("| 3.     Data nascimento = %s                                                     \n", cliente->data_nascimentoc);
+        printf("| 4.     Telefone = %s                                                            \n", cliente->telefonec); 
         // Buscar forma para exibir cliente por cliente
         if (cliente->status == 'a') {
         strcpy(situacao, "Ativo");
         } else {
         strcpy(situacao, "Nao informada");
         }
-        printf("|      Situacao do cliente = %s\n", situacao);
+        printf("|         Situacao do cliente = %s\n", situacao);
         printf("|===============================================================================|\n\n");
     }    
 }
 
 void edit_cliente(void) {
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
+    Cliente* cliente;
     printf("|\033[1;36m = Editar cliente = \033[0m|\n");
     printf("|===============================================================================|\n");
     printf("|                                                                               |\n");
@@ -196,10 +197,52 @@ void edit_cliente(void) {
     printf("|                                                                               |\n");
     printf("|      = = = Editar = = =                                                       |\n");
     printf("|     Insira o codigo do cliente:                                               |\n");
-    //Adcionar coleta de dado
     printf("|     Codigo   =                                                                |\n"); //Pensar sobre esse codigo
+    int cod;
+    le_inte(&cod);
     printf("|===============================================================================|\n");
+    cliente = busca_cliente(&cod);
+    exibir_cliente(cliente);
+    if (cliente != NULL){
+        char resposta;
+        printf("\033[1;31mVoce realmente deseja editar esse cliente? (s/n):\033[0m ");
+        scanf(" %c", &resposta);
+        getchar();
+        
+        if (resposta == 's' || resposta == 'S') {
+            printf("Qual informacao deseja alterar? (1-4).\n");
+            scanf(" %c", &resposta);
+            getchar();
+            if(resposta == '1'){
+                printf("CPF atual = %s\n", cliente->cpfc);
+                printf("Novo CPF = ");
+                le_cpf(cliente->cpfc);
+            } else if (resposta == '2'){
+                printf("Nome atual = %s\n", cliente->nomec);
+                printf("Novo Nome = ");
+                le_nome(cliente->nomec);
+            } else if (resposta =='3'){
+                printf("Data de nascimento atual = %s\n", cliente->data_nascimentoc);
+                printf("Nova Data de nascimento = ");
+                le_data_nascimento(cliente->data_nascimentoc);
+            } else if (resposta == '4'){
+                printf("Telefone atual = %s\n", cliente->telefonec);
+                printf("Novo telefone = ");
+                le_telefone(cliente->telefonec);
+            } else {
+                printf("Resposta invalida! (responda de 1-4)\n");
+            }
+            regravar_cliente(cliente);
+        
+        } else if (resposta == 'n' || resposta == 'N') {
+            printf("Voce respondeu 'nao'.\n");
+            printf("Acao cancelada.\n");
+        } else {
+            printf("Resposta invalida! (responda com 's' ou 'n')\n");
+        }
+    }
 
+    free(cliente);
 }
 
 void delet_cliente(void) {
@@ -257,9 +300,9 @@ void regravar_cliente(Cliente* cliente) {
 		//fread(alnLido, sizeof(Aluno), 1, fp);
 		if (cliLido->codigoc == cliente->codigoc) {
 			achou = 1;
-			fseek(fp, -1*sizeof(Cliente), SEEK_CUR);
+			fseek(fp, -1L*sizeof(Cliente), SEEK_CUR);
         	fwrite(cliente, sizeof(Cliente), 1, fp);
-			//break;
+			break;
 		}
 	}
 	fclose(fp);
