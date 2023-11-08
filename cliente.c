@@ -20,7 +20,6 @@ void tela_menu_cliente() {
         printf("|            3. Editar Cliente                                                  |\n");
         printf("|            4. Excluir Cliente                                                 |\n");
         printf("|            5. Pesquisar Cliente                                               |\n");
-        printf("|            6. Recuperar Cliente                                               |\n");
         printf("|            0. Voltar ao Menu Principal                                        |\n");
         printf("|                                                                               |\n");
         printf("|            Escolha a opcao desejada: "); 
@@ -41,9 +40,6 @@ void tela_menu_cliente() {
                 break;
             case '5':
                 pesquisa_cliente();
-                break;
-            case '6':
-                recupera_cliente();
                 break;
             case '0':
                 printf("Saindo.\n");
@@ -126,7 +122,7 @@ int verifica_cpfc(char*cpf){
     }
     
     while(fread(cliente, sizeof(Cliente), 1, fp)) {
-        if (strcmp(cpf, cliente->cpfc) == 0) {
+        if ((strcmp(cpf, cliente->cpfc) == 0) && cliente->status != 'x') {
             printf("CPF ja cadastrado, digite novamente = \n");
             fclose(fp);
             free(cliente);
@@ -176,7 +172,7 @@ Cliente* busca_clientecpf(char* cpf){
     }
     char tem = 'x';
     while(fread(cliente, sizeof(Cliente), 1, fp)) {
-        if (strcmp(cpf, cliente->cpfc) == 0) {
+        if ((strcmp(cpf, cliente->cpfc) == 0) && cliente->status != 'x') {
             tem = 's';
             fclose(fp);
             return cliente;
@@ -354,10 +350,6 @@ void regravar_cliente(Cliente* cliente) {
 	}
 	fclose(fp);
 	free(cliLido);
-}
-
-void recupera_cliente(void){
-    printf("E o pix? Nada ainda? (Em desenvolvimento)\n");
 }
 
 
