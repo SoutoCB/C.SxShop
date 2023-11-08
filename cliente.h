@@ -24,3 +24,4 @@ void tela_menu_cliente();
     void regravar_cliente(Cliente*);
     void recupera_cliente(void);
     int proximo_codigoc(void);
+    int verifica_cpfc(char*);
