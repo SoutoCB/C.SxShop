@@ -21,4 +21,5 @@ testec.exe
 Replit: \
 gcc -Wall *.h -c \
 gcc -Wall *.c -c  \
-gcc -Wall *.c -o testec 
+gcc -Wall *.c -o testec \
+./testec
