@@ -20,7 +20,6 @@ void tela_menu_cliente() {
         printf("|            3. Editar Cliente                                                  |\n");
         printf("|            4. Excluir Cliente                                                 |\n");
         printf("|            5. Pesquisar Cliente                                               |\n");
-        printf("|            6. Recuperar Cliente                                               |\n");
         printf("|            0. Voltar ao Menu Principal                                        |\n");
         printf("|                                                                               |\n");
         printf("|            Escolha a opcao desejada: "); 
@@ -41,9 +40,6 @@ void tela_menu_cliente() {
                 break;
             case '5':
                 pesquisa_cliente();
-                break;
-            case '6':
-                recupera_cliente();
                 break;
             case '0':
                 printf("Saindo.\n");
@@ -104,12 +100,12 @@ void pesquisa_cliente(void){
     printf("|                      = = = = = Menu Cliente = = = = =                         |\n");
     printf("|                                                                               |\n");
     printf("|      = = = Pesquisar = = =                                                    |\n");
-    printf("|     Insira o codigo do cliente:                                               |\n");
-    printf("|     Codigo   =                                                                |\n"); //Pensar sobre esse codigo
-    int cod;
-    le_inte(&cod);
+    printf("|     Insira o CPF do cliente:                                               |\n");
+    printf("|     CPF   =                                                                |\n"); //Pensar sobre esse codigo
+    char cpf[12];
+    le_cpf(cpf);
     printf("|===============================================================================|\n");
-    cliente = busca_cliente(&cod);
+    cliente = busca_clientecpf(cpf);
     exibir_cliente(cliente);
     free(cliente);
 }
@@ -126,7 +122,7 @@ int verifica_cpfc(char*cpf){
     }
     
     while(fread(cliente, sizeof(Cliente), 1, fp)) {
-        if (strcmp(cpf, cliente->cpfc) == 0) {
+        if ((strcmp(cpf, cliente->cpfc) == 0) && cliente->status != 'x') {
             printf("CPF ja cadastrado, digite novamente = \n");
             fclose(fp);
             free(cliente);
@@ -159,6 +155,31 @@ Cliente* busca_cliente(int* cod){
     }
     if (tem != 's') {
             printf("Nenhum cliente encontrado, com esse codigo.\n");
+    }
+    fclose(fp);
+    return NULL;
+}
+
+Cliente* busca_clientecpf(char* cpf){
+    FILE* fp;
+    Cliente* cliente;
+    cliente = (Cliente*) malloc(sizeof(Cliente));
+    fp = fopen("clientes.dat", "rb");
+    if (fp == NULL) {
+        printf("Erro na abertura do arquivo.\n");
+        printf("Nao e possivel continuar, provavelmente nao tem clientes cadastrados...\n");
+        exit(1);
+    }
+    char tem = 'x';
+    while(fread(cliente, sizeof(Cliente), 1, fp)) {
+        if ((strcmp(cpf, cliente->cpfc) == 0) && cliente->status != 'x') {
+            tem = 's';
+            fclose(fp);
+            return cliente;
+        }
+    }
+    if (tem != 's') {
+            printf("Nenhum cliente encontrado, com esse CPF.\n");
     }
     fclose(fp);
     return NULL;
@@ -318,10 +339,8 @@ void regravar_cliente(Cliente* cliente) {
         printf("Nao e possivel continuar, provavelmente nao tem clientes cadastrados...\n");
         exit(1);
 	}
-	// while(!feof(fp)) {
 	achou = 0;
 	while(fread(cliLido, sizeof(Cliente), 1, fp) && achou==0) {
-		//fread(alnLido, sizeof(Aluno), 1, fp);
 		if (cliLido->codigoc == cliente->codigoc) {
 			achou = 1;
 			fseek(fp, -1L*sizeof(Cliente), SEEK_CUR);
@@ -331,10 +350,6 @@ void regravar_cliente(Cliente* cliente) {
 	}
 	fclose(fp);
 	free(cliLido);
-}
-
-void recupera_cliente(void){
-    printf("oi");
 }
 
 

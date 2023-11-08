@@ -1,6 +1,6 @@
 
 struct funcionario{
-    char codigof[10];
+    int codigof;
     char cpff[12];
     char nomef[50];
     char data_nascimentof[11];
@@ -21,4 +21,9 @@ void tela_menu_funcionarios();
     void exibir_funcionario(Funcionario*);
     void edit_funcionario(void);
     void delet_funcionario(void);
-
+    void pesquisa_funcionario(void);
+    Funcionario* busca_funcionario(int*);
+    Funcionario* busca_funcionariocpf(char*);
+    void regravar_funcionario(Funcionario*);
+    int proximo_codigof(void);
+    int verifica_cpff(char*);
