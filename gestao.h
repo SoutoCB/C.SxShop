@@ -1,6 +1,6 @@
 
 struct gestao{
-    char codigop[10];
+    int codigop;
     char nomep[50];
     float valor;
     char descricaop[1000];
@@ -19,5 +19,9 @@ void tela_menu_gestao_produtos();
     void exibir_produto(Gestao*);
     void edit_produto(void);
     void delet_produto(void);
+    void pesquisa_produto(void);
+    Gestao* busca_produto(int*);
+    void regravar_produto(Gestao*);
+    int proximo_codigop(void);
 
 
