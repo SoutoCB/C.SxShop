@@ -4,7 +4,7 @@ struct gestao{
     char nomep[50];
     float valor;
     char descricaop[1000];
-    float quantidade;
+    int quantidade;
     char status;
 };
 
