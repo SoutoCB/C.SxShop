@@ -85,7 +85,7 @@ void cadast_produto(void) {
     printf("|      Descricao  =                                                             |\n");
     le_texto(gest->descricaop, 1000);
     printf("|      Quantidade =                                                             |\n");
-    le_valor(&gest->quantidade);
+    le_inte(&gest->quantidade);
     // Pensar sobre o estoque de produto
     printf("|===============================================================================|\n\n");
     gest->status = 'a';
@@ -174,7 +174,7 @@ void exibir_produto(Gestao*gest) {
         printf("| 1.     Nome       =  %s                                                         \n", gest->nomep);
         printf("| 2.     Valor      =  %.2f                                                       \n", gest->valor);
         printf("| 3.     Descricao  =  %s                                                         \n", gest->descricaop);
-        printf("| 4.     Quantidade =  %.0f                                                       \n", gest->quantidade);
+        printf("| 4.     Quantidade =  %d                                                         \n", gest->quantidade);
         if (gest->status == 'a') {
         strcpy(situacao, "Em estoque");
         } else {
@@ -225,9 +225,9 @@ void edit_produto(void) {
                 printf("Nova descricao = ");
                 le_texto(gest->descricaop, 1000);
             } else if (resposta == '4'){
-                printf("Quantidade atual = %.0f\n", gest->quantidade);
+                printf("Quantidade atual = %d\n", gest->quantidade);
                 printf("Nova quantidade = ");
-                le_valor(&gest->quantidade);
+                le_inte(&gest->quantidade);
             } else {
                 printf("Resposta invalida! (responda de 1-4)\n");
             }
