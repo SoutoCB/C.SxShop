@@ -3,6 +3,8 @@
 #include "vendas.h"
 #include "utilits.h"
 #include <string.h>
+#include "cliente.h"
+#include "funcionario.h"
 
 void tela_menu_vendas() {
     char op;
@@ -70,8 +72,8 @@ void make_vendas(void) {
     printf("|                                                                               |\n");
     printf("|      Numero da venda   =                                                      |\n"); //Pensar sobre esse codigo
     le_codigo(vend->numero_venda);
-    printf("|      Codigo do cliente =                                                      |\n");
-    le_codigo(vend->codigo_cliente);
+    printf("|      CPF do cliente =                                                         |\n");
+    le_cpf(vend->cpf_cliente);
     printf("|      Codigo do funcionario =                                                  |\n");
     le_codigo(vend->codigo_funcionario);
     printf("|      Valor total     =                                                        |\n");
@@ -115,10 +117,10 @@ void exibir_vendas(Vendas*vend) {
     if(vend == NULL) {
         printf("\n= = = Venda Inexistente = = =\n");
     }else{
-        printf("|      = = = Lista de Vendas = = =                                              |\n");
+        printf("|      = = = Venda = = =                                                        |\n");
         printf("|                                                                               |\n");
         printf("|      Numero da Venda   = %s                                                   \n", vend->numero_venda); //Pensar sobre esse codigo
-        printf("|      Codigo do cliente = %s                                                   \n", vend->codigo_cliente);
+        printf("|      CPF do cliente = %s                                                      \n", vend->cpf_cliente);
         printf("|      Codigo do funcionario = %s                                               \n", vend->codigo_funcionario);
         printf("|      Valor total     = %.2f                                                   \n", vend->valor_total);
         printf("|      Descricao       = %s                                                     \n", vend->descricao);
