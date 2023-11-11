@@ -1,7 +1,7 @@
 
 struct vendas{
     char numero_venda[10];
-    char codigo_cliente[10];
+    char cpf_cliente[10];
     char codigo_funcionario[10];
     float valor_total;
     char descricao[1000];
