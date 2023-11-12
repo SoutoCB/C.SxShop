@@ -5,6 +5,7 @@
 #include <string.h>
 #include "cliente.h"
 #include "funcionario.h"
+#include "gestao.h"
 
 void tela_menu_vendas() {
     char op;
@@ -73,12 +74,20 @@ void make_vendas(void) {
     vend->codigov = proximo_codigov();
     printf("|      CPF do cliente =                                                         |\n");
     do{le_cpf(vend->cpf_cliente);}while(!tem_cpfc(vend->cpf_cliente));
-    printf("|      Codigo do funcionario =                                                  |\n");
+    printf("|      Codigo do funcionario =                                                  |\n"); 
     do{le_inte(&vend->codigo_funcionario);}while(!tem_codigof(&vend->codigo_funcionario));
-    printf("|      Valor total     =                                                        |\n");
-    le_valor(&vend->valor_total);
-    printf("|      Descricao       =                                                        |\n");
+    float valor = 0;
+    char resp = 'z';
+    do{
+        valor += produto_vendido(&vend->codigov); 
+        printf("|      Adcionar mais produto(s/n)? ");
+        scanf(" %c", &resp); getchar();
+    }while((resp == 's')||(resp == 'S'));  
+    printf("|      Valor total     = %.2f                                                   \n", valor);
+    vend->valor_total = valor;
+    printf("|      Descricao       =                                                        \n");
     le_texto(vend->descricao, 1000);
+    vend->status = 'a';
     // Possivel adicao de novos dados para coletar
     //Possivel adicao de uma coleta de codigo de protudo para diminuir sua quantidade no estoque
     // Salva a quantida de compras feitas pelo cliente
@@ -87,6 +96,96 @@ void make_vendas(void) {
     fwrite(vend, sizeof(Vendas), 1, fp);
     fclose(fp);
     free(vend);
+}
+
+float produto_vendido(int* codv){
+    
+    int codp;
+    printf("Digite o codigo do produto: ");
+    do{le_inte(&codp);}while(!tem_codigop(&codp));
+
+    int quant;
+    printf("Digite a quantidade: ");
+    do{le_inte(&quant);}while(!tem_quant(&quant, &codp));
+    
+    FILE* fp;
+    Gestao* gest;
+    fp = fopen("produtos.dat", "rb");
+    if (fp == NULL) {
+        printf("Erro na abertura do arquivo.\n");
+        printf("Nao e possivel continuar, provavelmente nao tem produtos cadastrados...\n");
+        exit(1);
+    }
+    gest = busca_produto(&codp);
+    gest->quantidade = (gest->quantidade - quant);
+    float valor;
+    valor = gest->valor * quant;
+    regravar_produto(gest);
+
+
+//frees
+free(gest);
+fclose(fp);
+return valor;
+}
+
+int tem_quant(int*quan, int*co){
+    int cod = *co;
+    int quant = *quan;
+    FILE* fp;
+    Gestao* gest;
+    gest = (Gestao*) malloc(sizeof(Gestao));
+    fp = fopen("produtos.dat", "rb");
+    if (fp == NULL) {
+        printf("Erro na abertura do arquivo.\n");
+        printf("Nao e possivel continuar, provavelmente nao tem produtos cadastrados...\n");
+        exit(1);
+    }
+    while(fread(gest, sizeof(Gestao), 1, fp)) {
+        if ((gest->codigop == cod) && (gest->status != 'x')){
+            int temestoque;
+            temestoque = (gest->quantidade - quant);
+            if (temestoque >= 0) {
+                fclose(fp);
+                free(gest);
+                return 1;
+            } else if (temestoque < 0) {
+                printf("Estoque atual deste produto: %d\n", gest->quantidade);
+                printf("Estoque indisponivel, digite novamente = \n");
+                fclose(fp);
+                free(gest);
+                return 0;
+            }
+        }
+    } 
+    fclose(fp);
+    free(gest);
+    printf("DEU B.O \n");
+    return 0;
+}
+
+int tem_codigop(int*codp){
+    FILE* fp;
+    Gestao* gest;
+    gest = (Gestao*) malloc(sizeof(Gestao));
+    fp = fopen("produtos.dat", "rb");
+    if (fp == NULL) {
+        printf("Erro na abertura do arquivo.\n");
+        printf("Nao e possivel continuar, provavelmente nao tem produtos cadastrados...\n");
+        exit(1);
+    }
+    int codpp = *codp;
+    while(fread(gest, sizeof(Gestao), 1, fp)) {
+        if ((gest->codigop == codpp)  && gest->status != 'x') {
+            fclose(fp);
+            free(gest);
+            return 1;
+        }
+    } 
+    fclose(fp);
+    free(gest);
+    printf("Codigo inexistente, digite novamente = \n");
+    return 0;
 }
 
 int tem_cpfc(char*cpfc){
@@ -247,7 +346,7 @@ void cancel_vendas(void){
             printf("Voce respondeu 'sim'.\n");
             vend->status = 'x';
             regravar_vendas(vend);
-            printf("Cliente deletado.\n");
+            printf("Venda deletada.\n");
         } else if (resposta == 'n' || resposta == 'N') {
             printf("Voce respondeu 'nao'.\n");
             printf("Acao cancelada.\n");
@@ -257,6 +356,8 @@ void cancel_vendas(void){
     }
     free(vend);
 }
+
+
 
 void regravar_vendas(Vendas* vend) {
 	int achou;
@@ -282,6 +383,7 @@ void regravar_vendas(Vendas* vend) {
 	fclose(fp);
 	free(venLido);
 }
+
 
 int proximo_codigov(void){
     int codigo = 1; 

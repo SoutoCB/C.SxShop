@@ -24,3 +24,8 @@ void tela_menu_vendas();
     int tem_cpfc(char*);
     int tem_codigof(int*);
 
+    int tem_codigop(int*);
+    int tem_quant(int*, int*);
+    float produto_vendido(int*);
+
+   

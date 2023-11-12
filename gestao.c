@@ -78,6 +78,7 @@ void cadast_produto(void) {
     printf("|      = = = Cadastro = = =                                                     |\n");
     printf("|                                                                               |\n");
     gest->codigop = proximo_codigop();
+    printf("|      Codigo do produto = %d                                                    \n", gest->codigop);
     printf("|      Nome       =                                                             |\n");
     le_nome(gest->nomep);
     printf("|      Valor      =                                                             |\n");
@@ -152,7 +153,7 @@ void lista_produto(void){
     fp = fopen("produtos.dat", "rb");
     if (fp == NULL) {
         printf("Erro na abertura do arquivo.\n");
-        printf("Nao e possivel continuar, provavelmente nao tem clientes cadastrados...\n");
+        printf("Nao e possivel continuar, provavelmente nao tem produtos cadastrados...\n");
         exit(1);
     }
     while(fread(gest, sizeof(Gestao), 1, fp)) {
