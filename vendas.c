@@ -98,7 +98,7 @@ void make_vendas(void) {
     free(vend);
 }
 
-float produto_vendido(int* codv){
+float produto_vendido(int* cod){
     
     int codp;
     printf("Digite o codigo do produto: ");
@@ -121,9 +121,33 @@ float produto_vendido(int* codv){
     float valor;
     valor = gest->valor * quant;
     regravar_produto(gest);
-
+    
+    //Adicionando a struct Prodv
+    int codv = *cod;
+    FILE* fv;
+    Prodv* prodv;
+    prodv = (Prodv*) malloc(sizeof(Prodv)); 
+    fv = fopen("produtosvendidos.dat","ab");
+    if (fv == NULL) {
+        fv = fopen("produtosvendidos.dat","wb");
+        if (fv == NULL){
+            printf("Erro na criacao do arquivo\n!");
+            free(prodv);
+            exit(1);
+        }         
+    }
+    prodv->codigov = codv;
+    prodv->codigop = codp;
+    prodv->quantidade = quant;
+    prodv->status = 'a';
+    fwrite(prodv, sizeof(Prodv), 1, fv);
+    //
 
 //frees
+//
+free(prodv);
+fclose(fv);
+//
 free(gest);
 fclose(fp);
 return valor;
@@ -346,6 +370,9 @@ void cancel_vendas(void){
             printf("Voce respondeu 'sim'.\n");
             vend->status = 'x';
             regravar_vendas(vend);
+            //
+            volta_quant(&vend->codigov);
+            //
             printf("Venda deletada.\n");
         } else if (resposta == 'n' || resposta == 'N') {
             printf("Voce respondeu 'nao'.\n");
@@ -357,6 +384,64 @@ void cancel_vendas(void){
     free(vend);
 }
 
+void volta_quant(int* cod){
+    int codv = *cod;
+    FILE* fv;
+    Prodv* prodv;
+    prodv = (Prodv*) malloc(sizeof(Prodv)); 
+    fv = fopen("produtosvendidos.dat", "rb");
+	if (fv == NULL) {
+		printf("Erro na abertura do arquivo.\n");
+        printf("Nao e possivel continuar, provavelmente nao tem vendas cadastrados...\n");
+        exit(1);
+	}
+    while(fread(prodv, sizeof(Prodv), 1, fv)) {
+        if ((codv == prodv->codigov)&&(prodv->status != 'x')){
+            FILE* fp;
+            Gestao* gest;
+            fp = fopen("produtos.dat", "rb");
+            if (fv == NULL) {
+                printf("Erro na abertura do arquivo.\n");
+                printf("Nao e possivel continuar, provavelmente nao tem vendas cadastrados...\n");
+                exit(1);
+            }
+            gest = busca_produto(&prodv->codigop);
+            gest->quantidade += prodv->quantidade;
+            prodv->status = 'x';
+            regravar_produto(gest);
+            regravar_prodv(prodv);
+            free(gest);
+            fclose(fp);    
+        }
+    }
+fclose(fv);
+free(prodv);
+}
+
+void regravar_prodv(Prodv* prodv) {
+	int achou;
+	FILE* fp;
+	Prodv* venLido;
+
+	venLido = (Prodv*) malloc(sizeof(Prodv));
+	fp = fopen("produtosvendidos.dat", "r+b");
+	if (fp == NULL) {
+		printf("Erro na abertura do arquivo.\n");
+        printf("Nao e possivel continuar, provavelmente nao tem vendas cadastrados...\n");
+        exit(1);
+	}
+	achou = 0;
+	while(fread(venLido, sizeof(Prodv), 1, fp) && achou==0) {
+		if (venLido->codigov == prodv->codigov) {
+			achou = 1;
+			fseek(fp, -1L*sizeof(Prodv), SEEK_CUR);
+        	fwrite(prodv, sizeof(Prodv), 1, fp);
+			break;
+		}
+	}
+	fclose(fp);
+	free(venLido);
+}
 
 
 void regravar_vendas(Vendas* vend) {

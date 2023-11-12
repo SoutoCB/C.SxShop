@@ -10,6 +10,16 @@ struct vendas{
 
 typedef struct vendas Vendas;
 
+struct produtovendido{
+    int codigov;
+    int codigop;
+    int quantidade;
+    char status;
+};
+
+typedef struct produtovendido Prodv;
+
+
 
 
 void tela_menu_vendas();
@@ -27,5 +37,9 @@ void tela_menu_vendas();
     int tem_codigop(int*);
     int tem_quant(int*, int*);
     float produto_vendido(int*);
+
+    void volta_quant(int*);
+    void regravar_prodv(Prodv*);
+
 
    
