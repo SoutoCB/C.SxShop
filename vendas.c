@@ -5,6 +5,7 @@
 #include <string.h>
 #include "cliente.h"
 #include "funcionario.h"
+#include "gestao.h"
 
 void tela_menu_vendas() {
     char op;
@@ -17,7 +18,7 @@ void tela_menu_vendas() {
         printf("|                                                                               |\n");
         printf("|            1. Realizar Venda                                                  |\n");
         printf("|            2. Listar Vendas                                                   |\n");
-        printf("|            3. Editar Venda                                                    |\n");
+        printf("|            3. Pesquisar Vendas                                                |\n");
         printf("|            4. Cancelar Venda                                                  |\n");
         printf("|            0. Voltar ao Menu Principal                                        |\n");
         printf("|                                                                               |\n");
@@ -32,7 +33,7 @@ void tela_menu_vendas() {
                 lista_vendas();
                 break;
             case '3':
-                edit_vendas();
+                pesquisa_vendas();
                 break;
             case '4':
                 cancel_vendas();
@@ -70,16 +71,23 @@ void make_vendas(void) {
     printf("|                                                                               |\n");
     printf("|      = = = Realizar Venda = = =                                               |\n");
     printf("|                                                                               |\n");
-    printf("|      Numero da venda   =                                                      |\n"); //Pensar sobre esse codigo
-    le_codigo(vend->numero_venda);
+    vend->codigov = proximo_codigov();
     printf("|      CPF do cliente =                                                         |\n");
-    le_cpf(vend->cpf_cliente);
-    printf("|      Codigo do funcionario =                                                  |\n");
-    le_codigo(vend->codigo_funcionario);
-    printf("|      Valor total     =                                                        |\n");
-    le_valor(&vend->valor_total);
-    printf("|      Descricao       =                                                        |\n");
+    do{le_cpf(vend->cpf_cliente);}while(!tem_cpfc(vend->cpf_cliente));
+    printf("|      Codigo do funcionario =                                                  |\n"); 
+    do{le_inte(&vend->codigo_funcionario);}while(!tem_codigof(&vend->codigo_funcionario));
+    float valor = 0;
+    char resp = 'z';
+    do{
+        valor += produto_vendido(&vend->codigov); 
+        printf("|      Adcionar mais produto(s/n)? ");
+        scanf(" %c", &resp); getchar();
+    }while((resp == 's')||(resp == 'S'));  
+    printf("|      Valor total     = %.2f                                                   \n", valor);
+    vend->valor_total = valor;
+    printf("|      Descricao       =                                                        \n");
     le_texto(vend->descricao, 1000);
+    vend->status = 'a';
     // Possivel adicao de novos dados para coletar
     //Possivel adicao de uma coleta de codigo de protudo para diminuir sua quantidade no estoque
     // Salva a quantida de compras feitas pelo cliente
@@ -88,6 +96,188 @@ void make_vendas(void) {
     fwrite(vend, sizeof(Vendas), 1, fp);
     fclose(fp);
     free(vend);
+}
+
+float produto_vendido(int* codv){
+    
+    int codp;
+    printf("Digite o codigo do produto: ");
+    do{le_inte(&codp);}while(!tem_codigop(&codp));
+
+    int quant;
+    printf("Digite a quantidade: ");
+    do{le_inte(&quant);}while(!tem_quant(&quant, &codp));
+    
+    FILE* fp;
+    Gestao* gest;
+    fp = fopen("produtos.dat", "rb");
+    if (fp == NULL) {
+        printf("Erro na abertura do arquivo.\n");
+        printf("Nao e possivel continuar, provavelmente nao tem produtos cadastrados...\n");
+        exit(1);
+    }
+    gest = busca_produto(&codp);
+    gest->quantidade = (gest->quantidade - quant);
+    float valor;
+    valor = gest->valor * quant;
+    regravar_produto(gest);
+
+
+//frees
+free(gest);
+fclose(fp);
+return valor;
+}
+
+int tem_quant(int*quan, int*co){
+    int cod = *co;
+    int quant = *quan;
+    FILE* fp;
+    Gestao* gest;
+    gest = (Gestao*) malloc(sizeof(Gestao));
+    fp = fopen("produtos.dat", "rb");
+    if (fp == NULL) {
+        printf("Erro na abertura do arquivo.\n");
+        printf("Nao e possivel continuar, provavelmente nao tem produtos cadastrados...\n");
+        exit(1);
+    }
+    while(fread(gest, sizeof(Gestao), 1, fp)) {
+        if ((gest->codigop == cod) && (gest->status != 'x')){
+            int temestoque;
+            temestoque = (gest->quantidade - quant);
+            if (temestoque >= 0) {
+                fclose(fp);
+                free(gest);
+                return 1;
+            } else if (temestoque < 0) {
+                printf("Estoque atual deste produto: %d\n", gest->quantidade);
+                printf("Estoque indisponivel, digite novamente = \n");
+                fclose(fp);
+                free(gest);
+                return 0;
+            }
+        }
+    } 
+    fclose(fp);
+    free(gest);
+    printf("DEU B.O \n");
+    return 0;
+}
+
+int tem_codigop(int*codp){
+    FILE* fp;
+    Gestao* gest;
+    gest = (Gestao*) malloc(sizeof(Gestao));
+    fp = fopen("produtos.dat", "rb");
+    if (fp == NULL) {
+        printf("Erro na abertura do arquivo.\n");
+        printf("Nao e possivel continuar, provavelmente nao tem produtos cadastrados...\n");
+        exit(1);
+    }
+    int codpp = *codp;
+    while(fread(gest, sizeof(Gestao), 1, fp)) {
+        if ((gest->codigop == codpp)  && gest->status != 'x') {
+            fclose(fp);
+            free(gest);
+            return 1;
+        }
+    } 
+    fclose(fp);
+    free(gest);
+    printf("Codigo inexistente, digite novamente = \n");
+    return 0;
+}
+
+int tem_cpfc(char*cpfc){
+    FILE* fp;
+    Cliente* cliente;
+    cliente = (Cliente*) malloc(sizeof(Cliente));
+    fp = fopen("clientes.dat", "rb");
+    if (fp == NULL) {
+        printf("Erro na abertura do arquivo.\n");
+        printf("Nao e possivel continuar, provavelmente nao tem clientes cadastrados...\n");
+        exit(1);
+    }
+    
+    while(fread(cliente, sizeof(Cliente), 1, fp)) {
+        if ((strcmp(cpfc, cliente->cpfc) == 0)  && cliente->status != 'x') {
+            fclose(fp);
+            free(cliente);
+            return 1;
+        }
+    } 
+    fclose(fp);
+    free(cliente);
+    printf("CPF nao cadastrado, digite novamente = \n");
+    return 0;
+}
+
+int tem_codigof(int*codf){
+    FILE* fp;
+    Funcionario* func;
+    func = (Funcionario*) malloc(sizeof(Funcionario));
+    fp = fopen("funcionarios.dat", "rb");
+    if (fp == NULL) {
+        printf("Erro na abertura do arquivo.\n");
+        printf("Nao e possivel continuar, provavelmente nao tem clientes cadastrados...\n");
+        exit(1);
+    }
+    int codff = *codf;
+    while(fread(func, sizeof(Funcionario), 1, fp)) {
+        if ((func->codigof == codff)  && func->status != 'x') {
+            fclose(fp);
+            free(func);
+            return 1;
+        }
+    } 
+    fclose(fp);
+    free(func);
+    printf("Codigo inexistente, digite novamente = \n");
+    return 0;
+}
+
+void pesquisa_vendas(void){
+    system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
+    Vendas* vend;
+    printf("|===============================================================================|\n");
+    printf("|                                                                               |\n");
+    printf("|                      = = = = = Menu Cliente = = = = =                         |\n");
+    printf("|                                                                               |\n");
+    printf("|      = = = Pesquisar = = =                                                    |\n");
+    printf("|     Insira o codigo da venda:                                                 |\n");
+    printf("|     Codigo   =                                                                   |\n"); //Pensar sobre esse codigo
+    int cod;
+    le_inte(&cod);
+    printf("|===============================================================================|\n");
+    vend = busca_vendas(&cod);
+    exibir_vendas(vend);
+    free(vend);
+}
+
+Vendas* busca_vendas(int* cod){
+    FILE* fp;
+    Vendas* vend;
+    vend = (Vendas*) malloc(sizeof(Vendas));
+    fp = fopen("vendas.dat", "rb");
+    if (fp == NULL) {
+        printf("Erro na abertura do arquivo.\n");
+        printf("Nao e possivel continuar, provavelmente nao tem clientes cadastrados...\n");
+        exit(1);
+    }
+    char tem = 'x';
+    int codv = *cod;
+    while(fread(vend, sizeof(Vendas), 1, fp)) {
+        if ((codv == vend->codigov)) {
+            tem = 's';
+            fclose(fp);
+            return vend;
+        }
+    }
+    if (tem != 's') {
+            printf("Nenhuma venda encontrado, com esse codigo.\n");
+    }
+    fclose(fp);
+    return NULL;
 }
  
                       //VER QUESTAO DA FUNCAO PEDIDO DEPOIS
@@ -108,43 +298,32 @@ void lista_vendas(void){
         exit(1);
     }
     while(fread(vend, sizeof(Vendas), 1, fp)) {
+        if (vend->status != 'x'){
             exibir_vendas(vend);
+        }
     }
     free(vend);
     fclose(fp);
 }
 void exibir_vendas(Vendas*vend) {
-    if(vend == NULL) {
+    if((vend == NULL) || (vend->status == 'x')) {
         printf("\n= = = Venda Inexistente = = =\n");
     }else{
         printf("|      = = = Venda = = =                                                        |\n");
         printf("|                                                                               |\n");
-        printf("|      Numero da Venda   = %s                                                   \n", vend->numero_venda); //Pensar sobre esse codigo
+        printf("|      Codigo da Venda   = %d                                                   \n", vend->codigov); //Pensar sobre esse codigo
         printf("|      CPF do cliente = %s                                                      \n", vend->cpf_cliente);
-        printf("|      Codigo do funcionario = %s                                               \n", vend->codigo_funcionario);
+        printf("|      Codigo do funcionario = %d                                               \n", vend->codigo_funcionario);
         printf("|      Valor total     = %.2f                                                   \n", vend->valor_total);
         printf("|      Descricao       = %s                                                     \n", vend->descricao);
         printf("|===============================================================================|\n\n");
     }
 }
 
-void edit_vendas(void){
-    system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
-    printf("|\033[1;36m = Editar Venda = \033[0m|\n");
-    printf("|===============================================================================|\n");
-    printf("|                                                                               |\n");
-    printf("|                      = = = = = Menu Vendas = = = = =                          |\n");
-    printf("|                                                                               |\n");
-    printf("|      = = = Editar Venda = = =                                                 |\n");
-    printf("|                                                                               |\n");
-    printf("|      Numero da Venda =                                                        |\n"); //Pensar sobre esse codigo
-          //funcao de coleta de dado
-          //possiveis alteracoes
-    printf("|===============================================================================|\n\n");
-}
 
 void cancel_vendas(void){
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
+    Vendas* vend;
     printf("|\033[1;36m = Cancelar Venda = \033[0m|\n");
     printf("|===============================================================================|\n");
     printf("|                                                                               |\n");
@@ -152,11 +331,81 @@ void cancel_vendas(void){
     printf("|                                                                               |\n");
     printf("|      = = = Cancelar Venda = = =                                               |\n");
     printf("|                                                                               |\n");
-    printf("|      Numero da Venda =                                                        |\n"); //Pensar sobre esse codigo
-          //funcao de coleta de dado
-          //possiveis alteracoes
+    printf("|      Codigo da Venda =                                                        |\n"); //Pensar sobre esse codigo
+    int cod;
+    le_inte(&cod);
     printf("|===============================================================================|\n\n");
+    vend = busca_vendas(&cod);
+    exibir_vendas(vend);
+    if (vend != NULL){
+        char resposta;
+        printf("\033[1;31mVoce realmente deseja excluir essa venda? (s/n):\033[0m ");
+        scanf(" %c", &resposta);
+        getchar();
+        if (resposta == 's' || resposta == 'S') {
+            printf("Voce respondeu 'sim'.\n");
+            vend->status = 'x';
+            regravar_vendas(vend);
+            printf("Venda deletada.\n");
+        } else if (resposta == 'n' || resposta == 'N') {
+            printf("Voce respondeu 'nao'.\n");
+            printf("Acao cancelada.\n");
+        } else {
+            printf("Resposta invalida! (responda com 's' ou 'n')\n");
+        }
+    }
+    free(vend);
 }
+
+
+
+void regravar_vendas(Vendas* vend) {
+	int achou;
+	FILE* fp;
+	Vendas* venLido;
+
+	venLido = (Vendas*) malloc(sizeof(Vendas));
+	fp = fopen("vendas.dat", "r+b");
+	if (fp == NULL) {
+		printf("Erro na abertura do arquivo.\n");
+        printf("Nao e possivel continuar, provavelmente nao tem vendas cadastrados...\n");
+        exit(1);
+	}
+	achou = 0;
+	while(fread(venLido, sizeof(Vendas), 1, fp) && achou==0) {
+		if (venLido->codigov == vend->codigov) {
+			achou = 1;
+			fseek(fp, -1L*sizeof(Vendas), SEEK_CUR);
+        	fwrite(vend, sizeof(Vendas), 1, fp);
+			break;
+		}
+	}
+	fclose(fp);
+	free(venLido);
+}
+
+
+int proximo_codigov(void){
+    int codigo = 1; 
+    Vendas temp;
+    FILE* fp;
+    fp = fopen("vendas.dat", "r+b");
+    if (fp == NULL) {
+		printf("Erro na abertura do arquivo.\n");
+        printf("Nao e possivel continuar, provavelmente nao tem vendas cadastrados...\n");
+        exit(1);
+	}
+    fseek(fp, 0, SEEK_SET); // Volta para o inicio do arquivo
+    
+    while (fread(&temp, sizeof(Vendas), 1, fp) == 1) {
+        if (temp.codigov >= codigo) {
+            codigo = temp.codigov + 1;
+        }
+    }
+    fclose(fp);   
+    return codigo;
+}
+
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
