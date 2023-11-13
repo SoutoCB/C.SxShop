@@ -232,6 +232,21 @@ void exibir_cliente(Cliente*cliente) {
     }    
 }
 
+void exibir_clientert(Cliente*cliente) {
+    char situacao[20];
+    if ((cliente == NULL) || (cliente->status == 'x')) {
+        printf("\n= = = Cliente Inexistente = = =\n");
+    }else{
+        if (cliente->status == 'a') {
+        strcpy(situacao, "Ativo");
+        } else {
+        strcpy(situacao, "Nao informada");
+        }
+        printf("| %-10d| %-10s| %-29s| %-22s|\n", cliente->codigoc, cliente->cpfc, cliente->nomec, situacao);
+        printf("|===============================================================================|\n\n");
+    }    
+}
+
 void edit_cliente(void) {
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
     Cliente* cliente;

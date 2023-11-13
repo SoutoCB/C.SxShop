@@ -25,3 +25,4 @@ void tela_menu_cliente();
     void regravar_cliente(Cliente*);
     int proximo_codigoc(void);
     int verifica_cpfc(char*);
+    void exibir_clientert(Cliente*);
