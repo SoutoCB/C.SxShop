@@ -9,3 +9,4 @@ void tela_menu_relatorios();
     void lista_clientert(void);
     void lista_funcionariort(void);
     void lista_produtort(void);
+    void lista_vendart(void);
