@@ -8,3 +8,4 @@ void tela_menu_relatorios();
     void relat_vendas(void);
     void lista_clientert(void);
     void lista_funcionariort(void);
+    void lista_produtort(void);

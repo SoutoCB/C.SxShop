@@ -4,6 +4,7 @@
 #include "utilits.h"
 #include "cliente.h"
 #include "funcionario.h"
+#include "gestao.h"
 #include <string.h>
 
 void tela_menu_relatorios() {
@@ -208,22 +209,85 @@ void lista_funcionariort(void) {
 
 
 void relat_produtos(void) {
-    system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
-    printf("|\033[1;36m = Relatorios Produtos = \033[0m|\n");
-    printf("|===============================================================================|\n");
-    printf("|                                                                               |\n");
-    printf("|                      = = = = = Menu Relatorios = = = = =                      |\n");
-    printf("|                                                                               |\n");
-    printf("|      = = = Relatorios de Produtos = = =                                       |\n");
-    printf("|                                                                               |\n");
-    printf("|      Numero de produtos =                                                     |\n"); //Pensar sobre esse codigo
-    printf("|      Produto mais vendido =                                                   |\n");
-    printf("|      Produto menos vendido =                                                  |\n");
-    // funcao de mostrar um por um (for dentro de for)
-    // dados temporarios de exibicao
-    printf("|===============================================================================|\n\n");
+    char op1;
+    do{
+        system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
+        printf("|\033[1;36m = Relatorios Produtos = \033[0m|\n");
+        printf("|===============================================================================|\n");
+        printf("|                                                                               |\n");
+        printf("|              = = = = = Menu Relatorios de Produtos = = = = =                  |\n");
+        printf("|                                                                               |\n");
+        printf("|      = = = Relatorios de Produtos = = =                                       |\n");
+        printf("|                                                                               |\n");
+        printf("|      1. Relatorio de todos                                                    |\n");
+        printf("|      2. Relatorio por ...                                                     |\n");
+        printf("|      3. Relatorio por ...                                                     |\n");
+        printf("|      4. Relatorio por ...                                                     |\n");
+        printf("|      0. Voltar ao Menu Principal                                              |\n");
+        printf("|                                                                               |\n");
+        printf("|            Escolha a opcao desejada: "); 
+        scanf(" %c",&op1); getchar();
+        printf("|===============================================================================|\n\n");
+        switch (op1) {
+            case '1':
+                lista_produtort();
+                printf("Pressione uma tecla para continuar...\n");
+                getchar(); // Aguarda a entrada de uma tecla
+                break;
+            case '2':
+                printf("Relatorio por...");
+                printf("Pressione uma tecla para continuar...\n");
+                getchar(); // Aguarda a entrada de uma tecla
+                break;
+            case '3':
+                printf("Relatorio por...");
+                printf("Pressione uma tecla para continuar...\n");
+                getchar(); // Aguarda a entrada de uma tecla
+                break;
+            case '4':
+                printf("Relatorio por...");
+                printf("Pressione uma tecla para continuar...\n");
+                getchar(); // Aguarda a entrada de uma tecla
+                break;
+            case '0':
+                printf("Saindo.\n");
+                break;
+            default:
+                printf("Opcao invalida.\n");
+                printf("Pressione uma tecla para continuar...\n");
+                getchar(); // Aguarda a entrada de uma tecla
+                break;
+        }
+    }while(op1!='0');    
     
 }
+
+void lista_produtort(void) {
+    system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
+    FILE* fp;
+    Gestao* gest;
+    gest = (Gestao*) malloc(sizeof(Gestao));
+    printf("|\033[1;36m = Lista de Produtos = \033[0m|\n");
+    printf("|===============================================================================|\n");
+    printf("|                                                                               |\n");
+    printf("|            = = = = = Menu Relatorios de Produtos = = = = =                    |\n");
+    printf("|                                                                               |\n");
+    fp = fopen("produtos.dat", "rb");
+    if (fp == NULL) {
+        printf("Erro na abertura do arquivo.\n");
+        printf("Nao e possivel continuar, provavelmente nao tem clientes cadastrados...\n");
+        exit(1);
+    }
+    while(fread(gest, sizeof(Gestao), 1, fp)) {
+        if (gest->status != 'x') {
+            exibir_produtort(gest);
+        }
+    }
+    free(gest);
+    fclose(fp);
+}
+
+
 
 void relat_vendas(void) {
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
