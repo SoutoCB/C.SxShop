@@ -19,6 +19,7 @@ void tela_menu_funcionarios();
     void lista_funcionario(void);
     void cadast_funcionario(void);
     void exibir_funcionario(Funcionario*);
+    void exibir_funcionariort(Funcionario*);
     void edit_funcionario(void);
     void delet_funcionario(void);
     void pesquisa_funcionario(void);

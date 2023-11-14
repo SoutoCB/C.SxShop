@@ -187,6 +187,21 @@ void exibir_produto(Gestao*gest) {
     
 }
 
+void exibir_produtort(Gestao*gest) {
+    char situacao[20];
+    if ((gest == NULL) || (gest->status == 'x')) {
+        printf("\n= = = Produto Inexistente = = =\n");
+    }else{
+        if (gest->status == 'a') {
+        strcpy(situacao, "Em estoque");
+        } else {
+        strcpy(situacao, "Esgotado");
+        }
+        printf("| %-10d| %-10d| %-29s| %-23s|\n", gest->codigop, gest->quantidade, gest->nomep, situacao);
+        printf("|===============================================================================|\n");
+    }    
+}
+
 void edit_produto(void) {
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
     Gestao* gest;

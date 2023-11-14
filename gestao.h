@@ -17,6 +17,7 @@ void tela_menu_gestao_produtos();
     void cadast_produto(void);
     void lista_produto(void);
     void exibir_produto(Gestao*);
+    void exibir_produtort(Gestao*);
     void edit_produto(void);
     void delet_produto(void);
     void pesquisa_produto(void);

@@ -243,7 +243,7 @@ void exibir_clientert(Cliente*cliente) {
         strcpy(situacao, "Nao informada");
         }
         printf("| %-10d| %-10s| %-29s| %-22s|\n", cliente->codigoc, cliente->cpfc, cliente->nomec, situacao);
-        printf("|===============================================================================|\n\n");
+        printf("|===============================================================================|\n");
     }    
 }
 
