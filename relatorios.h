@@ -7,3 +7,4 @@ void tela_menu_relatorios();
     void relat_produtos(void);
     void relat_vendas(void);
     void lista_clientert(void);
+    void lista_funcionariort(void);

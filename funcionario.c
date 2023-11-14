@@ -238,6 +238,21 @@ void exibir_funcionario(Funcionario*func) {
      // Buscar forma para exibir funcionario por funcionario
 }
 
+void exibir_funcionariort(Funcionario*func) {
+    char situacao[20];
+    if ((func == NULL) || (func->status == 'x')) {
+        printf("\n= = = Funcionario Inexistente = = =\n");
+    }else{
+        if (func->status == 'a') {
+        strcpy(situacao, "Ativo");
+        } else {
+        strcpy(situacao, "Nao informada");
+        }
+        printf("| %-10d| %-10s| %-29s| %-22s|\n", func->codigof, func->cpff, func->nomef, situacao);
+        printf("|===============================================================================|\n");
+    }    
+}
+
 void edit_funcionario(void) {
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
     Funcionario* func;
