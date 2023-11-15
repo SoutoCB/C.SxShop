@@ -114,6 +114,8 @@ void lista_clientert(void) {
     printf("|                                                                               |\n");
     printf("|                      = = = = = Menu Cliente = = = = =                         |\n");
     printf("|                                                                               |\n");
+    printf("|   CODIGO  |    CPF     |              NOME            |      SITUACAO         |\n");            
+    printf("|-------------------------------------------------------------------------------|\n");
     fp = fopen("clientes.dat", "rb");
     if (fp == NULL) {
         printf("Erro na abertura do arquivo.\n");
@@ -193,6 +195,8 @@ void lista_funcionariort(void) {
     printf("|                                                                               |\n");
     printf("|            = = = = = Menu Relatorios de Funcionarios = = = = =                |\n");
     printf("|                                                                               |\n");
+    printf("|   CODIGO  |    CPF     |              NOME            |      SITUACAO         |\n");            
+    printf("|-------------------------------------------------------------------------------|\n");
     fp = fopen("funcionarios.dat", "rb");
     if (fp == NULL) {
         printf("Erro na abertura do arquivo.\n");
@@ -272,7 +276,9 @@ void lista_produtort(void) {
     printf("|===============================================================================|\n");
     printf("|                                                                               |\n");
     printf("|            = = = = = Menu Relatorios de Produtos = = = = =                    |\n");
-    printf("|                                                                               |\n");
+    printf("|                                                                               |\n");            
+    printf("|   CODIGO  | QUANTIDADE|              NOME            |      SITUACAO          |\n");
+    printf("|-------------------------------------------------------------------------------|\n");
     fp = fopen("produtos.dat", "rb");
     if (fp == NULL) {
         printf("Erro na abertura do arquivo.\n");
@@ -353,6 +359,8 @@ void lista_vendart(void) {
     printf("|                                                                               |\n");
     printf("|            = = = = = Menu Relatorios de Vendas = = = = =                      |\n");
     printf("|                                                                               |\n");
+    printf("|   CODIGO  | CPF CLIENTE|          VALOR TOTAL         |      SITUACAO         |\n");
+    printf("|-------------------------------------------------------------------------------|\n");
     fp = fopen("vendas.dat", "rb");
     if (fp == NULL) {
         printf("Erro na abertura do arquivo.\n");
