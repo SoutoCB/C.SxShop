@@ -1,20 +1,16 @@
 //Destinada a futuras adicoes
 
-//Pesquisar para ver se posso usar os mesmos nomes das variaveis dentro do struct, em outro struct 
-
 //Uso de malloc, para otimizacao de espaco
+
 //Lembrar de sempre testar no ambiente linux, Replit.
 //replit:
 //gcc -Wall *.h -c
 //gcc -Wall *.c -c 
 //gcc -Wall *.c -o testec
 
-//Lembrar que quando for fazer o sistema de pesquisa, pensar nas diferentes possibilidades de eximbicao
-//Exemplo: e se tiver duas pessoas com o mesmo nome?
-
 //Lembrar de dar free e fclose
-//Adcionar a variavel status para as structs
-//Lembra do funcionamento da leitura de arquivo, para poder fazer alteracao de dados de forma correta                        
+//Colocar para exibir o cadastros excluidos ou inativos, principalmente nos relatorios.
+                    
 
                                   // Semana 9 slides Flavius
                                 
