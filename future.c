@@ -10,6 +10,17 @@
 
 //Lembrar de dar free e fclose
 //Colocar para exibir o cadastros excluidos ou inativos, principalmente nos relatorios.
+
+//Filtrar relatorios.
+// Cliente por situacao
+// Funcionarios por situacao
+// Funcionarios por funcao
+// Funcionarios pro salario
+// Produtos por situacao
+// Produtos por valor
+// Vendas por funcionario
+// Vendas por cliente
+// Vendas por situacao
                     
 
                                   // Semana 9 slides Flavius
