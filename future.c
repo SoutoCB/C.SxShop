@@ -26,10 +26,7 @@
 // Produtos por situacao
 // Produtos por valor
 
-//Menu vendas
-// Vendas por funcionario
-// Vendas por cliente
-// Vendas por situacao
+
                     
 
                                   // Semana 9 slides Flavius
