@@ -189,13 +189,16 @@ void exibir_produto(Gestao*gest) {
 
 void exibir_produtort(Gestao*gest) {
     char situacao[20];
-    if ((gest == NULL) || (gest->status == 'x')) {
+    if (gest == NULL) {
         printf("\n= = = Produto Inexistente = = =\n");
     }else{
         if (gest->status == 'a') {
         strcpy(situacao, "Em estoque");
         } else {
         strcpy(situacao, "Esgotado");
+        }
+        if (gest->quantidade <= 0){
+            strcpy(situacao, "Esgotado");
         }
         printf("| %-10d| %-10d| %-29s| %-23s|\n", gest->codigop, gest->quantidade, gest->nomep, situacao);
         printf("|===============================================================================|\n");

@@ -176,9 +176,7 @@ void relat_funcionarios(void) {
         printf("|      = = = Relatorios de Funcionarios = = =                                   |\n");
         printf("|                                                                               |\n");
         printf("|      1. Relatorio de todos                                                    |\n");
-        printf("|      2. Relatorio por ...                                                     |\n");
-        printf("|      3. Relatorio por ...                                                     |\n");
-        printf("|      4. Relatorio por ...                                                     |\n");
+        printf("|      2. Funcionarios por situacao                                             |\n");
         printf("|      0. Voltar ao Menu Principal                                              |\n");
         printf("|                                                                               |\n");
         printf("|            Escolha a opcao desejada: "); 
@@ -191,17 +189,7 @@ void relat_funcionarios(void) {
                 getchar(); // Aguarda a entrada de uma tecla
                 break;
             case '2':
-                printf("Relatorio por...\n");
-                printf("Pressione uma tecla para continuar...\n");
-                getchar(); // Aguarda a entrada de uma tecla
-                break;
-            case '3':
-                printf("Relatorio por...\n");
-                printf("Pressione uma tecla para continuar...\n");
-                getchar(); // Aguarda a entrada de uma tecla
-                break;
-            case '4':
-                printf("Relatorio por...\n");
+                funcionario_p_situacao();
                 printf("Pressione uma tecla para continuar...\n");
                 getchar(); // Aguarda a entrada de uma tecla
                 break;
@@ -244,6 +232,51 @@ void lista_funcionariort(void) {
     fclose(fp);
 }
 
+void funcionario_p_situacao(void) {
+    char op;
+    printf(" 1 - Funcionarios ativos\n");
+    printf(" 2 - Funcionarios inativos\n ");
+    printf("Digite sua opcao: ");
+    scanf(" %c",&op); getchar();
+    if(op == '1' || op == '2'){
+        system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
+        FILE* fp;
+        Funcionario* func;
+        func = (Funcionario*) malloc(sizeof(Funcionario));
+        printf("|\033[1;36m = Lista de funcionarios = \033[0m|\n");
+        printf("|===============================================================================|\n");
+        printf("|                                                                               |\n");
+        printf("|            = = = = = Menu Relatorios de Funcionarios = = = = =                |\n");
+        printf("|                                                                               |\n");
+        printf("|   CODIGO  |    CPF     |              NOME            |      SITUACAO         |\n");            
+        printf("|-------------------------------------------------------------------------------|\n");
+        fp = fopen("funcionarios.dat", "rb");
+        if (fp == NULL) {
+            printf("Erro na abertura do arquivo.\n");
+            printf("Nao e possivel continuar, provavelmente nao tem funcionarios cadastrados...\n");
+            exit(1);
+        }
+        if(op =='1'){
+            while(fread(func, sizeof(Funcionario), 1, fp)) {
+                if (func->status == 'a') {
+                    exibir_funcionariort(func);
+                }
+            }
+        } else if(op=='2'){
+            while(fread(func, sizeof(Funcionario), 1, fp)) {
+                if (func->status == 'x') {
+                    exibir_funcionariort(func);
+                }
+            }
+        }
+        free(func);
+        fclose(fp);
+    } else{
+        printf("Opcao invalida.\n");
+    }
+}
+
+
 
 void relat_produtos(void) {
     char op1;
@@ -257,9 +290,7 @@ void relat_produtos(void) {
         printf("|      = = = Relatorios de Produtos = = =                                       |\n");
         printf("|                                                                               |\n");
         printf("|      1. Relatorio de todos                                                    |\n");
-        printf("|      2. Relatorio por ...                                                     |\n");
-        printf("|      3. Relatorio por ...                                                     |\n");
-        printf("|      4. Relatorio por ...                                                     |\n");
+        printf("|      2. Produtos por situacao                                                 |\n");
         printf("|      0. Voltar ao Menu Principal                                              |\n");
         printf("|                                                                               |\n");
         printf("|            Escolha a opcao desejada: "); 
@@ -272,17 +303,7 @@ void relat_produtos(void) {
                 getchar(); // Aguarda a entrada de uma tecla
                 break;
             case '2':
-                printf("Relatorio por...\n");
-                printf("Pressione uma tecla para continuar...\n");
-                getchar(); // Aguarda a entrada de uma tecla
-                break;
-            case '3':
-                printf("Relatorio por...\n");
-                printf("Pressione uma tecla para continuar...\n");
-                getchar(); // Aguarda a entrada de uma tecla
-                break;
-            case '4':
-                printf("Relatorio por...\n");
+                produto_p_situacao();
                 printf("Pressione uma tecla para continuar...\n");
                 getchar(); // Aguarda a entrada de uma tecla
                 break;
@@ -297,6 +318,50 @@ void relat_produtos(void) {
         }
     }while(op1!='0');    
     
+}
+
+void produto_p_situacao(void) {
+    char op;
+    printf(" 1 - Produtos em estoque\n");
+    printf(" 2 - Produtos esgotados\n ");
+    printf("Digite sua opcao: ");
+    scanf(" %c",&op); getchar();
+    if(op == '1' || op == '2'){
+        system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
+        FILE* fp;
+        Gestao* gest;
+        gest = (Gestao*) malloc(sizeof(Gestao));
+        printf("|\033[1;36m = Lista de Produtos = \033[0m|\n");
+        printf("|===============================================================================|\n");
+        printf("|                                                                               |\n");
+        printf("|            = = = = = Menu Relatorios de Produtos = = = = =                    |\n");
+        printf("|                                                                               |\n");            
+        printf("|   CODIGO  | QUANTIDADE|              NOME            |      SITUACAO          |\n");
+        printf("|-------------------------------------------------------------------------------|\n");
+        fp = fopen("produtos.dat", "rb");
+        if (fp == NULL) {
+            printf("Erro na abertura do arquivo.\n");
+            printf("Nao e possivel continuar, provavelmente nao tem produtos cadastrados...\n");
+            exit(1);
+        }
+        if (op =='1'){
+            while(fread(gest, sizeof(Gestao), 1, fp)) {
+                if ((gest->status == 'a')&&(gest->quantidade > 0)){
+                    exibir_produtort(gest);
+                }
+            }
+        } else if (op =='2'){
+            while(fread(gest, sizeof(Gestao), 1, fp)) {
+                if (gest->quantidade <= 0) {
+                    exibir_produtort(gest);
+                }
+            }
+        }
+        free(gest);
+        fclose(fp);
+    } else{
+        printf("Opcao invalida.\n");
+    }
 }
 
 void lista_produtort(void) {
