@@ -63,9 +63,7 @@ void relat_clientes(void) {
         printf("|      = = = Relatorios de Clientes = = =                                       |\n");
         printf("|                                                                               |\n");
         printf("|      1. Relatorio de todos                                                    |\n");
-        printf("|      2. Relatorio por ...                                                     |\n");
-        printf("|      3. Relatorio por ...                                                     |\n");
-        printf("|      4. Relatorio por ...                                                     |\n");
+        printf("|      2. Clientes por situacao                                                 |\n");
         printf("|      0. Voltar ao Menu Principal                                              |\n");
         printf("|                                                                               |\n");
         printf("|            Escolha a opcao desejada: "); 
@@ -78,17 +76,7 @@ void relat_clientes(void) {
                 getchar(); // Aguarda a entrada de uma tecla
                 break;
             case '2':
-                printf("Relatorio por...\n");
-                printf("Pressione uma tecla para continuar...\n");
-                getchar(); // Aguarda a entrada de uma tecla
-                break;
-            case '3':
-                printf("Relatorio por...\n");
-                printf("Pressione uma tecla para continuar...\n");
-                getchar(); // Aguarda a entrada de uma tecla
-                break;
-            case '4':
-                printf("Relatorio por...\n");
+                cliente_p_situacao();
                 printf("Pressione uma tecla para continuar...\n");
                 getchar(); // Aguarda a entrada de uma tecla
                 break;
@@ -129,6 +117,50 @@ void lista_clientert(void) {
     }
     free(cliente);
     fclose(fp);
+}
+
+void cliente_p_situacao(void) {
+    char op;
+    printf(" 1 - Clientes ativos\n");
+    printf(" 2 - Cliente inativos\n ");
+    printf("Digite sua opcao: ");
+    scanf(" %c",&op); getchar();
+    if(op == '1' || op == '2'){
+        system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
+        FILE* fp;
+        Cliente* cliente;
+        cliente = (Cliente*) malloc(sizeof(Cliente));
+        printf("|\033[1;36m = Lista de clientes = \033[0m|\n");
+        printf("|===============================================================================|\n");
+        printf("|                                                                               |\n");
+        printf("|                      = = = = = Menu Cliente = = = = =                         |\n");
+        printf("|                                                                               |\n");
+        printf("|   CODIGO  |    CPF     |              NOME            |      SITUACAO         |\n");            
+        printf("|-------------------------------------------------------------------------------|\n");
+        fp = fopen("clientes.dat", "rb");
+        if (fp == NULL) {
+            printf("Erro na abertura do arquivo.\n");
+            printf("Nao e possivel continuar, provavelmente nao tem clientes cadastrados...\n");
+            exit(1);
+        }
+        if (op == '1'){
+            while(fread(cliente, sizeof(Cliente), 1, fp)) {
+                if (cliente->status == 'a') {
+                    exibir_clientert(cliente);
+                }
+            }
+        } else if (op == '2'){
+            while(fread(cliente, sizeof(Cliente), 1, fp)) {
+                if (cliente->status == 'x') {
+                    exibir_clientert(cliente);
+                }
+            }
+        }
+        free(cliente);
+        fclose(fp);
+    } else{
+        printf("Opcao invalida.\n");
+    }
 }
 
 

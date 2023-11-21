@@ -234,7 +234,7 @@ void exibir_cliente(Cliente*cliente) {
 
 void exibir_clientert(Cliente*cliente) {
     char situacao[20];
-    if ((cliente == NULL) || (cliente->status == 'x')) {
+    if (cliente == NULL) {
         printf("\n= = = Cliente Inexistente = = =\n");
     }else{
         if (cliente->status == 'a') {

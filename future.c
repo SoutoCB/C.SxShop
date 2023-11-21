@@ -14,9 +14,6 @@
 
 //Filtrar relatorios.
 
-//Menu cliente
-// Cliente por situacao
-
 //Menu funcionario
 // Funcionarios por situacao
 // Funcionarios por funcao

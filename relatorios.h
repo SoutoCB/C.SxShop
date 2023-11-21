@@ -12,3 +12,4 @@ void tela_menu_relatorios();
     void lista_vendart(void);
     void venda_p_funcionario(void);
     void venda_p_cliente(void);
+    void cliente_p_situacao(void);
