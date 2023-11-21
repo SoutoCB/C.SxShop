@@ -240,7 +240,7 @@ void exibir_funcionario(Funcionario*func) {
 
 void exibir_funcionariort(Funcionario*func) {
     char situacao[20];
-    if ((func == NULL) || (func->status == 'x')) {
+    if (func == NULL) {
         printf("\n= = = Funcionario Inexistente = = =\n");
     }else{
         if (func->status == 'a') {

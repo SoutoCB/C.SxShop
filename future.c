@@ -14,17 +14,6 @@
 
 //Filtrar relatorios.
 
-//Menu cliente
-// Cliente por situacao
-
-//Menu funcionario
-// Funcionarios por situacao
-// Funcionarios por funcao
-// Funcionarios pro salario
-
-// Menu gestao
-// Produtos por situacao
-// Produtos por valor
 
 
                     
