@@ -359,7 +359,7 @@ void lista_vendart(void) {
     printf("|                                                                               |\n");
     printf("|            = = = = = Menu Relatorios de Vendas = = = = =                      |\n");
     printf("|                                                                               |\n");
-    printf("|   CODIGO  | CPF CLIENTE|          VALOR TOTAL         |      SITUACAO         |\n");
+    printf("|   CODIGO  | CPF CLIENTE|          VALOR TOTAL         |   CODIGO FUNCIONARIO  |\n");
     printf("|-------------------------------------------------------------------------------|\n");
     fp = fopen("vendas.dat", "rb");
     if (fp == NULL) {
