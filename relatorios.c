@@ -308,9 +308,8 @@ void relat_vendas(void) {
         printf("|      = = = Relatorios de Vendas = = =                                         |\n");
         printf("|                                                                               |\n");
         printf("|      1. Relatorio de todos                                                    |\n");
-        printf("|      2. Relatorio por ...                                                     |\n");
-        printf("|      3. Relatorio por ...                                                     |\n");
-        printf("|      4. Relatorio por ...                                                     |\n");
+        printf("|      2. Vendas por funcionario                                                |\n");
+        printf("|      3. Vendas por cliente                                                    |\n");
         printf("|      0. Voltar ao Menu Principal                                              |\n");
         printf("|                                                                               |\n");
         printf("|            Escolha a opcao desejada: "); 
@@ -323,17 +322,12 @@ void relat_vendas(void) {
                 getchar(); // Aguarda a entrada de uma tecla
                 break;
             case '2':
-                printf("Relatorio por...\n");
+                venda_p_funcionario();
                 printf("Pressione uma tecla para continuar...\n");
                 getchar(); // Aguarda a entrada de uma tecla
                 break;
             case '3':
-                printf("Relatorio por...\n");
-                printf("Pressione uma tecla para continuar...\n");
-                getchar(); // Aguarda a entrada de uma tecla
-                break;
-            case '4':
-                printf("Relatorio por...\n");
+                venda_p_cliente();
                 printf("Pressione uma tecla para continuar...\n");
                 getchar(); // Aguarda a entrada de uma tecla
                 break;
@@ -354,7 +348,7 @@ void lista_vendart(void) {
     FILE* fp;
     Vendas* vend;
     vend = (Vendas*) malloc(sizeof(Vendas));
-    printf("|\033[1;36m = Lista de Produtos = \033[0m|\n");
+    printf("|\033[1;36m = Lista de Vendas = \033[0m|\n");
     printf("|===============================================================================|\n");
     printf("|                                                                               |\n");
     printf("|            = = = = = Menu Relatorios de Vendas = = = = =                      |\n");
@@ -369,6 +363,72 @@ void lista_vendart(void) {
     }
     while(fread(vend, sizeof(Vendas), 1, fp)) {
         if (vend->status != 'x') {
+            exibir_vendart(vend);
+        }
+    }
+    free(vend);
+    fclose(fp);
+}
+
+void venda_p_funcionario(void) {
+    int cod;
+    printf("Digite o codigo do funcionario: ");
+    le_inte(&cod);
+
+    system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
+    FILE* fp;
+    Vendas* vend;
+    vend = (Vendas*) malloc(sizeof(Vendas));
+    printf("|\033[1;36m = Lista de Vendas = \033[0m|\n");
+    printf("|===============================================================================|\n");
+    printf("|                                                                               |\n");
+    printf("|            = = = = = Menu Relatorios de Vendas = = = = =                      |\n");
+    printf("|                                                                               |\n");
+    printf("| VENDAS DO FUNCIONARIO : %d\n", cod);
+    printf("|                                                                               |\n");
+    printf("|   CODIGO  | CPF CLIENTE|          VALOR TOTAL         |   CODIGO FUNCIONARIO  |\n");
+    printf("|-------------------------------------------------------------------------------|\n");
+    fp = fopen("vendas.dat", "rb");
+    if (fp == NULL) {
+        printf("Erro na abertura do arquivo.\n");
+        printf("Nao e possivel continuar, provavelmente nao tem vendas cadastrados...\n");
+        exit(1);
+    }
+    while(fread(vend, sizeof(Vendas), 1, fp)) {
+        if ((vend->codigo_funcionario == cod)&&(vend->status!='x')) {
+            exibir_vendart(vend);
+        }
+    }
+    free(vend);
+    fclose(fp);
+}
+
+void venda_p_cliente(void) {
+    char cpf[12];
+    printf("Digite o CPF do cliente: ");
+    le_cpf(cpf);
+
+    system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
+    FILE* fp;
+    Vendas* vend;
+    vend = (Vendas*) malloc(sizeof(Vendas));
+    printf("|\033[1;36m = Lista de Vendas = \033[0m|\n");
+    printf("|===============================================================================|\n");
+    printf("|                                                                               |\n");
+    printf("|            = = = = = Menu Relatorios de Vendas = = = = =                      |\n");
+    printf("|                                                                               |\n");
+    printf("| VENDAS DO CLIENTE : %s\n", cpf);
+    printf("|                                                                               |\n");
+    printf("|   CODIGO  | CPF CLIENTE|          VALOR TOTAL         |   CODIGO FUNCIONARIO  |\n");
+    printf("|-------------------------------------------------------------------------------|\n");
+    fp = fopen("vendas.dat", "rb");
+    if (fp == NULL) {
+        printf("Erro na abertura do arquivo.\n");
+        printf("Nao e possivel continuar, provavelmente nao tem vendas cadastrados...\n");
+        exit(1);
+    }
+    while(fread(vend, sizeof(Vendas), 1, fp)) {
+        if ((strcmp(vend->cpf_cliente, cpf) == 0)&&(vend->status!='x')) {
             exibir_vendart(vend);
         }
     }
