@@ -345,16 +345,10 @@ void exibir_vendas(Vendas*vend) {
 }
 
 void exibir_vendart(Vendas*vend) {
-    char situacao[20];
-    if ((vend == NULL) || (vend->status == 'x')) {
+    if (vend == NULL) {
         printf("\n= = = Venda Inexistente = = =\n");
     }else{
-        if (vend->status == 'a') {
-        strcpy(situacao, "Realizada");
-        } else {
-        strcpy(situacao, "Cancelada");
-        }
-        printf("| %-10d| %-10s| R$%-27.2f| %-22s|\n", vend->codigov, vend->cpf_cliente, vend->valor_total, situacao);
+        printf("| %-10d| %-10s| R$%-27.2f| %-22d|\n", vend->codigov, vend->cpf_cliente, vend->valor_total, vend->codigo_funcionario);
         printf("|===============================================================================|\n");
     }    
 }
