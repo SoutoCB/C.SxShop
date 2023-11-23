@@ -9,14 +9,10 @@
 //gcc -Wall *.c -o testec
 //./testec
 
-//Lembrar de dar free e fclose
 //Colocar para exibir o cadastros excluidos ou inativos, principalmente nos relatorios.
-
-//Filtrar relatorios.
-
-
-
-                    
+//Opcao, caso o cpf já tenha sido cadastrado antes, de poder recuperar cadastro
+//Exibir os produtos esgotados no menu de gestão, como um aviso
+//Reajusta quando escreve as resposta, para responder do lado da pergunta
 
                                   // Semana 9 slides Flavius
                                 
