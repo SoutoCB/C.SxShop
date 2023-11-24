@@ -13,6 +13,8 @@
 //Opcao, caso o cpf já tenha sido cadastrado antes, de poder recuperar cadastro
 //Exibir os produtos esgotados no menu de gestão, como um aviso
 //Reajusta quando escreve as resposta, para responder do lado da pergunta
+//Filtro envolvendo 3 modulos
+//Colocar filtro de ordem alfabetica
 
                                   // Semana 9 slides Flavius
                                 
