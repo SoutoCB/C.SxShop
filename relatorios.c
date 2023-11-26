@@ -187,7 +187,7 @@ void numero_c_cliente(void) {
     vp = fopen("vendas.dat", "rb");
     if (fp == NULL) {
         printf("Erro na abertura do arquivo.\n");
-        printf("Nao e possivel continuar, provavelmente nao tem clientes cadastrados...\n");
+        printf("Nao e possivel continuar, provavelmente nao tem vendas cadastrados...\n");
         exit(1);
     }
     printf("|\033[1;36m = Lista de clientes = \033[0m|\n");
@@ -230,6 +230,7 @@ void relat_funcionarios(void) {
         printf("|                                                                               |\n");
         printf("|      1. Relatorio de todos                                                    |\n");
         printf("|      2. Funcionarios por situacao                                             |\n");
+        printf("|      3. Quantidade de vendas por funcionario                                  |\n");
         printf("|      0. Voltar ao Menu Principal                                              |\n");
         printf("|                                                                               |\n");
         printf("|            Escolha a opcao desejada: "); 
@@ -243,6 +244,11 @@ void relat_funcionarios(void) {
                 break;
             case '2':
                 funcionario_p_situacao();
+                printf("Pressione uma tecla para continuar...\n");
+                getchar(); // Aguarda a entrada de uma tecla
+                break;
+            case '3':
+                numero_v_funcionario();
                 printf("Pressione uma tecla para continuar...\n");
                 getchar(); // Aguarda a entrada de uma tecla
                 break;
@@ -327,6 +333,52 @@ void funcionario_p_situacao(void) {
     } else{
         printf("Opcao invalida.\n");
     }
+}
+
+void numero_v_funcionario(void) {
+    system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
+    FILE* fp;
+    FILE* vp;
+    Funcionario* func;
+    func = (Funcionario*) malloc(sizeof(Funcionario));
+    Vendas* venda;
+    venda = (Vendas*) malloc(sizeof(Vendas));
+    fp = fopen("funcionarios.dat", "rb"); 
+    if (fp == NULL) {
+        printf("Erro na abertura do arquivo.\n");
+        printf("Nao e possivel continuar, provavelmente nao tem funcionarios cadastrados...\n");
+        exit(1);
+    }
+    vp = fopen("vendas.dat", "rb");
+    if (fp == NULL) {
+        printf("Erro na abertura do arquivo.\n");
+        printf("Nao e possivel continuar, provavelmente nao tem vendas cadastrados...\n");
+        exit(1);
+    }
+    printf("|\033[1;36m = Lista de funcionarios = \033[0m|\n");
+    printf("|===============================================================================|\n");
+    printf("|                                                                               |\n");
+    printf("|            = = = = = Menu Relatorios de Funcionarios = = = = =                |\n");
+    printf("|                                                                               |\n");
+    printf("|   CODIGO  |    CPF     |              NOME            |     VENDAS FEITAS     |\n");            
+    printf("|-------------------------------------------------------------------------------|\n");
+    while(fread(func, sizeof(Funcionario), 1, fp)) {
+        if (func->status == 'a') {
+            fseek(vp, 0, SEEK_SET);
+            int q = 0;
+            while(fread(venda, sizeof(Vendas), 1, vp)) {
+                if((func->codigof == venda->codigo_funcionario)&&(venda->status !='x')){
+                    q += 1;
+                }
+            }
+            exibir_funcionariort_nvc(func, q);
+        }
+    }
+
+free(func);
+fclose(fp);
+free(venda);
+fclose(vp);
 }
 
 

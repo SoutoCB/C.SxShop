@@ -20,6 +20,7 @@ void tela_menu_funcionarios();
     void cadast_funcionario(void);
     void exibir_funcionario(Funcionario*);
     void exibir_funcionariort(Funcionario*);
+    void exibir_funcionariort_nvc(Funcionario*, int);
     void edit_funcionario(void);
     void delet_funcionario(void);
     void pesquisa_funcionario(void);

@@ -253,6 +253,15 @@ void exibir_funcionariort(Funcionario*func) {
     }    
 }
 
+void exibir_funcionariort_nvc(Funcionario*func, int q) {
+    if (func == NULL) {
+        printf("\n= = = Funcionario Inexistente = = =\n");
+    }else{
+        printf("| %-10d| %-10s| %-29s| %-22d|\n", func->codigof, func->cpff, func->nomef, q);
+        printf("|===============================================================================|\n");
+    }    
+}
+
 void edit_funcionario(void) {
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
     Funcionario* func;
