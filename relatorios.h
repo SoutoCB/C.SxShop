@@ -15,3 +15,4 @@ void tela_menu_relatorios();
     void cliente_p_situacao(void);
     void funcionario_p_situacao(void);
     void produto_p_situacao(void);
+    void numero_c_cliente(void);

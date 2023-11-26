@@ -17,6 +17,7 @@
     //Numero de vendas por cliente
     //Numero de vendas por funcionario
     //Utimas 10 vendas.
+    //Numero de vendas por produto
 //Colocar filtro de ordem alfabetica
 
                                   // Semana 9 slides Flavius
