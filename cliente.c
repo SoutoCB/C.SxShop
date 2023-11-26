@@ -134,6 +134,30 @@ int verifica_cpfc(char*cpf){
     return 1;
 }
 
+int verifica_cpfc_existe(char*cpf){
+    FILE* fp;
+    Cliente* cliente;
+    cliente = (Cliente*) malloc(sizeof(Cliente));
+    fp = fopen("clientes.dat", "rb");
+    if (fp == NULL) {
+        printf("Erro na abertura do arquivo.\n");
+        printf("Nao e possivel continuar, provavelmente nao tem clientes cadastrados...\n");
+        exit(1);
+    }
+    
+    while(fread(cliente, sizeof(Cliente), 1, fp)) {
+        if ((strcmp(cpf, cliente->cpfc) == 0) && cliente->status != 'x') {
+            fclose(fp);
+            free(cliente);
+            return 0;
+        }
+    } 
+    printf("CPF não cadastrado, digite novamente: \n");
+    fclose(fp);
+    free(cliente);
+    return 1;
+}
+
 Cliente* busca_cliente(int* cod){
     FILE* fp;
     Cliente* cliente;
@@ -243,6 +267,15 @@ void exibir_clientert(Cliente*cliente) {
         strcpy(situacao, "Nao informada");
         }
         printf("| %-10d| %-10s| %-29s| %-22s|\n", cliente->codigoc, cliente->cpfc, cliente->nomec, situacao);
+        printf("|===============================================================================|\n");
+    }    
+}
+
+void exibir_clientert_ncc(Cliente*cliente, int q) {
+    if (cliente == NULL) {
+        printf("\n= = = Cliente Inexistente = = =\n");
+    }else{
+        printf("| %-10d| %-10s| %-29s| %-22d|\n", cliente->codigoc, cliente->cpfc, cliente->nomec, q);
         printf("|===============================================================================|\n");
     }    
 }
