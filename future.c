@@ -14,10 +14,10 @@
 //Exibir os produtos esgotados no menu de gestão, como um aviso
 //Reajusta quando escreve as resposta, para responder do lado da pergunta
 //Filtro envolvendo 3 modulos
-    //Numero de compras por cliente
-    //Numero de vendas por funcionario
     //Utimas 10 vendas.
     //Numero de vendas por produto
+    //Produtos comprados por cliente
+    //Clientes que compraram determinado produto
 //Colocar filtro de ordem alfabetica
 
                                   // Semana 9 slides Flavius
