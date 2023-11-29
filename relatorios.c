@@ -512,6 +512,7 @@ void relat_vendas(void) {
         printf("|      1. Relatorio de todos                                                    |\n");
         printf("|      2. Vendas por funcionario                                                |\n");
         printf("|      3. Vendas por cliente                                                    |\n");
+        printf("|      4. Vendas por produto                                                    |\n"); 
         printf("|      0. Voltar ao Menu Principal                                              |\n");
         printf("|                                                                               |\n");
         printf("|            Escolha a opcao desejada: "); 
@@ -530,6 +531,11 @@ void relat_vendas(void) {
                 break;
             case '3':
                 venda_p_cliente();
+                printf("Pressione uma tecla para continuar...\n");
+                getchar(); // Aguarda a entrada de uma tecla
+                break;
+            case '4':
+                venda_p_produto();
                 printf("Pressione uma tecla para continuar...\n");
                 getchar(); // Aguarda a entrada de uma tecla
                 break;
@@ -637,6 +643,69 @@ void venda_p_cliente(void) {
     free(vend);
     fclose(fp);
 }
+
+void venda_p_produto(void) {
+    int cod = 0;
+    printf("Digite o codigo: ");
+    do{le_inte(&cod);}while(!tem_codigop(&cod));
+    system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
+    
+    FILE* fv;
+    Prodv* prodv;
+    prodv = (Prodv*) malloc(sizeof(Prodv));
+    fv = fopen("produtosvendidos.dat", "rb");
+    if (fv == NULL) {
+        printf("Erro na abertura do arquivo.\n");
+        printf("Nao e possivel continuar, provavelmente nao tem produtos vendidos cadastrados...\n");
+        exit(1);
+    }
+
+    FILE* fp;
+    Vendas* venda;
+    venda = (Vendas*) malloc(sizeof(Vendas));
+    fp = fopen("vendas.dat", "rb");
+    if (fp == NULL) {
+        printf("Erro na abertura do arquivo.\n");
+        printf("Nao e possivel continuar, provavelmente nao tem vendidas cadastrados...\n");
+        exit(1);
+    }
+    
+
+    Gestao* gest;
+    gest = busca_produto(&cod);
+
+    printf("|\033[1;36m = Lista de Vendas = \033[0m|\n");
+    printf("|===============================================================================|\n");
+    printf("|                                                                               |\n");
+    printf("|            = = = = = Menu Relatorios de Vendas = = = = =                      |\n");
+    printf("|                                                                               |\n");  
+    printf("|   PRODUTO: %-10s             CODIGO: %-10d                                     \n", gest->nomep, gest->codigop);
+    printf("|                                                                               |\n");          
+    printf("|   CODIGO DA VENDA   |     CPF CLIENTE      |  QUANTIDADE  |       VALOR       |\n");
+    printf("|-------------------------------------------------------------------------------|\n");
+
+     while(fread(prodv, sizeof(Prodv), 1, fv)) {
+        if (prodv->codigop == gest->codigop) {
+            fseek(fp, 0, SEEK_SET);
+            while(fread(venda, sizeof(Vendas), 1, fp)) {
+                if (venda->codigov == prodv->codigov) {
+                    float v = 0;
+                    v = gest->valor * prodv->quantidade;
+                    if(prodv->quantidade!=0){
+                        exibir_v_produtort(prodv, venda->cpf_cliente, v);
+                    }
+                }
+            }
+        }
+    }
+
+free(gest);
+free(prodv);
+free(venda);
+fclose(fp);
+fclose(fv);
+}
+
 
 
 

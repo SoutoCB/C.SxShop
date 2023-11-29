@@ -27,6 +27,7 @@ void tela_menu_vendas();
     void lista_vendas(void);
     void exibir_vendas(Vendas*);
     void exibir_vendart(Vendas*);
+    void exibir_v_produtort(Prodv*, char*, float);
     void cancel_vendas(void);
     void pesquisa_vendas(void);
     Vendas* busca_vendas(int*);
