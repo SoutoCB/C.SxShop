@@ -18,6 +18,7 @@
     //Numero de vendas por produto
     //Produtos comprados por cliente
     //Clientes que compraram determinado produto
+    //Vendas detalhadas
 //Colocar filtro de ordem alfabetica
 
                                   // Semana 9 slides Flavius
