@@ -1,9 +1,12 @@
 /*
 Destinada a futuras adicoes
-
-Uso de malloc, para otimizacao de espaco
-
 Lembrar de sempre testar no ambiente linux, Replit.
+
+normal:
+gcc -Wall *.h -o testec
+gcc -Wall *.c -o testec
+testec.exe
+
 replit:
 gcc -Wall *.h -c
 gcc -Wall *.c -c 
@@ -13,12 +16,13 @@ gcc -Wall *.c -o testec
 Colocar para exibir o cadastros excluidos ou inativos, principalmente nos relatorios.
 Opcao, caso o cpf já tenha sido cadastrado antes, de poder recuperar cadastro
 Exibir os produtos esgotados no menu de gestão, como um aviso
-Reajusta quando escreve as resposta, para responder do lado da pergunta
 Filtro envolvendo 3 modulos
     Utimas 10 vendas.
     Numero de vendas por produto
     Vendas detalhadas
     Colocar filtro de ordem alfabetica
+
+Adcionar novas validacoes
 
                                    Semana 9 slides Flavius
                                 
