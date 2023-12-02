@@ -353,6 +353,14 @@ void exibir_vendart(Vendas*vend) {
     }    
 }
 
+void exibir_v_produtort(Prodv*prodv, char* cpfc, float v) {
+    if (prodv == NULL) {
+        printf("\n= = = Venda Inexistente = = =\n");
+    }else{
+        printf("| %-20d| %-21s| %-13d| R$%-16.2f|\n", prodv->codigov, cpfc, prodv->quantidade, v);
+        printf("|===============================================================================|\n");
+    }    
+}
 
 void cancel_vendas(void){
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows

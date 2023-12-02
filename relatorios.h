@@ -17,3 +17,4 @@ void tela_menu_relatorios();
     void produto_p_situacao(void);
     void numero_c_cliente(void);
     void numero_v_funcionario(void);
+    void venda_p_produto(void);
