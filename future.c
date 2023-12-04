@@ -22,9 +22,13 @@ Filtro envolvendo 3 modulos
     Vendas detalhadas
     Colocar filtro de ordem alfabetica
     
-
 Adcionar novas validacoes
+    conferir data de nascimento
+    melhorar a validacao de telefone
 
+Melhorar a estetica das coletas de dados
+    digitar as repostas ao lado da pergunta
+        ex: CPF: (O usuario digita o cpf, ate agora o cpf e digitado abaixo)
                                    Semana 9 slides Flavius
                                 
 Tabela ASCII
