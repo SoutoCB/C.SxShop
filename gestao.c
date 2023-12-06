@@ -79,13 +79,13 @@ void cadast_produto(void) {
     printf("|                                                                               |\n");
     gest->codigop = proximo_codigop();
     printf("|      Codigo do produto = %d                                                    \n", gest->codigop);
-    printf("|      Nome       =                                                             |\n");
+    printf("|      Nome       = ");
     le_nome(gest->nomep);
-    printf("|      Valor      =                                                             |\n");
+    printf("|      Valor      = ");
     le_valor(&gest->valor);
-    printf("|      Descricao  =                                                             |\n");
+    printf("|      Descricao  = ");
     le_texto(gest->descricaop, 1000);
-    printf("|      Quantidade =                                                             |\n");
+    printf("|      Quantidade = ");
     le_inte(&gest->quantidade);
     // Pensar sobre o estoque de produto
     printf("|===============================================================================|\n\n");
@@ -105,7 +105,7 @@ void pesquisa_produto(void){
     printf("|                                                                               |\n");
     printf("|      = = = Pesquisar = = =                                                    |\n");
     printf("|     Insira o codigo do produto:                                               |\n");
-    printf("|     Codigo   =                                                                |\n"); //Pensar sobre esse codigo
+    printf("|     Codigo   = "); //Pensar sobre esse codigo
     int cod;
     le_inte(&cod);
     printf("|===============================================================================|\n");
@@ -215,7 +215,7 @@ void edit_produto(void) {
     printf("|                                                                               |\n");
     printf("|      = = = Editar = = =                                                       |\n");
     printf("|     Insira o codigo do produto:                                               |\n");
-    printf("|     Codigo   =                                                                |\n"); //Pensar sobre esse codigo
+    printf("|     Codigo   = "); //Pensar sobre esse codigo
     int cod;
     le_inte(&cod);
     printf("|===============================================================================|\n");
@@ -273,7 +273,7 @@ void delet_produto(void) {
     printf("|                                                                               |\n");
     printf("|      = = = Deletar = = =                                                      |\n");
     printf("|     Insira o codigo do produto:                                               |\n");
-    printf("|     Codigo   =                                                                |\n"); //Pensar sobre esse codigo
+    printf("|     Codigo   = "); //Pensar sobre esse codigo
     int cod;
     le_inte(&cod);
     printf("|===============================================================================|\n");

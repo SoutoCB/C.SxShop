@@ -72,9 +72,9 @@ void make_vendas(void) {
     printf("|      = = = Realizar Venda = = =                                               |\n");
     printf("|                                                                               |\n");
     vend->codigov = proximo_codigov();
-    printf("|      CPF do cliente =                                                         |\n");
+    printf("|      CPF do cliente = ");
     do{le_cpf(vend->cpf_cliente);}while(!tem_cpfc(vend->cpf_cliente));
-    printf("|      Codigo do funcionario =                                                  |\n"); 
+    printf("|      Codigo do funcionario = "); 
     do{le_inte(&vend->codigo_funcionario);}while(!tem_codigof(&vend->codigo_funcionario));
     float valor = 0;
     char resp = 'z';
@@ -85,7 +85,7 @@ void make_vendas(void) {
     }while((resp == 's')||(resp == 'S'));  
     printf("|      Valor total     = %.2f                                                   \n", valor);
     vend->valor_total = valor;
-    printf("|      Descricao       =                                                        \n");
+    printf("|      Descricao       = ");
     le_texto(vend->descricao, 1000);
     vend->status = 'a';
     // Possivel adicao de novos dados para coletar
@@ -269,7 +269,7 @@ void pesquisa_vendas(void){
     printf("|                                                                               |\n");
     printf("|      = = = Pesquisar = = =                                                    |\n");
     printf("|     Insira o codigo da venda:                                                 |\n");
-    printf("|     Codigo   =                                                                   |\n"); //Pensar sobre esse codigo
+    printf("|     Codigo   = "); //Pensar sobre esse codigo
     int cod;
     le_inte(&cod);
     printf("|===============================================================================|\n");
@@ -372,7 +372,7 @@ void cancel_vendas(void){
     printf("|                                                                               |\n");
     printf("|      = = = Cancelar Venda = = =                                               |\n");
     printf("|                                                                               |\n");
-    printf("|      Codigo da Venda =                                                        |\n"); //Pensar sobre esse codigo
+    printf("|      Codigo da Venda = "); //Pensar sobre esse codigo
     int cod;
     le_inte(&cod);
     printf("|===============================================================================|\n\n");
