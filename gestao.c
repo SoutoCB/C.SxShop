@@ -205,6 +205,15 @@ void exibir_produtort(Gestao*gest) {
     }    
 }
 
+void exibir_produtort_nvc(Gestao*gest, int q) {
+    if (gest == NULL) {
+        printf("\n= = = Produto Inexistente = = =\n");
+    }else{
+        printf("| %-10d| %-29s| %-10.2f| %-23d|\n", gest->codigop, gest->nomep, gest->valor, q);
+        printf("|===============================================================================|\n");
+    }    
+}
+
 void edit_produto(void) {
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
     Gestao* gest;

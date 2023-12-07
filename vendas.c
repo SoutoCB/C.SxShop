@@ -175,7 +175,7 @@ int tem_quant(int*quan, int*co){
                 return 1;
             } else if (temestoque < 0) {
                 printf("Estoque atual deste produto: %d\n", gest->quantidade);
-                printf("Estoque indisponivel, digite novamente = \n");
+                printf("Estoque indisponivel, digite novamente = ");
                 fclose(fp);
                 free(gest);
                 return 0;
@@ -208,7 +208,7 @@ int tem_codigop(int*codp){
     } 
     fclose(fp);
     free(gest);
-    printf("Codigo inexistente, digite novamente = \n");
+    printf("Codigo inexistente, digite novamente = ");
     return 0;
 }
 
@@ -417,7 +417,7 @@ void volta_quant(int* cod){
             FILE* fp;
             Gestao* gest;
             fp = fopen("produtos.dat", "rb");
-            if (fv == NULL) {
+            if (fp == NULL) {
                 printf("Erro na abertura do arquivo.\n");
                 printf("Nao e possivel continuar, provavelmente nao tem vendas cadastrados...\n");
                 exit(1);

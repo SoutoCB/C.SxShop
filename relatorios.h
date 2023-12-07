@@ -18,3 +18,4 @@ void tela_menu_relatorios();
     void numero_c_cliente(void);
     void numero_v_funcionario(void);
     void venda_p_produto(void);
+    void numero_v_produto(void);
