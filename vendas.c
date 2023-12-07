@@ -356,7 +356,7 @@ void exibir_vendart(Vendas*vend) {
 void exibir_v_produtort(Prodv*prodv, char* cpfc, float v) {
     if (prodv == NULL) {
         printf("\n= = = Venda Inexistente = = =\n");
-    }else{
+    }else if(prodv->status!='x'){
         printf("| %-20d| %-21s| %-13d| R$%-16.2f|\n", prodv->codigov, cpfc, prodv->quantidade, v);
         printf("|===============================================================================|\n");
     }    
@@ -412,25 +412,25 @@ void volta_quant(int* cod){
         printf("Nao e possivel continuar, provavelmente nao tem vendas cadastrados...\n");
         exit(1);
 	}
+    FILE* fp;
+    Gestao* gest;
+    fp = fopen("produtos.dat", "rb");
+    if (fp == NULL) {
+        printf("Erro na abertura do arquivo.\n");
+        printf("Nao e possivel continuar, provavelmente nao tem vendas cadastrados...\n");
+        exit(1);
+    }
     while(fread(prodv, sizeof(Prodv), 1, fv)) {
         if ((codv == prodv->codigov)&&(prodv->status != 'x')){
-            FILE* fp;
-            Gestao* gest;
-            fp = fopen("produtos.dat", "rb");
-            if (fp == NULL) {
-                printf("Erro na abertura do arquivo.\n");
-                printf("Nao e possivel continuar, provavelmente nao tem vendas cadastrados...\n");
-                exit(1);
-            }
             gest = busca_produto(&prodv->codigop);
             gest->quantidade += prodv->quantidade;
             prodv->status = 'x';
             regravar_produto(gest);
             regravar_prodv(prodv);
-            free(gest);
-            fclose(fp);    
         }
     }
+free(gest);
+fclose(fp);   
 fclose(fv);
 free(prodv);
 }
