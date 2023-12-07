@@ -11,6 +11,7 @@ struct vendas{
 typedef struct vendas Vendas;
 
 struct produtovendido{
+    int codigopdv;
     int codigov;
     int codigop;
     int quantidade;
@@ -35,6 +36,7 @@ void tela_menu_vendas();
     int proximo_codigov(void);
     int tem_cpfc(char*);
     int tem_codigof(int*);
+    int proximo_codigopdv(void);
 
     int tem_codigop(int*);
     int tem_quant(int*, int*);

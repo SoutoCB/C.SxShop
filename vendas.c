@@ -136,6 +136,7 @@ float produto_vendido(int* cod){
             exit(1);
         }         
     }
+    prodv->codigopdv = proximo_codigopdv(); 
     prodv->codigov = codv;
     prodv->codigop = codp;
     prodv->quantidade = quant;
@@ -420,6 +421,7 @@ void volta_quant(int* cod){
         printf("Nao e possivel continuar, provavelmente nao tem vendas cadastrados...\n");
         exit(1);
     }
+
     while(fread(prodv, sizeof(Prodv), 1, fv)) {
         if ((codv == prodv->codigov)&&(prodv->status != 'x')){
             gest = busca_produto(&prodv->codigop);
@@ -427,6 +429,8 @@ void volta_quant(int* cod){
             prodv->status = 'x';
             regravar_produto(gest);
             regravar_prodv(prodv);
+            
+
         }
     }
 free(gest);
@@ -449,7 +453,7 @@ void regravar_prodv(Prodv* prodv) {
 	}
 	achou = 0;
 	while(fread(venLido, sizeof(Prodv), 1, fp) && achou==0) {
-		if (venLido->codigov == prodv->codigov) {
+		if ((venLido->codigopdv == prodv->codigopdv)) {
 			achou = 1;
 			fseek(fp, -1L*sizeof(Prodv), SEEK_CUR);
         	fwrite(prodv, sizeof(Prodv), 1, fp);
@@ -502,6 +506,27 @@ int proximo_codigov(void){
     while (fread(&temp, sizeof(Vendas), 1, fp) == 1) {
         if (temp.codigov >= codigo) {
             codigo = temp.codigov + 1;
+        }
+    }
+    fclose(fp);   
+    return codigo;
+}
+
+int proximo_codigopdv(void){
+    int codigo = 1; 
+    Prodv temp;
+    FILE* fp;
+    fp = fopen("produtosvendidos.dat", "r+b");
+    if (fp == NULL) {
+		printf("Erro na abertura do arquivo.\n");
+        printf("Nao e possivel continuar, provavelmente nao tem vendas cadastrados...\n");
+        exit(1);
+	}
+    fseek(fp, 0, SEEK_SET); // Volta para o inicio do arquivo
+    
+    while (fread(&temp, sizeof(Prodv), 1, fp) == 1) {
+        if (temp.codigopdv >= codigo) {
+            codigo = temp.codigopdv + 1;
         }
     }
     fclose(fp);   
