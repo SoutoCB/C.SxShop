@@ -65,6 +65,7 @@ void relat_clientes(void) {
         printf("|      1. Relatorio de todos                                                    |\n");
         printf("|      2. Clientes por situacao                                                 |\n");
         printf("|      3. Quantidade de compras por cliente                                     |\n");
+        printf("|      4. Clientes ordenados por nome                                           |\n");
         printf("|      0. Voltar ao Menu Principal                                              |\n");
         printf("|                                                                               |\n");
         printf("|            Escolha a opcao desejada: "); 
@@ -83,6 +84,11 @@ void relat_clientes(void) {
                 break;
             case '3':
                 numero_c_cliente();
+                printf("Pressione uma tecla para continuar...\n");
+                getchar(); // Aguarda a entrada de uma tecla
+                break;
+            case '4':
+                ordenados_clientes();
                 printf("Pressione uma tecla para continuar...\n");
                 getchar(); // Aguarda a entrada de uma tecla
                 break;
@@ -214,6 +220,59 @@ free(cliente);
 fclose(fp);
 free(venda);
 fclose(vp);
+}
+
+int compararClientes(const void *a, const void *b) { //Apoio do GPT
+    return strcmp(((Cliente *)a)->nomec, ((Cliente *)b)->nomec);
+}
+
+void ordenados_clientes(){ //Apoio do GPT
+    system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
+    FILE *arquivoClientes;
+
+    // Abrir o arquivo para leitura binária
+    if ((arquivoClientes = fopen("clientes.dat", "rb")) == NULL) {
+        printf("Erro na abertura do arquivo.\n");
+        printf("Nao e possivel continuar, provavelmente nao tem clientes cadastrados...\n");
+        exit(1);
+    }
+
+    // Determinar o número de clientes no arquivo
+    fseek(arquivoClientes, 0, SEEK_END);
+    size_t numClientes = ftell(arquivoClientes) / sizeof(Cliente);
+    rewind(arquivoClientes);
+
+    // Alocar espaço para armazenar os clientes
+    Cliente *clientes = (Cliente *)malloc(numClientes * sizeof(Cliente));
+
+    // Ler os clientes do arquivo para o array
+    fread(clientes, sizeof(Cliente), numClientes, arquivoClientes);
+
+    // Fechar o arquivo
+    fclose(arquivoClientes);
+
+    // Ordenar os clientes pelo nome
+    qsort(clientes, numClientes, sizeof(Cliente), compararClientes);
+
+    // Exibir os clientes ordenados
+    printf("|\033[1;36m = Lista de clientes = \033[0m|\n");
+    printf("|===============================================================================|\n");
+    printf("|                                                                               |\n");
+    printf("|                      = = = = = Menu Cliente = = = = =                         |\n");
+    printf("|                                                                               |\n");
+    printf("|   CODIGO  |    CPF     |              NOME            |      TELEFONE         |\n");            
+    printf("|-------------------------------------------------------------------------------|\n");
+    
+    for (size_t i = 0; i < numClientes; i++) {
+        if(clientes[i].status != 'x'){  
+            printf("| %-10d| %-10s| %-29s| %-22s|\n", clientes[i].codigoc, clientes[i].cpfc, clientes[i].nomec, clientes[i].telefonec);
+            printf("|===============================================================================|\n");
+        }
+    }
+
+    // Liberar a memória alocada para os clientes
+    free(clientes);
+
 }
 
 

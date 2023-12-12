@@ -4,10 +4,10 @@ CFLAGS = -Wall
 all: testeh testec
 
 testeh: *.h
-    $(CC) $(CFLAGS) *.h -o testeh
+	$(CC) $(CFLAGS) *.h -o testeh
 
 testec: *.c
-    $(CC) $(CFLAGS) *.c -o testec
+	$(CC) $(CFLAGS) *.c -o testec
 
 clean:
-    rm -f testeh testec
+	rm -f testeh testec

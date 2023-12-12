@@ -19,3 +19,5 @@ void tela_menu_relatorios();
     void numero_v_funcionario(void);
     void venda_p_produto(void);
     void numero_v_produto(void);
+    int compararClientes(const void *, const void *);
+    void ordenados_clientes(void);
