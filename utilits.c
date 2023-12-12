@@ -89,7 +89,7 @@ void le_cpf(char *cpf){
             limparBuffer();
         }
         if(!valida_cpf(cpf)){
-            printf("|      Invalido, digite novamente: ");
+            printf("|      Invalido, digite novamente(Apenas numeros): ");
         }
    }while(!valida_cpf(cpf));
 }
@@ -164,7 +164,7 @@ void le_telefone(char *telefone){
             limparBuffer();
         }
         if(!valida_telefone(telefone)){
-            printf("|      Invalido, digite novamente: ");
+            printf("|      Invalido, digite novamente(Apenas numeros, EX: 84911223344): ");
         }
    }while(!valida_telefone(telefone));
 }
