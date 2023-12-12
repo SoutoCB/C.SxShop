@@ -65,6 +65,7 @@ void relat_clientes(void) {
         printf("|      1. Relatorio de todos                                                    |\n");
         printf("|      2. Clientes por situacao                                                 |\n");
         printf("|      3. Quantidade de compras por cliente                                     |\n");
+        printf("|      4. Clientes ordenados por nome                                           |\n");
         printf("|      0. Voltar ao Menu Principal                                              |\n");
         printf("|                                                                               |\n");
         printf("|            Escolha a opcao desejada: "); 
@@ -83,6 +84,11 @@ void relat_clientes(void) {
                 break;
             case '3':
                 numero_c_cliente();
+                printf("Pressione uma tecla para continuar...\n");
+                getchar(); // Aguarda a entrada de uma tecla
+                break;
+            case '4':
+                ordenados_clientes();
                 printf("Pressione uma tecla para continuar...\n");
                 getchar(); // Aguarda a entrada de uma tecla
                 break;
@@ -216,6 +222,59 @@ free(venda);
 fclose(vp);
 }
 
+int compararClientes(const void *a, const void *b) { //Apoio do GPT
+    return strcmp(((Cliente *)a)->nomec, ((Cliente *)b)->nomec);
+}
+
+void ordenados_clientes(){ //Apoio do GPT
+    system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
+    FILE *arquivoClientes;
+
+    // Abrir o arquivo para leitura binaria
+    if ((arquivoClientes = fopen("clientes.dat", "rb")) == NULL) {
+        printf("Erro na abertura do arquivo.\n");
+        printf("Nao e possivel continuar, provavelmente nao tem clientes cadastrados...\n");
+        exit(1);
+    }
+
+    // Determinar o numero de clientes no arquivo
+    fseek(arquivoClientes, 0, SEEK_END);
+    size_t numClientes = ftell(arquivoClientes) / sizeof(Cliente);
+    rewind(arquivoClientes);
+
+    // Alocar espaço para armazenar os clientes
+    Cliente *clientes = (Cliente *)malloc(numClientes * sizeof(Cliente));
+
+    // Ler os clientes do arquivo para o array
+    fread(clientes, sizeof(Cliente), numClientes, arquivoClientes);
+
+    // Fechar o arquivo
+    fclose(arquivoClientes);
+
+    // Ordenar os clientes pelo nome
+    qsort(clientes, numClientes, sizeof(Cliente), compararClientes);
+
+    // Exibir os clientes ordenados
+    printf("|\033[1;36m = Lista de clientes = \033[0m|\n");
+    printf("|===============================================================================|\n");
+    printf("|                                                                               |\n");
+    printf("|                      = = = = = Menu Cliente = = = = =                         |\n");
+    printf("|                                                                               |\n");
+    printf("|   CODIGO  |    CPF     |              NOME            |      TELEFONE         |\n");            
+    printf("|-------------------------------------------------------------------------------|\n");
+    
+    for (size_t i = 0; i < numClientes; i++) {
+        if(clientes[i].status != 'x'){  
+            printf("| %-10d| %-10s| %-29s| %-22s|\n", clientes[i].codigoc, clientes[i].cpfc, clientes[i].nomec, clientes[i].telefonec);
+            printf("|===============================================================================|\n");
+        }
+    }
+
+    // Liberar a memória alocada para os clientes
+    free(clientes);
+
+}
+
 
 void relat_funcionarios(void) {
     char op1;
@@ -231,6 +290,7 @@ void relat_funcionarios(void) {
         printf("|      1. Relatorio de todos                                                    |\n");
         printf("|      2. Funcionarios por situacao                                             |\n");
         printf("|      3. Quantidade de vendas por funcionario                                  |\n");
+        printf("|      4. Funcionarios ordenados por nome                                       |\n");
         printf("|      0. Voltar ao Menu Principal                                              |\n");
         printf("|                                                                               |\n");
         printf("|            Escolha a opcao desejada: "); 
@@ -249,6 +309,11 @@ void relat_funcionarios(void) {
                 break;
             case '3':
                 numero_v_funcionario();
+                printf("Pressione uma tecla para continuar...\n");
+                getchar(); // Aguarda a entrada de uma tecla
+                break;
+            case '4':
+                ordenados_funcionarios();
                 printf("Pressione uma tecla para continuar...\n");
                 getchar(); // Aguarda a entrada de uma tecla
                 break;
@@ -381,6 +446,59 @@ free(venda);
 fclose(vp);
 }
 
+int compararFuncionarios(const void *a, const void *b) { //Apoio do GPT
+    return strcmp(((Funcionario *)a)->nomef, ((Funcionario *)b)->nomef);
+}
+
+void ordenados_funcionarios(){ //Apoio do GPT
+    system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
+    FILE *fp;
+
+    // Abrir o arquivo para leitura binaria
+    if ((fp = fopen("funcionarios.dat", "rb")) == NULL) {
+        printf("Erro na abertura do arquivo.\n");
+        printf("Nao e possivel continuar, provavelmente nao tem clientes cadastrados...\n");
+        exit(1);
+    }
+
+    // Determinar o numero de funcionarios no arquivo
+    fseek(fp, 0, SEEK_END);
+    size_t numFunc = ftell(fp) / sizeof(Funcionario);
+    rewind(fp);
+
+    // Alocar espaço para armazenar os clientes
+    Funcionario *func = (Funcionario *)malloc(numFunc * sizeof(Funcionario));
+
+    // Ler os funcionarios do arquivo para o array
+    fread(func, sizeof(Funcionario), numFunc, fp);
+
+    // Fechar o arquivo
+    fclose(fp);
+
+    // Ordenar os funcionarios pelo nome
+    qsort(func, numFunc, sizeof(Funcionario), compararFuncionarios);
+
+    // Exibir os funcionarios ordenados
+    printf("|\033[1;36m = Lista de funcionarios = \033[0m|\n");
+    printf("|===============================================================================|\n");
+    printf("|                                                                               |\n");
+    printf("|                      = = = = = Menu Funcionario = = = = =                     |\n");
+    printf("|                                                                               |\n");
+    printf("|   CODIGO  |    CPF     |              NOME            |      TELEFONE         |\n");            
+    printf("|-------------------------------------------------------------------------------|\n");
+    
+    for (size_t i = 0; i < numFunc; i++) {
+        if(func[i].status != 'x'){  
+            printf("| %-10d| %-10s| %-29s| %-22s|\n", func[i].codigof, func[i].cpff, func[i].nomef, func[i].telefonef);
+            printf("|===============================================================================|\n");
+        }
+    }
+
+    // Liberar a memória alocada para os funcionarios
+    free(func);
+
+}
+
 
 
 void relat_produtos(void) {
@@ -397,6 +515,7 @@ void relat_produtos(void) {
         printf("|      1. Relatorio de todos                                                    |\n");
         printf("|      2. Produtos por situacao                                                 |\n");
         printf("|      3. Quantidade de vendas por produto                                      |\n");
+        printf("|      4. Produtos ordenados por nome                                           |\n");
         printf("|      0. Voltar ao Menu Principal                                              |\n");
         printf("|                                                                               |\n");
         printf("|            Escolha a opcao desejada: "); 
@@ -415,6 +534,11 @@ void relat_produtos(void) {
                 break;
             case '3':
                 numero_v_produto();
+                printf("Pressione uma tecla para continuar...\n");
+                getchar(); // Aguarda a entrada de uma tecla
+                break;
+            case '4':
+                ordenados_produtos();
                 printf("Pressione uma tecla para continuar...\n");
                 getchar(); // Aguarda a entrada de uma tecla
                 break;
@@ -547,6 +671,58 @@ void numero_v_produto(void) {
     fclose(fp);
 }
 
+int compararProdutos(const void *a, const void *b) { //Apoio do GPT
+    return strcmp(((Gestao *)a)->nomep, ((Gestao *)b)->nomep);
+}
+
+void ordenados_produtos(){ //Apoio do GPT
+    system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
+    FILE *fp;
+
+    // Abrir o arquivo para leitura binaria
+    if ((fp = fopen("produtos.dat", "rb")) == NULL) {
+        printf("Erro na abertura do arquivo.\n");
+        printf("Nao e possivel continuar, provavelmente nao tem clientes cadastrados...\n");
+        exit(1);
+    }
+
+    // Determinar o numero de produtos no arquivo
+    fseek(fp, 0, SEEK_END);
+    size_t numGest = ftell(fp) / sizeof(Gestao);
+    rewind(fp);
+
+    // Alocar espaço para armazenar os clientes
+    Gestao *gest = (Gestao *)malloc(numGest * sizeof(Gestao));
+
+    // Ler os produtos do arquivo para o array
+    fread(gest, sizeof(Gestao), numGest, fp);
+
+    // Fechar o arquivo
+    fclose(fp);
+
+    // Ordenar os produtos pelo nome
+    qsort(gest, numGest, sizeof(Gestao), compararProdutos);
+
+    // Exibir os produtos ordenados
+    printf("|\033[1;36m = Lista de Produtos = \033[0m|\n");
+    printf("|===============================================================================|\n");
+    printf("|                                                                               |\n");
+    printf("|            = = = = = Menu Relatorios de Produtos = = = = =                    |\n");
+    printf("|                                                                               |\n");            
+    printf("|   CODIGO  |              NOME            |   VALOR   |     QUANTIDADE         |\n");
+    printf("|-------------------------------------------------------------------------------|\n");
+    
+    for (size_t i = 0; i < numGest; i++) {
+        if(gest[i].status != 'x'){  
+            printf("| %-10d| %-29s| %-10.2f| %-23d|\n", gest[i].codigop, gest[i].nomep, gest[i].valor, gest[i].quantidade);
+            printf("|===============================================================================|\n");
+        }
+    }
+
+    // Liberar a memória alocada para os produtos
+    free(gest);
+
+}
 
 
 void relat_vendas(void) {

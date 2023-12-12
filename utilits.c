@@ -196,7 +196,7 @@ void le_data_nascimento(char *data_nascimento){
             limparBuffer();
         }
         if(!valida_data_nascimento(data_nascimento)){
-            printf("|      Invalido, digite novamente: ");
+            printf("|      Invalido, digite novamente(DD/MM/AAAA): ");
         }
    }while(!valida_data_nascimento(data_nascimento));
 }
@@ -218,6 +218,9 @@ int valida_data_nascimento(char *data_nascimento){
         return 0;
     }
     if (data_nascimento[0] == '\0') {
+        return 0;
+    }
+    if(strlen(data_nascimento) != 10){
         return 0;
     }
     return 1;

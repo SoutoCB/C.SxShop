@@ -123,7 +123,7 @@ int verifica_cpfc(char*cpf){
     
     while(fread(cliente, sizeof(Cliente), 1, fp)) {
         if ((strcmp(cpf, cliente->cpfc) == 0) && cliente->status != 'x') {
-            printf("CPF ja cadastrado, digite novamente = \n");
+            printf("CPF ja cadastrado, digite novamente = ");
             fclose(fp);
             free(cliente);
             return 0;
