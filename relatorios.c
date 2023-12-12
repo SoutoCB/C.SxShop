@@ -396,6 +396,7 @@ void relat_produtos(void) {
         printf("|                                                                               |\n");
         printf("|      1. Relatorio de todos                                                    |\n");
         printf("|      2. Produtos por situacao                                                 |\n");
+        printf("|      3. Quantidade de vendas por produto                                      |\n");
         printf("|      0. Voltar ao Menu Principal                                              |\n");
         printf("|                                                                               |\n");
         printf("|            Escolha a opcao desejada: "); 
@@ -409,6 +410,11 @@ void relat_produtos(void) {
                 break;
             case '2':
                 produto_p_situacao();
+                printf("Pressione uma tecla para continuar...\n");
+                getchar(); // Aguarda a entrada de uma tecla
+                break;
+            case '3':
+                numero_v_produto();
                 printf("Pressione uma tecla para continuar...\n");
                 getchar(); // Aguarda a entrada de uma tecla
                 break;
@@ -492,6 +498,51 @@ void lista_produtort(void) {
             exibir_produtort(gest);
         }
     }
+    free(gest);
+    fclose(fp);
+}
+
+void numero_v_produto(void) {
+    system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
+    FILE* fp;
+    Gestao* gest;
+    gest = (Gestao*) malloc(sizeof(Gestao));
+
+    FILE* fv;
+    Prodv* prodv;
+    prodv = (Prodv*) malloc(sizeof(Prodv));
+    
+    printf("|\033[1;36m = Lista de Produtos = \033[0m|\n");
+    printf("|===============================================================================|\n");
+    printf("|                                                                               |\n");
+    printf("|            = = = = = Menu Relatorios de Produtos = = = = =                    |\n");
+    printf("|                                                                               |\n");            
+    printf("|   CODIGO  |              NOME            |   VALOR   |        VENDAS          |\n");
+    printf("|-------------------------------------------------------------------------------|\n");
+    fp = fopen("produtos.dat", "rb");
+    if (fp == NULL) {
+        printf("Erro na abertura do arquivo.\n");
+        printf("Nao e possivel continuar, provavelmente nao tem produtos cadastrados...\n");
+        exit(1);
+    }
+    fv = fopen("produtosvendidos.dat", "rb");
+    if (fv == NULL) {
+        printf("Erro na abertura do arquivo.\n");
+        printf("Nao e possivel continuar, provavelmente nao tem produtos vendidos cadastrados...\n");
+        exit(1);
+    }
+    while(fread(gest, sizeof(Gestao), 1, fp)) {
+        int q = 0;
+        fseek(fv, 0, SEEK_SET);
+        while(fread(prodv, sizeof(Prodv), 1, fv)) {
+            if((gest->codigop==prodv->codigop)&&(prodv->status!='x')){
+                q+=prodv->quantidade;      
+            }
+        }
+        exibir_produtort_nvc(gest, q);
+    }
+    free(prodv);
+    fclose(fv);
     free(gest);
     fclose(fp);
 }

@@ -18,7 +18,7 @@ void tela_menu_funcionarios() {
         printf("|            2. Listar Funcionario                                              |\n");
         printf("|            3. Editar Funcionario                                              |\n");
         printf("|            4. Excluir Funcionario                                             |\n");
-        printf("|            5. Pesquisar Funcionario                                               |\n");
+        printf("|            5. Pesquisar Funcionario                                           |\n");
         printf("|            0. Voltar ao Menu Principal                                        |\n");
         printf("|                                                                               |\n");
         printf("|            Escolha a opcao desejada: "); 
@@ -75,17 +75,17 @@ void cadast_funcionario(void) {
     printf("|      = = = Cadastro = = =                                                     |\n");
     printf("|                                                                               |\n");
     func->codigof = proximo_codigof();
-    printf("|      CPF      =                                                               |\n");
+    printf("|      CPF      = ");
     do{le_cpf(func->cpff);}while(!verifica_cpff(func->cpff));
-    printf("|      Nome     =                                                               |\n");
+    printf("|      Nome     = ");
     le_nome(func->nomef);
-    printf("|      Data nascimento =                                                        |\n");
+    printf("|      Data nascimento = ");
     le_data_nascimento(func->data_nascimentof);
-    printf("|      Telefone =                                                               |\n");
+    printf("|      Telefone = ");
     le_telefone(func->telefonef);
-    printf("|      Funcao   =                                                               |\n");
+    printf("|      Funcao   = ");
     le_texto(func->funcao, 50);
-    printf("|      Salario  =                                                               |\n");
+    printf("|      Salario  = ");
     le_valor(&func->salario);
     printf("|===============================================================================|\n\n");
     func->status = 'a';
@@ -99,11 +99,11 @@ void pesquisa_funcionario(void){
     Funcionario* func;
     printf("|===============================================================================|\n");
     printf("|                                                                               |\n");
-    printf("|                      = = = = = Menu Funcionario = = = = =                         |\n");
+    printf("|                      = = = = = Menu Funcionario = = = = =                     |\n");
     printf("|                                                                               |\n");
     printf("|      = = = Pesquisar = = =                                                    |\n");
-    printf("|     Insira o CPF do funcionario:                                               |\n");
-    printf("|     CPF   =                                                                |\n"); //Pensar sobre esse codigo
+    printf("|     Insira o CPF do funcionario:                                              |\n");
+    printf("|     CPF   = "); //Pensar sobre esse codigo
     char cpf[12];
     le_cpf(cpf);
     printf("|===============================================================================|\n");
@@ -273,7 +273,7 @@ void edit_funcionario(void) {
     printf("|      = = = Editar = = =                                                       |\n");
     printf("|     Insira o codigo do funcionario:                                           |\n");
     //Adcionar coleta de dado
-    printf("|     Codigo   =                                                                |\n"); //Pensar sobre esse codigo
+    printf("|     Codigo   = "); //Pensar sobre esse codigo
     int cod;
     le_inte(&cod);
     printf("|===============================================================================|\n");
@@ -339,7 +339,7 @@ void delet_funcionario(void) {
     printf("|                                                                               |\n");
     printf("|      = = = Deletar = = =                                                      |\n");
     printf("|     Insira o codigo do funcionario:                                           |\n");
-    printf("|     Codigo   =                                                                |\n"); //Pensar sobre esse codigo
+    printf("|     Codigo   = "); //Pensar sobre esse codigo
     int cod;
     le_inte(&cod);
     printf("|===============================================================================|\n");

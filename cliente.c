@@ -76,13 +76,13 @@ void cadast_cliente(void) {
     printf("|      = = = Cadastro = = =                                                     |\n");
     printf("|                                                                               |\n");
     cliente->codigoc = proximo_codigoc();
-    printf("|      CPF      =                                                               |\n");
+    printf("|      CPF      = ");
     do{le_cpf(cliente->cpfc);}while(!verifica_cpfc(cliente->cpfc));
-    printf("|      Nome     =                                                               |\n");
+    printf("|      Nome     = ");
     le_nome(cliente->nomec);
-    printf("|      Data nascimento =                                                        |\n");
+    printf("|      Data nascimento = ");
     le_data_nascimento(cliente->data_nascimentoc);
-    printf("|      Telefone =                                                               |\n");
+    printf("|      Telefone = ");
     le_telefone(cliente->telefonec);
     printf("|===============================================================================|\n\n");
     cliente->status = 'a';
@@ -101,7 +101,7 @@ void pesquisa_cliente(void){
     printf("|                                                                               |\n");
     printf("|      = = = Pesquisar = = =                                                    |\n");
     printf("|     Insira o CPF do cliente:                                               |\n");
-    printf("|     CPF   =                                                                |\n"); //Pensar sobre esse codigo
+    printf("|     CPF   = "); //Pensar sobre esse codigo
     char cpf[12];
     le_cpf(cpf);
     printf("|===============================================================================|\n");
@@ -290,7 +290,7 @@ void edit_cliente(void) {
     printf("|                                                                               |\n");
     printf("|      = = = Editar = = =                                                       |\n");
     printf("|     Insira o codigo do cliente:                                               |\n");
-    printf("|     Codigo   =                                                                |\n"); //Pensar sobre esse codigo
+    printf("|     Codigo   = "); //Pensar sobre esse codigo
     int cod;
     le_inte(&cod);
     printf("|===============================================================================|\n");
@@ -348,7 +348,7 @@ void delet_cliente(void) {
     printf("|                                                                               |\n");
     printf("|      = = = Deletar = = =                                                      |\n");
     printf("|      Insira o codigo do cliente:                                              |\n");
-    printf("|      Codigo   =                                                               |\n"); //Pensar sobre esse codigo
+    printf("|      Codigo   = "); //Pensar sobre esse codigo
     int cod;
     le_inte(&cod);
     printf("|===============================================================================|\n");

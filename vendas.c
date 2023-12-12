@@ -72,9 +72,9 @@ void make_vendas(void) {
     printf("|      = = = Realizar Venda = = =                                               |\n");
     printf("|                                                                               |\n");
     vend->codigov = proximo_codigov();
-    printf("|      CPF do cliente =                                                         |\n");
+    printf("|      CPF do cliente = ");
     do{le_cpf(vend->cpf_cliente);}while(!tem_cpfc(vend->cpf_cliente));
-    printf("|      Codigo do funcionario =                                                  |\n"); 
+    printf("|      Codigo do funcionario = "); 
     do{le_inte(&vend->codigo_funcionario);}while(!tem_codigof(&vend->codigo_funcionario));
     float valor = 0;
     char resp = 'z';
@@ -85,7 +85,7 @@ void make_vendas(void) {
     }while((resp == 's')||(resp == 'S'));  
     printf("|      Valor total     = %.2f                                                   \n", valor);
     vend->valor_total = valor;
-    printf("|      Descricao       =                                                        \n");
+    printf("|      Descricao       = ");
     le_texto(vend->descricao, 1000);
     vend->status = 'a';
     // Possivel adicao de novos dados para coletar
@@ -136,6 +136,7 @@ float produto_vendido(int* cod){
             exit(1);
         }         
     }
+    prodv->codigopdv = proximo_codigopdv(); 
     prodv->codigov = codv;
     prodv->codigop = codp;
     prodv->quantidade = quant;
@@ -175,7 +176,7 @@ int tem_quant(int*quan, int*co){
                 return 1;
             } else if (temestoque < 0) {
                 printf("Estoque atual deste produto: %d\n", gest->quantidade);
-                printf("Estoque indisponivel, digite novamente = \n");
+                printf("Estoque indisponivel, digite novamente = ");
                 fclose(fp);
                 free(gest);
                 return 0;
@@ -208,7 +209,7 @@ int tem_codigop(int*codp){
     } 
     fclose(fp);
     free(gest);
-    printf("Codigo inexistente, digite novamente = \n");
+    printf("Codigo inexistente, digite novamente = ");
     return 0;
 }
 
@@ -269,7 +270,7 @@ void pesquisa_vendas(void){
     printf("|                                                                               |\n");
     printf("|      = = = Pesquisar = = =                                                    |\n");
     printf("|     Insira o codigo da venda:                                                 |\n");
-    printf("|     Codigo   =                                                                   |\n"); //Pensar sobre esse codigo
+    printf("|     Codigo   = "); //Pensar sobre esse codigo
     int cod;
     le_inte(&cod);
     printf("|===============================================================================|\n");
@@ -356,7 +357,7 @@ void exibir_vendart(Vendas*vend) {
 void exibir_v_produtort(Prodv*prodv, char* cpfc, float v) {
     if (prodv == NULL) {
         printf("\n= = = Venda Inexistente = = =\n");
-    }else{
+    }else if(prodv->status!='x'){
         printf("| %-20d| %-21s| %-13d| R$%-16.2f|\n", prodv->codigov, cpfc, prodv->quantidade, v);
         printf("|===============================================================================|\n");
     }    
@@ -372,7 +373,7 @@ void cancel_vendas(void){
     printf("|                                                                               |\n");
     printf("|      = = = Cancelar Venda = = =                                               |\n");
     printf("|                                                                               |\n");
-    printf("|      Codigo da Venda =                                                        |\n"); //Pensar sobre esse codigo
+    printf("|      Codigo da Venda = "); //Pensar sobre esse codigo
     int cod;
     le_inte(&cod);
     printf("|===============================================================================|\n\n");
@@ -412,25 +413,28 @@ void volta_quant(int* cod){
         printf("Nao e possivel continuar, provavelmente nao tem vendas cadastrados...\n");
         exit(1);
 	}
+    FILE* fp;
+    Gestao* gest;
+    fp = fopen("produtos.dat", "rb");
+    if (fp == NULL) {
+        printf("Erro na abertura do arquivo.\n");
+        printf("Nao e possivel continuar, provavelmente nao tem vendas cadastrados...\n");
+        exit(1);
+    }
+
     while(fread(prodv, sizeof(Prodv), 1, fv)) {
         if ((codv == prodv->codigov)&&(prodv->status != 'x')){
-            FILE* fp;
-            Gestao* gest;
-            fp = fopen("produtos.dat", "rb");
-            if (fv == NULL) {
-                printf("Erro na abertura do arquivo.\n");
-                printf("Nao e possivel continuar, provavelmente nao tem vendas cadastrados...\n");
-                exit(1);
-            }
             gest = busca_produto(&prodv->codigop);
             gest->quantidade += prodv->quantidade;
             prodv->status = 'x';
             regravar_produto(gest);
             regravar_prodv(prodv);
-            free(gest);
-            fclose(fp);    
+            
+
         }
     }
+free(gest);
+fclose(fp);   
 fclose(fv);
 free(prodv);
 }
@@ -449,7 +453,7 @@ void regravar_prodv(Prodv* prodv) {
 	}
 	achou = 0;
 	while(fread(venLido, sizeof(Prodv), 1, fp) && achou==0) {
-		if (venLido->codigov == prodv->codigov) {
+		if ((venLido->codigopdv == prodv->codigopdv)) {
 			achou = 1;
 			fseek(fp, -1L*sizeof(Prodv), SEEK_CUR);
         	fwrite(prodv, sizeof(Prodv), 1, fp);
@@ -502,6 +506,27 @@ int proximo_codigov(void){
     while (fread(&temp, sizeof(Vendas), 1, fp) == 1) {
         if (temp.codigov >= codigo) {
             codigo = temp.codigov + 1;
+        }
+    }
+    fclose(fp);   
+    return codigo;
+}
+
+int proximo_codigopdv(void){
+    int codigo = 1; 
+    Prodv temp;
+    FILE* fp;
+    fp = fopen("produtosvendidos.dat", "r+b");
+    if (fp == NULL) {
+		printf("Erro na abertura do arquivo.\n");
+        printf("Nao e possivel continuar, provavelmente nao tem vendas cadastrados...\n");
+        exit(1);
+	}
+    fseek(fp, 0, SEEK_SET); // Volta para o inicio do arquivo
+    
+    while (fread(&temp, sizeof(Prodv), 1, fp) == 1) {
+        if (temp.codigopdv >= codigo) {
+            codigo = temp.codigopdv + 1;
         }
     }
     fclose(fp);   

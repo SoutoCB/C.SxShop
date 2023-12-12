@@ -24,5 +24,5 @@ void tela_menu_gestao_produtos();
     Gestao* busca_produto(int*);
     void regravar_produto(Gestao*);
     int proximo_codigop(void);
-
+    void exibir_produtort_nvc(Gestao*, int);
 
