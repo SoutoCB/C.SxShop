@@ -230,14 +230,14 @@ void ordenados_clientes(){ //Apoio do GPT
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
     FILE *arquivoClientes;
 
-    // Abrir o arquivo para leitura binária
+    // Abrir o arquivo para leitura binaria
     if ((arquivoClientes = fopen("clientes.dat", "rb")) == NULL) {
         printf("Erro na abertura do arquivo.\n");
         printf("Nao e possivel continuar, provavelmente nao tem clientes cadastrados...\n");
         exit(1);
     }
 
-    // Determinar o número de clientes no arquivo
+    // Determinar o numero de clientes no arquivo
     fseek(arquivoClientes, 0, SEEK_END);
     size_t numClientes = ftell(arquivoClientes) / sizeof(Cliente);
     rewind(arquivoClientes);
@@ -290,6 +290,7 @@ void relat_funcionarios(void) {
         printf("|      1. Relatorio de todos                                                    |\n");
         printf("|      2. Funcionarios por situacao                                             |\n");
         printf("|      3. Quantidade de vendas por funcionario                                  |\n");
+        printf("|      4. Funcionarios ordenados por nome                                       |\n");
         printf("|      0. Voltar ao Menu Principal                                              |\n");
         printf("|                                                                               |\n");
         printf("|            Escolha a opcao desejada: "); 
@@ -308,6 +309,11 @@ void relat_funcionarios(void) {
                 break;
             case '3':
                 numero_v_funcionario();
+                printf("Pressione uma tecla para continuar...\n");
+                getchar(); // Aguarda a entrada de uma tecla
+                break;
+            case '4':
+                ordenados_funcionarios();
                 printf("Pressione uma tecla para continuar...\n");
                 getchar(); // Aguarda a entrada de uma tecla
                 break;
@@ -438,6 +444,59 @@ free(func);
 fclose(fp);
 free(venda);
 fclose(vp);
+}
+
+int compararFuncionarios(const void *a, const void *b) { //Apoio do GPT
+    return strcmp(((Funcionario *)a)->nomef, ((Funcionario *)b)->nomef);
+}
+
+void ordenados_funcionarios(){ //Apoio do GPT
+    system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
+    FILE *fp;
+
+    // Abrir o arquivo para leitura binaria
+    if ((fp = fopen("funcionarios.dat", "rb")) == NULL) {
+        printf("Erro na abertura do arquivo.\n");
+        printf("Nao e possivel continuar, provavelmente nao tem clientes cadastrados...\n");
+        exit(1);
+    }
+
+    // Determinar o numero de funcionarios no arquivo
+    fseek(fp, 0, SEEK_END);
+    size_t numFunc = ftell(fp) / sizeof(Funcionario);
+    rewind(fp);
+
+    // Alocar espaço para armazenar os clientes
+    Funcionario *func = (Funcionario *)malloc(numFunc * sizeof(Funcionario));
+
+    // Ler os funcionarios do arquivo para o array
+    fread(func, sizeof(Funcionario), numFunc, fp);
+
+    // Fechar o arquivo
+    fclose(fp);
+
+    // Ordenar os funcionarios pelo nome
+    qsort(func, numFunc, sizeof(Funcionario), compararFuncionarios);
+
+    // Exibir os funcionarios ordenados
+    printf("|\033[1;36m = Lista de funcionarios = \033[0m|\n");
+    printf("|===============================================================================|\n");
+    printf("|                                                                               |\n");
+    printf("|                      = = = = = Menu Funcionario = = = = =                     |\n");
+    printf("|                                                                               |\n");
+    printf("|   CODIGO  |    CPF     |              NOME            |      TELEFONE         |\n");            
+    printf("|-------------------------------------------------------------------------------|\n");
+    
+    for (size_t i = 0; i < numFunc; i++) {
+        if(func[i].status != 'x'){  
+            printf("| %-10d| %-10s| %-29s| %-22s|\n", func[i].codigof, func[i].cpff, func[i].nomef, func[i].telefonef);
+            printf("|===============================================================================|\n");
+        }
+    }
+
+    // Liberar a memória alocada para os funcionarios
+    free(func);
+
 }
 
 
