@@ -23,3 +23,5 @@ void tela_menu_relatorios();
     void ordenados_clientes(void);
     int compararFuncionarios(const void *, const void *);
     void ordenados_funcionarios(void);
+    int compararProdutos(const void *, const void *);
+    void ordenados_produtos(void);

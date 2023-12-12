@@ -515,6 +515,7 @@ void relat_produtos(void) {
         printf("|      1. Relatorio de todos                                                    |\n");
         printf("|      2. Produtos por situacao                                                 |\n");
         printf("|      3. Quantidade de vendas por produto                                      |\n");
+        printf("|      4. Produtos ordenados por nome                                           |\n");
         printf("|      0. Voltar ao Menu Principal                                              |\n");
         printf("|                                                                               |\n");
         printf("|            Escolha a opcao desejada: "); 
@@ -533,6 +534,11 @@ void relat_produtos(void) {
                 break;
             case '3':
                 numero_v_produto();
+                printf("Pressione uma tecla para continuar...\n");
+                getchar(); // Aguarda a entrada de uma tecla
+                break;
+            case '4':
+                ordenados_produtos();
                 printf("Pressione uma tecla para continuar...\n");
                 getchar(); // Aguarda a entrada de uma tecla
                 break;
@@ -665,6 +671,58 @@ void numero_v_produto(void) {
     fclose(fp);
 }
 
+int compararProdutos(const void *a, const void *b) { //Apoio do GPT
+    return strcmp(((Gestao *)a)->nomep, ((Gestao *)b)->nomep);
+}
+
+void ordenados_produtos(){ //Apoio do GPT
+    system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
+    FILE *fp;
+
+    // Abrir o arquivo para leitura binaria
+    if ((fp = fopen("produtos.dat", "rb")) == NULL) {
+        printf("Erro na abertura do arquivo.\n");
+        printf("Nao e possivel continuar, provavelmente nao tem clientes cadastrados...\n");
+        exit(1);
+    }
+
+    // Determinar o numero de produtos no arquivo
+    fseek(fp, 0, SEEK_END);
+    size_t numGest = ftell(fp) / sizeof(Gestao);
+    rewind(fp);
+
+    // Alocar espaço para armazenar os clientes
+    Gestao *gest = (Gestao *)malloc(numGest * sizeof(Gestao));
+
+    // Ler os produtos do arquivo para o array
+    fread(gest, sizeof(Gestao), numGest, fp);
+
+    // Fechar o arquivo
+    fclose(fp);
+
+    // Ordenar os produtos pelo nome
+    qsort(gest, numGest, sizeof(Gestao), compararProdutos);
+
+    // Exibir os produtos ordenados
+    printf("|\033[1;36m = Lista de Produtos = \033[0m|\n");
+    printf("|===============================================================================|\n");
+    printf("|                                                                               |\n");
+    printf("|            = = = = = Menu Relatorios de Produtos = = = = =                    |\n");
+    printf("|                                                                               |\n");            
+    printf("|   CODIGO  |              NOME            |   VALOR   |     QUANTIDADE         |\n");
+    printf("|-------------------------------------------------------------------------------|\n");
+    
+    for (size_t i = 0; i < numGest; i++) {
+        if(gest[i].status != 'x'){  
+            printf("| %-10d| %-29s| %-10.2f| %-23d|\n", gest[i].codigop, gest[i].nomep, gest[i].valor, gest[i].quantidade);
+            printf("|===============================================================================|\n");
+        }
+    }
+
+    // Liberar a memória alocada para os produtos
+    free(gest);
+
+}
 
 
 void relat_vendas(void) {
