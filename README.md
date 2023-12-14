@@ -13,10 +13,15 @@ Para a implementação deste sistema, será utilizada a linguagem de programaç�
 
 # Para Compilar:
 
-Vs Code e Prompt de Comando: \
+WINDOWS \
 gcc -Wall *.h -o testeh \
 gcc -Wall *.c -o testec \
 testec.exe 
+
+LINUX \
+gcc -Wall *.h -o testeh \
+gcc -Wall *.c -o testec \
+./testec 
 
 Replit: \
 gcc -Wall *.h -c \
