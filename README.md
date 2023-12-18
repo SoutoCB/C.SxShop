@@ -16,7 +16,7 @@ Para a implementação deste sistema, será utilizada a linguagem de programaç�
 WINDOWS \
 gcc -Wall *.h -o testeh \
 gcc -Wall *.c -o testec \
-testec.exe 
+.\testec.exe 
 
 LINUX \
 gcc -Wall *.h -o testeh \
