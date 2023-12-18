@@ -50,7 +50,7 @@ void tela_menu_vendas() {
     }while(op!='0');
 }
 
-void make_vendas(void) {
+void make_vendas(void) {//FUNCAO PARA CADASTRAR VENDAS
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
     FILE* fp;
     Vendas* vend;
@@ -88,17 +88,13 @@ void make_vendas(void) {
     printf("|      Descricao       = ");
     le_texto(vend->descricao, 1000);
     vend->status = 'a';
-    // Possivel adicao de novos dados para coletar
-    //Possivel adicao de uma coleta de codigo de protudo para diminuir sua quantidade no estoque
-    // Salva a quantida de compras feitas pelo cliente
-    // Salva a quantida de compras feitas pelo funcionario
     printf("|===============================================================================|\n\n");
     fwrite(vend, sizeof(Vendas), 1, fp);
     fclose(fp);
     free(vend);
 }
 
-float produto_vendido(int* cod){
+float produto_vendido(int* cod){//FUNCAO PARA CADASTRAR PRODUTO POR PRODUTO EM UM ARQUIVO EXTERNO, PARA SER UTILIZADO POSTERIORMENTE NA LEITURA DO MESMO, CASO SEJA CANCELADA A VENDA, PARA VOLTAR A QUANTIDADE DO PRODUTO VENDIDO
     
     int codp;
     printf("Digite o codigo do produto: ");
@@ -154,7 +150,7 @@ fclose(fp);
 return valor;
 }
 
-int tem_quant(int*quan, int*co){
+int tem_quant(int*quan, int*co){//FUNCAO PARA VERIFICAR SE O PRODUTO TEM A QUANTIDADE VENDIDA, CASO NAO TENHA ELE PEDE PARA DIGITAR NOVAMENTE E EXIBI QUANTO TEM DISPONIVEL DO PRODUTO
     int cod = *co;
     int quant = *quan;
     FILE* fp;
@@ -189,7 +185,7 @@ int tem_quant(int*quan, int*co){
     return 0;
 }
 
-int tem_codigop(int*codp){
+int tem_codigop(int*codp){//FUNCAO PARA VERIFICAR SE O CODIGO DIGITADO, REALMENTE CONDIZ COM ALGUM PRODUTO
     FILE* fp;
     Gestao* gest;
     gest = (Gestao*) malloc(sizeof(Gestao));
@@ -213,7 +209,7 @@ int tem_codigop(int*codp){
     return 0;
 }
 
-int tem_cpfc(char*cpfc){
+int tem_cpfc(char*cpfc){//FUNCAO PARA VERIFICAR SE O CLIENTE ESTA CADASTRADO
     FILE* fp;
     Cliente* cliente;
     cliente = (Cliente*) malloc(sizeof(Cliente));
@@ -237,7 +233,7 @@ int tem_cpfc(char*cpfc){
     return 0;
 }
 
-int tem_codigof(int*codf){
+int tem_codigof(int*codf){//FUNCAO PARA VERIFICAR SE O FUNCIONARIO ESTA CADASTRADO
     FILE* fp;
     Funcionario* func;
     func = (Funcionario*) malloc(sizeof(Funcionario));
@@ -261,7 +257,7 @@ int tem_codigof(int*codf){
     return 0;
 }
 
-void pesquisa_vendas(void){
+void pesquisa_vendas(void){//FUNCAO PARA PESQUISAR VENDAS
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
     Vendas* vend;
     printf("|===============================================================================|\n");
@@ -270,7 +266,7 @@ void pesquisa_vendas(void){
     printf("|                                                                               |\n");
     printf("|      = = = Pesquisar = = =                                                    |\n");
     printf("|     Insira o codigo da venda:                                                 |\n");
-    printf("|     Codigo   = "); //Pensar sobre esse codigo
+    printf("|     Codigo   = "); 
     int cod;
     le_inte(&cod);
     printf("|===============================================================================|\n");
@@ -279,7 +275,7 @@ void pesquisa_vendas(void){
     free(vend);
 }
 
-Vendas* busca_vendas(int* cod){
+Vendas* busca_vendas(int* cod){//FUNCAO PARA BUSCAR VENDA POR CODIGO
     FILE* fp;
     Vendas* vend;
     vend = (Vendas*) malloc(sizeof(Vendas));
@@ -305,8 +301,8 @@ Vendas* busca_vendas(int* cod){
     return NULL;
 }
  
-                      //VER QUESTAO DA FUNCAO PEDIDO DEPOIS
-void lista_vendas(void){
+                     
+void lista_vendas(void){//FUNCAO PARA EXIBIR TODAS AS VENDAS
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
     FILE* fp;
     Vendas* vend;
@@ -330,7 +326,7 @@ void lista_vendas(void){
     free(vend);
     fclose(fp);
 }
-void exibir_vendas(Vendas*vend) {
+void exibir_vendas(Vendas*vend) {//FUNCAO PARA EXIBIR OS DADOS DA VENDA
     if((vend == NULL) || (vend->status == 'x')) {
         printf("\n= = = Venda Inexistente = = =\n");
     }else{
@@ -345,7 +341,7 @@ void exibir_vendas(Vendas*vend) {
     }
 }
 
-void exibir_vendart(Vendas*vend) {
+void exibir_vendart(Vendas*vend) {//FUNCAO PARA EXIBIR AS VENDAS TABELADAMENTE
     if (vend == NULL) {
         printf("\n= = = Venda Inexistente = = =\n");
     }else{
@@ -354,7 +350,7 @@ void exibir_vendart(Vendas*vend) {
     }    
 }
 
-void exibir_v_produtort(Prodv*prodv, char* cpfc, float v) {
+void exibir_v_produtort(Prodv*prodv, char* cpfc, float v) {//FUNCAO PARA EXIBIR O NUMERO DE VENDAS POR PRODUTO
     if (prodv == NULL) {
         printf("\n= = = Venda Inexistente = = =\n");
     }else if(prodv->status!='x'){
@@ -363,7 +359,7 @@ void exibir_v_produtort(Prodv*prodv, char* cpfc, float v) {
     }    
 }
 
-void cancel_vendas(void){
+void cancel_vendas(void){//FUNCAO PARA CANCELAR UMA VENDA
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
     Vendas* vend;
     printf("|\033[1;36m = Cancelar Venda = \033[0m|\n");
@@ -402,7 +398,7 @@ void cancel_vendas(void){
     free(vend);
 }
 
-void volta_quant(int* cod){
+void volta_quant(int* cod){//FUNCAO QUE LE O ARQUIVO PRODUTOSVENDIDOS.DAT PARA VOLTAR A QUANTIDADE DE PRODUTOS, QUANDO UMA VENDA FOR CANCELADA
     int codv = *cod;
     FILE* fv;
     Prodv* prodv;
@@ -439,7 +435,7 @@ fclose(fv);
 free(prodv);
 }
 
-void regravar_prodv(Prodv* prodv) {
+void regravar_prodv(Prodv* prodv) {//FUNCAO PARA REGRAVA OS DADOS DE PRODUTOSVENDIDOS.DAT, ARQUIVO BINARIO
 	int achou;
 	FILE* fp;
 	Prodv* venLido;
@@ -465,7 +461,7 @@ void regravar_prodv(Prodv* prodv) {
 }
 
 
-void regravar_vendas(Vendas* vend) {
+void regravar_vendas(Vendas* vend) {//FUNCAO PARA REGRAVAR AS VENDAS, ARQUIVO EXTERNO E BINARIO
 	int achou;
 	FILE* fp;
 	Vendas* venLido;
@@ -491,7 +487,7 @@ void regravar_vendas(Vendas* vend) {
 }
 
 
-int proximo_codigov(void){
+int proximo_codigov(void){//FUNCAO PARA BUSCAR QUAL VAI SER O CODIGO DA VENDA
     int codigo = 1; 
     Vendas temp;
     FILE* fp;
@@ -512,7 +508,7 @@ int proximo_codigov(void){
     return codigo;
 }
 
-int proximo_codigopdv(void){
+int proximo_codigopdv(void){//FUNCAO PARA BUSCAR QUAL VAI SER O CODIGO DO PRODUTO VENDIDO
     int codigo = 1; 
     Prodv temp;
     FILE* fp;

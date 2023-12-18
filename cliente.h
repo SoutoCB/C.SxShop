@@ -1,11 +1,11 @@
 
 
 struct cliente{
-    int codigoc;
-    char cpfc[12]; 
-    char nomec[50];
+    int codigoc; //Codigo do cliente
+    char cpfc[12]; //Cpf do cliente
+    char nomec[50];//Nome do cliente
     char data_nascimentoc[11]; // "dd/mm/aaaa"
-    char telefonec[12];
+    char telefonec[12];//Telefone do cliente
     char status;  // x = deletado / a = ativo
 };
 

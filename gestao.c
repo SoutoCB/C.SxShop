@@ -24,10 +24,6 @@ void tela_menu_gestao_produtos() {
         printf("|            Escolha a opcao desejada: "); 
         scanf(" %c",&op); getchar();
         printf("|===============================================================================|\n\n");
-        // IDEIA, FAZER UM SISTEMA DE AVISO PARA QUANDO O ESTOQUE DE ALGUM PRODUTO ESTIVER BAIXO
-        // função for (para ver todos os itens)
-        //    printf("O produto (nome do produto) está com baixo estoque"\n)
-        //#Pode colocar a frase em vermelho
         switch (op) {
             case '1':
                 cadast_produto();
@@ -56,7 +52,7 @@ void tela_menu_gestao_produtos() {
     }while (op!='0');
 }
 
-void cadast_produto(void) {
+void cadast_produto(void) {//FUNCAO PARA CADASTRAR PRODUTO
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
     FILE* fp;
     Gestao* gest;
@@ -87,16 +83,14 @@ void cadast_produto(void) {
     le_texto(gest->descricaop, 1000);
     printf("|      Quantidade = ");
     le_inte(&gest->quantidade);
-    // Pensar sobre o estoque de produto
     printf("|===============================================================================|\n\n");
     gest->status = 'a';
     fwrite(gest, sizeof(Gestao), 1, fp);
     fclose(fp);
     free(gest);
-    //Colocar estrutura de coleta de dados
 }
 
-void pesquisa_produto(void){
+void pesquisa_produto(void){//FUNCAO PARA PESQUISAR PRODUTO
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
     Gestao* gest;
     printf("|===============================================================================|\n");
@@ -114,7 +108,7 @@ void pesquisa_produto(void){
     free(gest);
 }
 
-Gestao* busca_produto(int* cod){
+Gestao* busca_produto(int* cod){//FUNCAO PARA BUSCAR PRODUTO PELO CODIGO
     FILE* fp;
     Gestao* gest;
     gest = (Gestao*) malloc(sizeof(Gestao));
@@ -140,7 +134,7 @@ Gestao* busca_produto(int* cod){
     return NULL;
 }
 
-void lista_produto(void){
+void lista_produto(void){//FUNCAO PARA LISTAR TODOS OS PRODUTOS
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
     FILE* fp;
     Gestao* gest;
@@ -164,7 +158,7 @@ void lista_produto(void){
     free(gest);
     fclose(fp);
 }
-void exibir_produto(Gestao*gest) {
+void exibir_produto(Gestao*gest) {//FUNCAO PARA EXIBIR OS DADOS DO PRODUTO
     char situacao[20];
     if ((gest == NULL) || (gest->status == 'x')) {
         printf("\n= = = Produto Inexistente = = =\n");
@@ -187,7 +181,7 @@ void exibir_produto(Gestao*gest) {
     
 }
 
-void exibir_produtort(Gestao*gest) {
+void exibir_produtort(Gestao*gest) {//FUNCAO PARA EXIBIR O PRODUTO DE FORMA TABELADA
     char situacao[20];
     if (gest == NULL) {
         printf("\n= = = Produto Inexistente = = =\n");
@@ -205,7 +199,7 @@ void exibir_produtort(Gestao*gest) {
     }    
 }
 
-void exibir_produtort_nvc(Gestao*gest, int q) {
+void exibir_produtort_nvc(Gestao*gest, int q) {//FUNCAO PARA EXIBIR TABELADAMENTE O PRODUTO, USADA PARA O RELATORIO DE VENDAS POR PRODUTO
     if (gest == NULL) {
         printf("\n= = = Produto Inexistente = = =\n");
     }else{
@@ -214,7 +208,7 @@ void exibir_produtort_nvc(Gestao*gest, int q) {
     }    
 }
 
-void edit_produto(void) {
+void edit_produto(void) {//FUNCAO PARA EDITAR PRODUTO
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
     Gestao* gest;
     printf("|\033[1;36m = Editar produto = \033[0m|\n");
@@ -224,7 +218,7 @@ void edit_produto(void) {
     printf("|                                                                               |\n");
     printf("|      = = = Editar = = =                                                       |\n");
     printf("|     Insira o codigo do produto:                                               |\n");
-    printf("|     Codigo   = "); //Pensar sobre esse codigo
+    printf("|     Codigo   = ");
     int cod;
     le_inte(&cod);
     printf("|===============================================================================|\n");
@@ -272,7 +266,7 @@ void edit_produto(void) {
     free(gest);
 }
 
-void delet_produto(void) {
+void delet_produto(void) {//FUNCAO PARA DELETAR PRODUTO
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
     Gestao* gest;
     printf("|\033[1;36m = Deletar produto = \033[0m|\n");
@@ -306,14 +300,9 @@ void delet_produto(void) {
         }
     }
     free(gest);
-    //Posso colocar um passo de confirmação se realmente quer deletar 
-    //Um frase tipo
-    // prinf(" Você realmente desejar deletar (nome do produto)?")
-
-
 }
 
-void regravar_produto(Gestao* gest) {
+void regravar_produto(Gestao* gest) {//FUNCAO PARA REGRAVAR O PRODUTO NO ARQUIVO EXTERNO BINARIO
 	int achou;
 	FILE* fp;
 	Gestao* gesLido;
@@ -338,7 +327,7 @@ void regravar_produto(Gestao* gest) {
 	free(gesLido);
 }
 
-int proximo_codigop(void){
+int proximo_codigop(void){//FUNCAO PARA COLOCAR O CODIGO DO PRODUTO 
     int codigo = 1; 
     Gestao temp;
     FILE* fp;

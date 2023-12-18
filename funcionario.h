@@ -1,13 +1,13 @@
 
 struct funcionario{
-    int codigof;
-    char cpff[12];
-    char nomef[50];
-    char data_nascimentof[11];
-    char telefonef[12];
-    char funcao[50];
-    float salario;
-    char status;
+    int codigof;//Codigo do funcionario
+    char cpff[12];//Cpf do funcionario
+    char nomef[50];//Nome do funcionario
+    char data_nascimentof[11];//DD/MM/AAAA Data de nascimento do funcionario
+    char telefonef[12];//Telefone do funcionario
+    char funcao[50];//Funcao do funcionario
+    float salario;//Salario do funcionario
+    char status;// a = Ativo / x = Inativo
 };
 
 typedef struct funcionario Funcionario;

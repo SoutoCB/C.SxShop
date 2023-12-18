@@ -53,7 +53,7 @@ void tela_menu_funcionarios() {
     } while (op !='0');
 }
 
-void cadast_funcionario(void) {
+void cadast_funcionario(void) {//FUNCAO PARA CADASTRAR FUNCIONARIO
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
     FILE* fp;
     Funcionario* func;
@@ -92,9 +92,8 @@ void cadast_funcionario(void) {
     fwrite(func, sizeof(Funcionario), 1, fp);
     fclose(fp);
     free(func);
-    //Colocar estrutura de coleta de dados
 }
-void pesquisa_funcionario(void){
+void pesquisa_funcionario(void){//FUNCAO PARA PESQUISAR FUNCIONARIO
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
     Funcionario* func;
     printf("|===============================================================================|\n");
@@ -103,7 +102,7 @@ void pesquisa_funcionario(void){
     printf("|                                                                               |\n");
     printf("|      = = = Pesquisar = = =                                                    |\n");
     printf("|     Insira o CPF do funcionario:                                              |\n");
-    printf("|     CPF   = "); //Pensar sobre esse codigo
+    printf("|     CPF   = "); 
     char cpf[12];
     le_cpf(cpf);
     printf("|===============================================================================|\n");
@@ -112,7 +111,7 @@ void pesquisa_funcionario(void){
     free(func);
 }
 
-int verifica_cpff(char*cpf){
+int verifica_cpff(char*cpf){//FUNCAO PARA VERIFICAR SE O CPF JA ESTA CADASTRADO
     FILE* fp;
     Funcionario* func;
     func = (Funcionario*) malloc(sizeof(Funcionario));
@@ -136,7 +135,7 @@ int verifica_cpff(char*cpf){
     return 1;
 }
 
-Funcionario* busca_funcionario(int* cod){
+Funcionario* busca_funcionario(int* cod){//FUNCAO PARA BUSCAR FUNCIONARIO PELO CODIGO
     FILE* fp;
     Funcionario* func;
     func = (Funcionario*) malloc(sizeof(Funcionario));
@@ -162,7 +161,7 @@ Funcionario* busca_funcionario(int* cod){
     return NULL;
 }
 
-Funcionario* busca_funcionariocpf(char* cpf){
+Funcionario* busca_funcionariocpf(char* cpf){//FUNCAO PARA BUSCAR FUNCIONARIO PELO CPF
     FILE* fp;
     Funcionario* func;
     func = (Funcionario*) malloc(sizeof(Funcionario));
@@ -188,7 +187,7 @@ Funcionario* busca_funcionariocpf(char* cpf){
 }
 
 
-void lista_funcionario(void) {
+void lista_funcionario(void) {//FUNCAO PARA LISTAR TODOS OS CLIENTES
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
     FILE* fp;
     Funcionario* func;
@@ -214,7 +213,7 @@ void lista_funcionario(void) {
 }
 
 
-void exibir_funcionario(Funcionario*func) {
+void exibir_funcionario(Funcionario*func) { //FUNCAO PARA EXIBIR OS DADOS DO FUNCIONARIO
     char situacao[20];
     if ((func == NULL) || (func->status == 'x')) {
         printf("\n= = = Funcionario Inexistente = = =\n");
@@ -235,10 +234,9 @@ void exibir_funcionario(Funcionario*func) {
         printf("|        Situacao do funcionario = %s\n", situacao);
         printf("|===============================================================================|\n\n");
     }
-     // Buscar forma para exibir funcionario por funcionario
 }
 
-void exibir_funcionariort(Funcionario*func) {
+void exibir_funcionariort(Funcionario*func) {//FUNCAO PARA EXIBIR OS FUNCIONARIOS DE FORMA TABULADA
     char situacao[20];
     if (func == NULL) {
         printf("\n= = = Funcionario Inexistente = = =\n");
@@ -253,7 +251,7 @@ void exibir_funcionariort(Funcionario*func) {
     }    
 }
 
-void exibir_funcionariort_nvc(Funcionario*func, int q) {
+void exibir_funcionariort_nvc(Funcionario*func, int q) {//FUNCAO PARA EXIBIR TABULADAMENTE O FUNCIONARIO NO RELATORIO DE NUMERO DE VENDAS POR FUNCIONARIO
     if (func == NULL) {
         printf("\n= = = Funcionario Inexistente = = =\n");
     }else{
@@ -262,7 +260,7 @@ void exibir_funcionariort_nvc(Funcionario*func, int q) {
     }    
 }
 
-void edit_funcionario(void) {
+void edit_funcionario(void) {//FUNCAO PARA EDITAR O FUNCIONARIO
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
     Funcionario* func;
     printf("|\033[1;36m = Editar funcionario = \033[0m|\n");
@@ -272,8 +270,7 @@ void edit_funcionario(void) {
     printf("|                                                                               |\n");
     printf("|      = = = Editar = = =                                                       |\n");
     printf("|     Insira o codigo do funcionario:                                           |\n");
-    //Adcionar coleta de dado
-    printf("|     Codigo   = "); //Pensar sobre esse codigo
+    printf("|     Codigo   = "); 
     int cod;
     le_inte(&cod);
     printf("|===============================================================================|\n");
@@ -329,7 +326,7 @@ void edit_funcionario(void) {
     free(func);
 }
 
-void delet_funcionario(void) {
+void delet_funcionario(void) { //FUNCAO PARA DELETAR FUNCIONARIO
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
     Funcionario* func;
     printf("|\033[1;36m = Deletar funcionario = \033[0m|\n");
@@ -339,7 +336,7 @@ void delet_funcionario(void) {
     printf("|                                                                               |\n");
     printf("|      = = = Deletar = = =                                                      |\n");
     printf("|     Insira o codigo do funcionario:                                           |\n");
-    printf("|     Codigo   = "); //Pensar sobre esse codigo
+    printf("|     Codigo   = "); 
     int cod;
     le_inte(&cod);
     printf("|===============================================================================|\n");
@@ -363,14 +360,9 @@ void delet_funcionario(void) {
         }
     }
     free(func);
-    //Posso colocar um passo de confirmação se realmente quer deletar 
-    //Um frase tipo
-    // prinf(" Você realmente desejar deletar (nome) do cpf (cpf)?")
-
-
 }
 
-void regravar_funcionario(Funcionario* func) {
+void regravar_funcionario(Funcionario* func) {//FUNCAO PARA REGRAVAR OS DADOS DO FUNCIONARIO NO ARQUIVO EXTERNO BINARIO
 	int achou;
 	FILE* fp;
 	Funcionario* funLido;
@@ -395,7 +387,7 @@ void regravar_funcionario(Funcionario* func) {
 	free(funLido);
 }
 
-int proximo_codigof(void){
+int proximo_codigof(void){//FUNCAO PARA BUSCAR O CODIGO PARA O FUNCIONARIO CADASTRADO
     int codigo = 1; 
     Funcionario temp;
     FILE* fp;

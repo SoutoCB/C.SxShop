@@ -1,21 +1,21 @@
 
 struct vendas{
-    int codigov;
-    char cpf_cliente[10];
-    int codigo_funcionario;
-    float valor_total;
-    char descricao[1000];
-    char status;
+    int codigov;//Codigo da venda
+    char cpf_cliente[10];//Cpf do cliente
+    int codigo_funcionario;//Codigo do funcionario
+    float valor_total;//Valor total
+    char descricao[1000];//Descricao da venda
+    char status;// a = ativa / x = excluida
 };
 
 typedef struct vendas Vendas;
 
 struct produtovendido{
-    int codigopdv;
-    int codigov;
-    int codigop;
-    int quantidade;
-    char status;
+    int codigopdv;//Codigo do produto vendido
+    int codigov;//Codigo da venda
+    int codigop;//Codigo do produto
+    int quantidade;//Quantidade do produto vendido
+    char status;//a = ativa / x = excluida
 };
 
 typedef struct produtovendido Prodv;
