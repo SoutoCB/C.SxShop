@@ -9,6 +9,22 @@ Referencias;
 -Slides e Github de Flavius Gorgonio, @FlaviusGorgonio
 -ChatGPT, um modelo de linguagem da OpenAI, https://chat.openai.com/
 -Outras referencias, serao referenciadas no proprio codigo 
+
+WINDOWS
+gcc -Wall *.h -o testeh
+gcc -Wall *.c -o testec
+.\testec.exe
+
+LINUX
+gcc -Wall *.h -o testeh
+gcc -Wall *.c -o testec
+./testec
+
+Replit:
+gcc -Wall *.h -c
+gcc -Wall *.c -c
+gcc -Wall *.c -o testec
+./testec
 */
 
 

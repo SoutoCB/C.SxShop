@@ -54,7 +54,7 @@ void tela_menu_cliente() {
     }while(op!='0');
 }
 
-void cadast_cliente(void) {
+void cadast_cliente(void) { // FUNCAO PARA CADASTRAR CLIENTES
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
     FILE* fp;
     Cliente* cliente;
@@ -89,10 +89,9 @@ void cadast_cliente(void) {
     fwrite(cliente, sizeof(Cliente), 1, fp);
     fclose(fp);
     free(cliente);
-    //Colocar estrutura de coleta de dados
 }  
 
-void pesquisa_cliente(void){
+void pesquisa_cliente(void){ //FUNCAO PARA PESQUISAR CLIENTE
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
     Cliente* cliente;
     printf("|===============================================================================|\n");
@@ -100,8 +99,8 @@ void pesquisa_cliente(void){
     printf("|                      = = = = = Menu Cliente = = = = =                         |\n");
     printf("|                                                                               |\n");
     printf("|      = = = Pesquisar = = =                                                    |\n");
-    printf("|     Insira o CPF do cliente:                                               |\n");
-    printf("|     CPF   = "); //Pensar sobre esse codigo
+    printf("|     Insira o CPF do cliente:                                                  |\n");
+    printf("|     CPF   = "); 
     char cpf[12];
     le_cpf(cpf);
     printf("|===============================================================================|\n");
@@ -110,7 +109,7 @@ void pesquisa_cliente(void){
     free(cliente);
 }
 
-int verifica_cpfc(char*cpf){
+int verifica_cpfc(char*cpf){ //FUNCAO QUE VERIFICA SE O CPF DE CADASTRO ESTA SENDO UTILIZADO EM ALGUM OUTRO CADASTRO
     FILE* fp;
     Cliente* cliente;
     cliente = (Cliente*) malloc(sizeof(Cliente));
@@ -134,7 +133,7 @@ int verifica_cpfc(char*cpf){
     return 1;
 }
 
-int verifica_cpfc_existe(char*cpf){
+int verifica_cpfc_existe(char*cpf){ //FUNCAO PARA VERIFICAR SE O CPF EXISTE NOS CADASTROS DE CLIENTES
     FILE* fp;
     Cliente* cliente;
     cliente = (Cliente*) malloc(sizeof(Cliente));
@@ -158,7 +157,7 @@ int verifica_cpfc_existe(char*cpf){
     return 1;
 }
 
-Cliente* busca_cliente(int* cod){
+Cliente* busca_cliente(int* cod){ //FUNCAO PARA BUSCAR CLIENTES COM O CODIGO
     FILE* fp;
     Cliente* cliente;
     cliente = (Cliente*) malloc(sizeof(Cliente));
@@ -184,7 +183,7 @@ Cliente* busca_cliente(int* cod){
     return NULL;
 }
 
-Cliente* busca_clientecpf(char* cpf){
+Cliente* busca_clientecpf(char* cpf){ // FUNCAO PARA BUSCAR CLIENTE PELO CPF
     FILE* fp;
     Cliente* cliente;
     cliente = (Cliente*) malloc(sizeof(Cliente));
@@ -209,7 +208,7 @@ Cliente* busca_clientecpf(char* cpf){
     return NULL;
 }
 
-void lista_cliente(void) {
+void lista_cliente(void) { //FUNCAO PARA BUSCAR TODOS OS CLIENTES E EXIBIR COM OUTRA FUNCAO
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
     FILE* fp;
     Cliente* cliente;
@@ -234,18 +233,17 @@ void lista_cliente(void) {
     fclose(fp);
 }
 
-void exibir_cliente(Cliente*cliente) {
+void exibir_cliente(Cliente*cliente) { //FUNCAO PARA EXIBIR OS DADOS DO CLIENTE
     char situacao[20];
     if ((cliente == NULL) || (cliente->status == 'x')) {
         printf("\n= = = Cliente Inexistente = = =\n");
     }else{
         printf("|      = = = Cliente = = =                                                      |\n");
-        printf("|        Codigo   = %d                                                            \n", cliente->codigoc); //Pensar sobre esse codigo
+        printf("|        Codigo   = %d                                                            \n", cliente->codigoc); 
         printf("| 1.     CPF      = %s                                                            \n", cliente->cpfc);
         printf("| 2.     Nome     = %s                                                            \n", cliente->nomec);
         printf("| 3.     Data nascimento = %s                                                     \n", cliente->data_nascimentoc);
         printf("| 4.     Telefone = %s                                                            \n", cliente->telefonec); 
-        // Buscar forma para exibir cliente por cliente
         if (cliente->status == 'a') {
         strcpy(situacao, "Ativo");
         } else {
@@ -256,7 +254,7 @@ void exibir_cliente(Cliente*cliente) {
     }    
 }
 
-void exibir_clientert(Cliente*cliente) {
+void exibir_clientert(Cliente*cliente) { //FUNCAO PARA EXIBIR O CLIENTE DE FORMA TABULADA
     char situacao[20];
     if (cliente == NULL) {
         printf("\n= = = Cliente Inexistente = = =\n");
@@ -271,7 +269,7 @@ void exibir_clientert(Cliente*cliente) {
     }    
 }
 
-void exibir_clientert_ncc(Cliente*cliente, int q) {
+void exibir_clientert_ncc(Cliente*cliente, int q) { //FUNCAO PARA EXIBIR O CLIENTE DE FORMA TABULADA PARA O RELATORIO DE NUMERO DE COMPRAS POR CLIENTE
     if (cliente == NULL) {
         printf("\n= = = Cliente Inexistente = = =\n");
     }else{
@@ -280,7 +278,7 @@ void exibir_clientert_ncc(Cliente*cliente, int q) {
     }    
 }
 
-void edit_cliente(void) {
+void edit_cliente(void) { //FUNCAO PARA EDITAR O CLIENTE
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
     Cliente* cliente;
     printf("|\033[1;36m = Editar cliente = \033[0m|\n");
@@ -290,7 +288,7 @@ void edit_cliente(void) {
     printf("|                                                                               |\n");
     printf("|      = = = Editar = = =                                                       |\n");
     printf("|     Insira o codigo do cliente:                                               |\n");
-    printf("|     Codigo   = "); //Pensar sobre esse codigo
+    printf("|     Codigo   = "); 
     int cod;
     le_inte(&cod);
     printf("|===============================================================================|\n");
@@ -338,7 +336,7 @@ void edit_cliente(void) {
     free(cliente);
 }
 
-void delet_cliente(void) {
+void delet_cliente(void) { //FUNCAO PARA DELETAR CLIENTE
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
     Cliente* cliente;
     printf("|\033[1;36m = Excluir cliente = \033[0m|\n");
@@ -348,7 +346,7 @@ void delet_cliente(void) {
     printf("|                                                                               |\n");
     printf("|      = = = Deletar = = =                                                      |\n");
     printf("|      Insira o codigo do cliente:                                              |\n");
-    printf("|      Codigo   = "); //Pensar sobre esse codigo
+    printf("|      Codigo   = "); 
     int cod;
     le_inte(&cod);
     printf("|===============================================================================|\n");
@@ -375,7 +373,7 @@ void delet_cliente(void) {
 }
 
 
-void regravar_cliente(Cliente* cliente) {
+void regravar_cliente(Cliente* cliente) { //FUNCAO PARA REGRAVAR O CLIENTE NO ARQUIVO EXTERNO EM BINARIO
 	int achou;
 	FILE* fp;
 	Cliente* cliLido;
@@ -401,7 +399,7 @@ void regravar_cliente(Cliente* cliente) {
 }
 
 
-int proximo_codigoc(void){
+int proximo_codigoc(void){ //FUNCAO PARA DIZER O CODIGO PARA O CADASTRO DE CLIENTE
     int codigo = 1; 
     Cliente temp;
     FILE* fp;

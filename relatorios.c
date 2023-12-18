@@ -104,7 +104,7 @@ void relat_clientes(void) {
     }while(op1!='0');
 }
     
-void lista_clientert(void) {
+void lista_clientert(void) {//RELATORIO DE EXIBIR TODOS OS CLIENTES
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
     FILE* fp;
     Cliente* cliente;
@@ -131,7 +131,7 @@ void lista_clientert(void) {
     fclose(fp);
 }
 
-void cliente_p_situacao(void) {
+void cliente_p_situacao(void) {//RELATORIO PARA EXIBIR OS CLIENTES POR SITUACAO, Ativo e inativo
     char op;
     printf(" 1 - Clientes ativos\n");
     printf(" 2 - Cliente inativos\n ");
@@ -176,7 +176,7 @@ void cliente_p_situacao(void) {
 }
 
 
-void numero_c_cliente(void) {
+void numero_c_cliente(void) {//RELATORIO PARA EXIBIR O NUMERO DE COMPRAS POR CLIENTE
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
     FILE* fp;
     FILE* vp;
@@ -226,7 +226,7 @@ int compararClientes(const void *a, const void *b) { //Apoio do GPT
     return strcmp(((Cliente *)a)->nomec, ((Cliente *)b)->nomec);
 }
 
-void ordenados_clientes(){ //Apoio do GPT
+void ordenados_clientes(){ //Apoio do GPT //RELATORIO PARA EXIBIR OS CLIENTE ORDENADOS POR NOME
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
     FILE *arquivoClientes;
 
@@ -329,7 +329,7 @@ void relat_funcionarios(void) {
     }while(op1!='0');    
 }
 
-void lista_funcionariort(void) {
+void lista_funcionariort(void) {//RELATORIO PARA EXIBIR TODOS OS FUNCIONARIOS
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
     FILE* fp;
     Funcionario* func;
@@ -356,7 +356,7 @@ void lista_funcionariort(void) {
     fclose(fp);
 }
 
-void funcionario_p_situacao(void) {
+void funcionario_p_situacao(void) {;//RELATORIO PARA EXIBIR OS FUNCIONARIOS POR SITUACAO, ATIVOS E INATIVOS
     char op;
     printf(" 1 - Funcionarios ativos\n");
     printf(" 2 - Funcionarios inativos\n ");
@@ -400,7 +400,7 @@ void funcionario_p_situacao(void) {
     }
 }
 
-void numero_v_funcionario(void) {
+void numero_v_funcionario(void) {//RELATORIO PARA EXIBIR O NUMERO DE VENDAS POR FUNCIONARIO
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
     FILE* fp;
     FILE* vp;
@@ -450,7 +450,7 @@ int compararFuncionarios(const void *a, const void *b) { //Apoio do GPT
     return strcmp(((Funcionario *)a)->nomef, ((Funcionario *)b)->nomef);
 }
 
-void ordenados_funcionarios(){ //Apoio do GPT
+void ordenados_funcionarios(){ //Apoio do GPT //RELATORIO PARA EXIBIR OS FUNCIONARIOS ORDENADOS PELO NOME
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
     FILE *fp;
 
@@ -555,7 +555,7 @@ void relat_produtos(void) {
     
 }
 
-void produto_p_situacao(void) {
+void produto_p_situacao(void) {//RELATORIO PARA EXIBIR OS PRODUTOS POR SITUACAO, EM ESTOQUE E ESGOTADOS
     char op;
     printf(" 1 - Produtos em estoque\n");
     printf(" 2 - Produtos esgotados\n ");
@@ -599,7 +599,7 @@ void produto_p_situacao(void) {
     }
 }
 
-void lista_produtort(void) {
+void lista_produtort(void) {//RELATORIO PARA EXIBIR TODOS OS PRODUTOS
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
     FILE* fp;
     Gestao* gest;
@@ -626,7 +626,7 @@ void lista_produtort(void) {
     fclose(fp);
 }
 
-void numero_v_produto(void) {
+void numero_v_produto(void) {//RELATORIO PARA EXIBIR O NUMERO DE VENDAS POR PRODUTO
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
     FILE* fp;
     Gestao* gest;
@@ -675,7 +675,7 @@ int compararProdutos(const void *a, const void *b) { //Apoio do GPT
     return strcmp(((Gestao *)a)->nomep, ((Gestao *)b)->nomep);
 }
 
-void ordenados_produtos(){ //Apoio do GPT
+void ordenados_produtos(){ //Apoio do GPT //RELATORIO PARA EXIBIR O NOME DOS PRODUTOS ORDENADOS
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
     FILE *fp;
 
@@ -778,7 +778,7 @@ void relat_vendas(void) {
     }while(op1!='0');    
 }
 
-void lista_vendart(void) {
+void lista_vendart(void) {//RELATORIO PARA EXIBIR TODAS AS VENDAS
     system("clear || cls");  // Tenta "clear" no Linux/macOS, se falhar, tenta "cls" no Windows
     FILE* fp;
     Vendas* vend;
@@ -805,7 +805,7 @@ void lista_vendart(void) {
     fclose(fp);
 }
 
-void venda_p_funcionario(void) {
+void venda_p_funcionario(void) {//RELATORIO PARA EXIBIR AS VENDAS POR FUNCIONARIO
     int cod;
     printf("Digite o codigo do funcionario: ");
     le_inte(&cod);
@@ -838,7 +838,7 @@ void venda_p_funcionario(void) {
     fclose(fp);
 }
 
-void venda_p_cliente(void) {
+void venda_p_cliente(void) {//RELATORIO PARA EXIBIR AS VENDAS POR CLIENTE
     char cpf[12];
     printf("Digite o CPF do cliente: ");
     le_cpf(cpf);
@@ -871,7 +871,7 @@ void venda_p_cliente(void) {
     fclose(fp);
 }
 
-void venda_p_produto(void) {
+void venda_p_produto(void) {//RELATORIO PARA EXIBIR AS VENDAS POR PRODUTO
     int cod = 0;
     printf("Digite o codigo: ");
     do{le_inte(&cod);}while(!tem_codigop(&cod));
