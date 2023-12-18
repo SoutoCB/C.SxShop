@@ -457,7 +457,7 @@ void ordenados_funcionarios(){ //Apoio do GPT
     // Abrir o arquivo para leitura binaria
     if ((fp = fopen("funcionarios.dat", "rb")) == NULL) {
         printf("Erro na abertura do arquivo.\n");
-        printf("Nao e possivel continuar, provavelmente nao tem clientes cadastrados...\n");
+        printf("Nao e possivel continuar, provavelmente nao tem funcionarios cadastrados...\n");
         exit(1);
     }
 
@@ -682,7 +682,7 @@ void ordenados_produtos(){ //Apoio do GPT
     // Abrir o arquivo para leitura binaria
     if ((fp = fopen("produtos.dat", "rb")) == NULL) {
         printf("Erro na abertura do arquivo.\n");
-        printf("Nao e possivel continuar, provavelmente nao tem clientes cadastrados...\n");
+        printf("Nao e possivel continuar, provavelmente nao tem produtos cadastrados...\n");
         exit(1);
     }
 
@@ -893,7 +893,7 @@ void venda_p_produto(void) {
     fp = fopen("vendas.dat", "rb");
     if (fp == NULL) {
         printf("Erro na abertura do arquivo.\n");
-        printf("Nao e possivel continuar, provavelmente nao tem vendidas cadastrados...\n");
+        printf("Nao e possivel continuar, provavelmente nao tem vendas cadastrados...\n");
         exit(1);
     }
     
