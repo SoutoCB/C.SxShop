@@ -244,7 +244,7 @@ int tem_codigof(int*codf){
     fp = fopen("funcionarios.dat", "rb");
     if (fp == NULL) {
         printf("Erro na abertura do arquivo.\n");
-        printf("Nao e possivel continuar, provavelmente nao tem clientes cadastrados...\n");
+        printf("Nao e possivel continuar, provavelmente nao tem funcionarios cadastrados...\n");
         exit(1);
     }
     int codff = *codf;
@@ -286,7 +286,7 @@ Vendas* busca_vendas(int* cod){
     fp = fopen("vendas.dat", "rb");
     if (fp == NULL) {
         printf("Erro na abertura do arquivo.\n");
-        printf("Nao e possivel continuar, provavelmente nao tem clientes cadastrados...\n");
+        printf("Nao e possivel continuar, provavelmente nao tem vendas cadastrados...\n");
         exit(1);
     }
     char tem = 'x';
@@ -319,7 +319,7 @@ void lista_vendas(void){
     fp = fopen("vendas.dat", "rb");
     if (fp == NULL) {
         printf("Erro na abertura do arquivo.\n");
-        printf("Nao e possivel continuar, provavelmente nao tem clientes cadastrados...\n");
+        printf("Nao e possivel continuar, provavelmente nao tem vendas cadastrados...\n");
         exit(1);
     }
     while(fread(vend, sizeof(Vendas), 1, fp)) {
@@ -410,7 +410,7 @@ void volta_quant(int* cod){
     fv = fopen("produtosvendidos.dat", "rb");
 	if (fv == NULL) {
 		printf("Erro na abertura do arquivo.\n");
-        printf("Nao e possivel continuar, provavelmente nao tem vendas cadastrados...\n");
+        printf("Nao e possivel continuar, provavelmente nao tem produtos vendidos cadastrados...\n");
         exit(1);
 	}
     FILE* fp;
@@ -418,7 +418,7 @@ void volta_quant(int* cod){
     fp = fopen("produtos.dat", "rb");
     if (fp == NULL) {
         printf("Erro na abertura do arquivo.\n");
-        printf("Nao e possivel continuar, provavelmente nao tem vendas cadastrados...\n");
+        printf("Nao e possivel continuar, provavelmente nao tem produtos cadastrados...\n");
         exit(1);
     }
 
@@ -448,7 +448,7 @@ void regravar_prodv(Prodv* prodv) {
 	fp = fopen("produtosvendidos.dat", "r+b");
 	if (fp == NULL) {
 		printf("Erro na abertura do arquivo.\n");
-        printf("Nao e possivel continuar, provavelmente nao tem vendas cadastrados...\n");
+        printf("Nao e possivel continuar, provavelmente nao tem produtos vendidos cadastrados...\n");
         exit(1);
 	}
 	achou = 0;
@@ -519,7 +519,7 @@ int proximo_codigopdv(void){
     fp = fopen("produtosvendidos.dat", "r+b");
     if (fp == NULL) {
 		printf("Erro na abertura do arquivo.\n");
-        printf("Nao e possivel continuar, provavelmente nao tem vendas cadastrados...\n");
+        printf("Nao e possivel continuar, provavelmente nao tem produtos vendidos cadastrados...\n");
         exit(1);
 	}
     fseek(fp, 0, SEEK_SET); // Volta para o inicio do arquivo
